@@ -1,0 +1,1 @@
+web: gunicorn OlimpiColombia.wsgi --log-file -

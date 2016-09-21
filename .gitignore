@@ -148,5 +148,3 @@ modules.xml
 
 # Procesos Ágiles project
 db.sqlite3
-procesos_agiles/staticfiles
-procesos_agiles/static

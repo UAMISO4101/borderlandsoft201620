@@ -1,0 +1,11 @@
+boto3==1.4.0
+dj-database-url==0.4.1
+Django==1.10
+django-bootstrap3==7.0.1
+django-storages==1.5.0
+gunicorn==19.6.0
+psycopg2==2.6.2
+sqlparse==0.2.1
+whitenoise==3.2.1
+pytz==2016.6.1
+Pillow==3.3.1

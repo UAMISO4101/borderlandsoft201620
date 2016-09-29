@@ -1,0 +1,8 @@
+{{ artista.nom_artistico}}
+{{ artista.nom_pais}}
+{{ artista.nom_ciudad}}
+
+{% for artista_album in lista_artista_album %}
+    <img class="img-responsive img-rounded" src="{{ artista_album.album.val_imagen }}" width="50" height="70"/>
+    {{ artista_album.album.nom_album}}
+{% endfor %}

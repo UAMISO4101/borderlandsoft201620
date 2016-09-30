@@ -7,12 +7,19 @@ from .models import *
 
 # Create your views here.
 
-#class AlbumView(ListView):
-#    template_name = 'contenido/albumes.html'
-#    context_object_name = 'lista_albumes'
+class AudiosView(ListView):
+    template_name = 'contenido/audios.html'
+    context_object_name = 'lista_audios'
+    artista = Artista
 
-#    def get_queryset(self):
-#        return Album.objects.all()
+    def get_queryset(self):
+        self.artista = get_object_or_404(Artista, id=int(self.kwargs['artista_id']))
+        return Audio.objects.filter(artista__pk=self.artista.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super(AudiosView, self).get_context_data(**kwargs)
+        context['artista'] = self.artista
+        return context
 
 class AlbumesView(ListView):
     template_name = 'contenido/albumes.html'

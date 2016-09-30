@@ -1,0 +1,8 @@
+{{ artista.nom_artistico}}
+{{ artista.nom_pais}}
+{{ artista.nom_ciudad}}
+
+{% for audio in lista_audios %}
+    <img class="img-responsive img-rounded" src="{{ audio.val_imagen }}" width="50" height="70"/>
+    {{ audio.nom_audio}}
+{% endfor %}

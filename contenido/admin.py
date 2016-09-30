@@ -10,5 +10,11 @@ class AudioAdmin(admin.ModelAdmin):
     list_display = ('nom_audio', 'val_imagen', 'val_recurso', 'artista')
     search_fields = ('nom_audio',)
 
+class AlbumAdmin(admin.ModelAdmin):
+    list_display = ('val_imagen', 'nom_album')
+    search_fields = ('nom_album',)
+
+
 admin.site.register(Artista, ArtistaAdmin)
 admin.site.register(Audio, AudioAdmin)
+admin.site.register(Album, AlbumAdmin)

@@ -148,3 +148,5 @@ modules.xml
 
 # Procesos Ágiles project
 db.sqlite3
+node_modules/
+# bower_components/

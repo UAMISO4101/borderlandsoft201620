@@ -1,0 +1,23 @@
+{
+  "name": "sonidoslibres",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bower": "bower"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BorderlandSoft/SonidosLibres.git"
+  },
+  "author": "Jorge Castro",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/BorderlandSoft/SonidosLibres/issues"
+  },
+  "homepage": "https://github.com/BorderlandSoft/SonidosLibres#readme",
+  "devDependencies": {
+    "bower": "^1.7.9"
+  }
+}

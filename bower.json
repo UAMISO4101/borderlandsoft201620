@@ -1,0 +1,21 @@
+{
+  "name": "sonidoslibres",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Jorge Castro"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/BorderlandSoft/SonidosLibres",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

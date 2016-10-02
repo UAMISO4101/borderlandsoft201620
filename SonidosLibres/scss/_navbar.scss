@@ -1,0 +1,70 @@
+@import "variables";
+.navbar{
+  border-bottom: 1px solid $color-main1;
+      margin-bottom: 0;
+}
+.navbar-inverse{
+  background-color: transparent;
+  color: #fff;
+
+  .navbar-nav > .open > a{
+    &:hover, &:focus{
+      background-color: darken($color-navbar, 5%);
+    }
+  }
+
+  .navbar-brand, .navbar-nav > li > a {
+    color: #D0D6D9;
+    
+    &:hover, &:focus{
+      color: #fff;
+    }
+  }
+}
+
+.nav > li > a.dropdown-user{
+  padding: 9px 15px 9px 15px;
+}
+
+.nav-tabs > li {
+  > a {
+    &, &:hover, &:focus {
+      color: #555;
+    }
+  }
+
+  &.active > a {
+      &, &:hover, &:focus {
+        background-color: $color-body;
+        font-weight: 600;
+        border: 0;
+        border-bottom: 2px solid $color-main1;
+      }
+    }
+}
+
+.nav-icon {
+  margin-right: 6px;
+  font-size: 18px;
+}
+
+.navbar-form .input-group{
+  @media (min-width: 970px) {
+    width: 475px;
+  }
+  @media (min-width: 1170px) {
+    width: 675px;
+  }
+  width: 280px;
+}
+
+.img-small{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
+}
+
+input[type="text"]{
+  background-color: #efefef;
+}

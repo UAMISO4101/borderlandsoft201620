@@ -1,3 +1,84 @@
-h1{
-  color: red;
+@import "variables";
+@import "mixins";
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  background-color: $color-navbar;
+  background: url("../img/music-pattern3.png");
+  background-size: 500px;
+}
+.body{
+  background-color: $color-body;
+  padding-bottom: 100px;
+  padding-top: 20px;
+}
+
+.title-part1{
+  color: #fff;
+}
+.title-part2{
+  color: $color-main1;
+  font-weight: 600;
+}
+
+footer{
+  padding-top: 10px;
+  color: #fff;
+}
+
+
+.counter {
+  display: inline-block;
+  padding: 4px 5px 3px 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  background-color: $color-main1;
+  border-radius: 20px;
+}
+
+.box{
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.song-img{
+  background: $color-main1;
+  height: 50px;
+  width: 50px;
+
+  i {
+    color: white;
+    font-size: 28px;
+    margin-top: 10px;
+  }
+}
+
+.media-body {
+  > h4{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    > a{
+      color: black;
+    }
+    margin-top: 4px;
+  }
+}
+
+.circle{
+  border-radius: 100px;
+}
+
+.btn-sonidoslibres{
+  @include button-variant(#fff, $color-main1, darken($color-main1, 5%));
+  border-radius: 2px;
+
+  &:focus {
+    outline: 2px auto #3D9A63;
+    outline-offset: -2px;
+  }
 }

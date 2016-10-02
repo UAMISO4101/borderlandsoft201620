@@ -20,6 +20,8 @@
   "devDependencies": {
     "bower": "^1.7.9",
     "grunt": "^1.0.1",
-    "grunt-sass": "^1.2.1"
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^1.2.1",
+    "load-grunt-tasks": "^3.5.2"
   }
 }

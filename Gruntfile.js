@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-    grunt.loadNpmTasks('grunt-sass');
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
         sass: {

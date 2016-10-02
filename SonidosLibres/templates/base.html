@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="{% static "js/lib/bootstrap/dist/css/bootstrap.min.css" %}" >
     <link rel="stylesheet" href="{% static "js/lib/font-awesome/css/font-awesome.min.css" %}" >
+    <link rel="stylesheet" href="{% static "js/lib/bootstrap-social/bootstrap-social.css" %}" >
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/output.css" %}" >
 </head>
@@ -33,7 +34,7 @@
 
             <form class="navbar-form navbar-left">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar audios">
+                    <input type="text" class="form-control form-bootstrap" placeholder="Buscar audios">
                     <span class="input-group-btn">
                             <button type="submit" class="btn btn-sonidoslibres"><i class="fa fa-search"></i></button>
                         </span>
@@ -42,7 +43,7 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-                {% if 1 == 1 %}
+                {% if 0 == 1 %}
                     <li><a href="#"><i class="fa fa-upload nav-icon"></i> Subir</a></li>
                     <li class="dropdown">
 
@@ -56,8 +57,8 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="#">Registrarse</a></li>
-                    <li><a href="#">Iniciar Sesión</a></li>
+                    <li><a href="/register">Registrarse</a></li>
+                    <li><a href="/login">Iniciar Sesión</a></li>
                 {% endif %}
 
 

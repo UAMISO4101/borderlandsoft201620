@@ -1,10 +1,10 @@
 @import "variables";
 @import "mixins";
 
+//noinspection CssUnknownTarget
 body{
   font-family: 'Open Sans', sans-serif;
-  background-color: $color-navbar;
-  background: url("../img/music-pattern3.png");
+  background: $color-navbar url("../img/music-pattern3.png");
   background-size: 500px;
 }
 .body{
@@ -12,7 +12,17 @@ body{
   padding-bottom: 100px;
   padding-top: 20px;
 }
+a{
+  &, &:hover, &:focus{
+    color: $color-main1;
+  }
+}
 
+h3{
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
 .title-part1{
   color: #fff;
 }
@@ -73,12 +83,19 @@ footer{
   border-radius: 100px;
 }
 
-.btn-sonidoslibres{
-  @include button-variant(#fff, $color-main1, darken($color-main1, 5%));
-  border-radius: 2px;
+.text-divider{
+  margin-top: 9px;
+  background: #fff;
 
-  &:focus {
-    outline: 2px auto #3D9A63;
-    outline-offset: -2px;
+  span{
+    width: 40px;
+    display: inline-block;
+    background: white;
+  }
+
+  hr{
+    margin-top: -9px;
+    border-top: 1px solid #cfcfcf;
+    border-top: 1px solid #cfcfcf;
   }
 }

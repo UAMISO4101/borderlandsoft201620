@@ -1,7 +1,11 @@
 @import "variables";
 .navbar{
   border-bottom: 1px solid $color-main1;
-      margin-bottom: 0;
+  margin-bottom: 0;
+
+  input[type="text"]{
+    background-color: #efefef;
+  }
 }
 .navbar-inverse{
   background-color: transparent;
@@ -15,7 +19,7 @@
 
   .navbar-brand, .navbar-nav > li > a {
     color: #D0D6D9;
-    
+
     &:hover, &:focus{
       color: #fff;
     }
@@ -34,13 +38,13 @@
   }
 
   &.active > a {
-      &, &:hover, &:focus {
-        background-color: $color-body;
-        font-weight: 600;
-        border: 0;
-        border-bottom: 2px solid $color-main1;
-      }
+    &, &:hover, &:focus {
+      background-color: $color-body;
+      font-weight: 600;
+      border: 0;
+      border-bottom: 2px solid $color-main1;
     }
+  }
 }
 
 .nav-icon {
@@ -63,8 +67,4 @@
   width: 32px;
   height: 32px;
   margin-right: 6px;
-}
-
-input[type="text"]{
-  background-color: #efefef;
 }

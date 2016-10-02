@@ -17,6 +17,7 @@
   ],
   "devDependencies": {
     "bootstrap": "^3.3.7",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "bootstrap-social": "^5.0.0"
   }
 }

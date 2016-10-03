@@ -20,8 +20,6 @@ PROJECT_PACKAGE = Path(__file__).resolve().parent
 # The full path to the repository root.
 BASE_DIR = PROJECT_PACKAGE.parent
 
-data_dir_key = 'DJANGOPROJECT_DATA_DIR'
-DATA_DIR = Path(os.environ[data_dir_key]) if data_dir_key in os.environ else BASE_DIR
 
 # The full path to the repository root.
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -139,7 +137,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = str(DATA_DIR.joinpath('static'))  # os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = str(BASE_DIR.joinpath('static'))  # os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     str(PROJECT_PACKAGE.joinpath('static'))

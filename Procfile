@@ -1,1 +1,1 @@
-web: gunicorn OlimpiColombia.wsgi --log-file -
+web: gunicorn SonidosLibres.wsgi --log-file -

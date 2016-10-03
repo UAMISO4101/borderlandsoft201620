@@ -152,3 +152,4 @@ node_modules/
 SonidosLibres/static/css/*.map
 SonidosLibres/static/css/*.css
 /static/
+/staticfiles/

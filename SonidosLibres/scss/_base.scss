@@ -10,14 +10,15 @@ body{
 .body{
   background-color: $color-body;
   padding-bottom: 100px;
-  padding-top: 20px;
 }
 a{
   &, &:hover, &:focus{
     color: $color-main1;
   }
 }
-
+h2{
+  margin-top: 0;
+}
 h3{
   margin-top: 0;
   margin-bottom: 20px;
@@ -57,15 +58,29 @@ footer{
 
 .song-img{
   background: $color-main1;
-  height: 50px;
-  width: 50px;
-
-  i {
+  i{
     color: white;
-    font-size: 28px;
-    margin-top: 10px;
+  }
+
+  &.si50 {
+    height: 50px;
+    width: 50px;
+    i {
+      font-size: 28px;
+      margin-top: 10px;
+    }
+  }
+  &.si200 {
+    height: 200px;
+    width: 200px;
+    i {
+      font-size: 150px;
+      margin-top: 22px;
+      margin-left: 31px;
+    }
   }
 }
+
 
 .media-body {
   > h4{
@@ -98,4 +113,31 @@ footer{
     border-top: 1px solid #cfcfcf;
     border-top: 1px solid #cfcfcf;
   }
+}
+
+.content-header {
+  color: #fff;
+  background: #2a3745 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+  //background: #159957 linear-gradient(120deg, #191727, #211b47);
+  padding: 40px;
+}
+
+.padding-top-20{
+  padding-top: 20px;
+}
+
+.audio-player{
+  width: 500px;
+}
+
+.rating-input{
+  font-size: 20px;
+  i{
+    margin-left: 8px;
+    margin-left: 8px;
+  }
+}
+
+.col-song-img{
+  width: 240px;
 }

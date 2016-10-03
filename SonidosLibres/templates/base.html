@@ -8,7 +8,9 @@
 
     <title>{% block title %}Página Principal{% endblock %} | SonidosLibres</title>
 
+    <link rel="stylesheet" href="{% static "js/lib/normalize-css/normalize.css" %}" >
     <link rel="stylesheet" href="{% static "js/lib/bootstrap/dist/css/bootstrap.min.css" %}" >
+
     <link rel="stylesheet" href="{% static "js/lib/font-awesome/css/font-awesome.min.css" %}" >
     <link rel="stylesheet" href="{% static "js/lib/bootstrap-social/bootstrap-social.css" %}" >
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
@@ -25,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span class="title-part1">Sonidos</span><span class="title-part2">Libres</span></a>
+            <a class="navbar-brand" href="/"><span class="title-part1">Sonidos</span><span class="title-part2">Libres</span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,7 +45,7 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-                {% if 0 == 1 %}
+                {% if 1 == 1 %}
                     <li><a href="#"><i class="fa fa-upload nav-icon"></i> Subir</a></li>
                     <li class="dropdown">
 
@@ -67,7 +69,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="body">
+<div class="body {% block paddingBody %}padding-top-20{% endblock %}">
 
     {% block content %}{% endblock %}
 </div>
@@ -86,6 +88,8 @@
 </footer>
 
 <script src="{% static "js/lib/jquery/dist/jquery.js" %}" type="text/javascript"></script>
+{#<script src="https://code.jquery.com/jquery-2.2.4.js" type="text/javascript"></script>#}
 <script src="{% static "js/lib/bootstrap/dist/js/bootstrap.min.js" %}" type="text/javascript"></script>
+{% block pagescripts %}{% endblock %}
 </body>
 </html>

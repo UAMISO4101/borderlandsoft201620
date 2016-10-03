@@ -19,8 +19,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='homepage.html'), name="homepage"),
-    url(r'^login', TemplateView.as_view(template_name='login.html'), name="homepage"),
-    url(r'^register', TemplateView.as_view(template_name='register.html'), name="homepage"),
+    url(r'^login/', TemplateView.as_view(template_name='login.html'), name="homepage"),
+    url(r'^register/', TemplateView.as_view(template_name='register.html'), name="homepage"),
+    url(r'^404/', TemplateView.as_view(template_name='404.html'), name="homepage"),
     # url(r'^front/', include('fronttemplates.urls')),
     # url(r'', include('contenido.urls')),
     url(r'^admin/', admin.site.urls),

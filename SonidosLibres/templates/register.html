@@ -1,47 +1,36 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container">
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4 box">
-                <h3>Registro</h3>
-                <form>
-                    <a class="btn btn-block btn-social btn-facebook btn-tall">
-                        <span class="fa fa-facebook"></span>
-                        Registrarse con Facebook
-                    </a>
-                    <div class="text-divider">
-                        <div class="text-center">
-                        <span>o</span>
-                        </div>
-                        <hr>
-                    </div>
+{% extends "authenticate.html" %}
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombres">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Apellidos">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Contreseña">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirme la Contreseña">
-                    </div>
-                    <small>Al hacer click en Registrarse, aceptas los <a href="#">términos y condiciones</a> y <a
-                            href="#">política de privacidad de SonidosLibres</a></small>
-                    <br><br>
+{% block facebook %}Registrarse con Facebook{% endblock %}
 
-                    <button type="submit" class="btn btn-block btn-lg btn-sonidoslibres">Submit</button>
-                    <div class="text-center">
-                        <small>¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></small>
-                    </div>
-                </form>
+{% block title %}Registro{% endblock %}
 
-            </div>
+{% block form %}
+    <div class="form-group">
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombres">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Apellidos">
+    </div>
+    <div class="form-group has-error">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico">
+        <div class="help-block">
+            <ul class="list-unstyled">
+                <li>La dirección de correo electrónico no es válida</li>
+            </ul>
         </div>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Contraseña">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Confirme la Contreseña">
+    </div>
+    <small>Al hacer click en Registrarse, aceptas los <a href="#">términos y condiciones</a> y <a
+            href="#">política de privacidad de SonidosLibres</a></small>
+    <br><br>
+
+    <button type="button" class="btn btn-block btn-lg btn-sonidoslibres" onclick="document.location.href='/'">Registrarse</button>
+    <div class="text-center">
+        <small>¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></small>
     </div>
 {% endblock %}

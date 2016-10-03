@@ -1,4 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
-    <h1>Hello Login</h1>
+{% extends "authenticate.html" %}
+
+{% block facebook %}Continuar con Facebook{% endblock %}
+
+{% block title %}Inicio de Sesión{% endblock %}
+
+{% block form %}
+    <div class="form-group">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Contraseña">
+    </div>
+    <button type="button" class="btn btn-block btn-lg btn-sonidoslibres" onclick="document.location.href='/'">Iniciar Sesión</button>
+    <div class="text-center">
+        <small>¿No tienes una cuenta? <a href="/register">Regístrate</a></small>
+    </div>
 {% endblock %}

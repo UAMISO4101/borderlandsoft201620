@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-4 box">
+                <h3>{% block title %}{% endblock %}</h3>
+                <form novalidate>
+                    <a class="btn btn-block btn-social btn-facebook btn-tall">
+                        <span class="fa fa-facebook"></span>
+                        {% block facebook %}{% endblock %}
+                    </a>
+                    <div class="text-divider">
+                        <div class="text-center">
+                            <span>o</span>
+                        </div>
+                        <hr>
+                    </div>
+                    {% block form %}{% endblock %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

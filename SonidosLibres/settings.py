@@ -164,7 +164,7 @@ STATIC_URL = '/s/'
 
 # Carpeta donde se encuentran los archivos estáticos
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static')
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'

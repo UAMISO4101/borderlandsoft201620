@@ -34,9 +34,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control form-bootstrap" placeholder="Buscar audios">
+                    <input type="text" class="form-control form-bootstrap" placeholder="Buscar audios" name="q" value="{{ filtro|escape }}">
                     <span class="input-group-btn">
                             <button type="submit" class="btn btn-sonidoslibres"><i class="fa fa-search"></i></button>
                         </span>

@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
+from contenido import views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='homepage.html'), name="homepage"),
+    url(r'^$', views.BuscadorView.as_view(), name="homepage"),
     url(r'^login/', TemplateView.as_view(template_name='login.html'), name="homepage"),
     url(r'^register/', TemplateView.as_view(template_name='register.html'), name="homepage"),
     url(r'^404/', TemplateView.as_view(template_name='404.html'), name="homepage"),

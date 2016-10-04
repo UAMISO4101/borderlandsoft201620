@@ -53,8 +53,9 @@ class BuscadorView(View):
         else:
             audios = []
             artistas = []
-        return render_to_response("contenido/busqueda.html", {
+        return render_to_response("homepage.html", {
             "audios": audios,
             "artistas" : artistas,
-            "filtro": filtro
+            "filtro": filtro,
+            "active_tab" : "tab2"
         })

@@ -19,15 +19,7 @@ PROJECT_PACKAGE = Path(__file__).resolve().parent
 
 # The full path to the repository root.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# data_dir_key = 'DJANGOPROJECT_DATA_DIR'
-# DATA_DIR = Path(os.environ[data_dir_key]) if data_dir_key in os.environ else BASE_DIR
-
-# The full path to the repository root.
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -140,22 +132,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-
-# STATIC_ROOT = str(BASE_DIR.joinpath('static'))  # os.path.join(PROJECT_ROOT, 'staticfiles')
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     str(PROJECT_PACKAGE.joinpath('static'))
-# ]
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
 # Nombre de la carpeta que crea
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
@@ -168,9 +144,3 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-# )
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]

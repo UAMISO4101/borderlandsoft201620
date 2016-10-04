@@ -1,0 +1,143 @@
+@import "variables";
+@import "mixins";
+
+//noinspection CssUnknownTarget
+body{
+  font-family: 'Open Sans', sans-serif;
+  background: $color-navbar url("../img/music-pattern3.png");
+  background-size: 500px;
+}
+.body{
+  background-color: $color-body;
+  padding-bottom: 100px;
+}
+a{
+  &, &:hover, &:focus{
+    color: $color-main1;
+  }
+}
+h2{
+  margin-top: 0;
+}
+h3{
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.title-part1{
+  color: #fff;
+}
+.title-part2{
+  color: $color-main1;
+  font-weight: 600;
+}
+
+footer{
+  padding-top: 10px;
+  color: #fff;
+}
+
+
+.counter {
+  display: inline-block;
+  padding: 4px 5px 3px 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  background-color: $color-main1;
+  border-radius: 20px;
+}
+
+.box{
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.song-img{
+  background: $color-main1;
+  i{
+    color: white;
+  }
+
+  &.si50 {
+    height: 50px;
+    width: 50px;
+    i {
+      font-size: 28px;
+      margin-top: 10px;
+    }
+  }
+  &.si200 {
+    height: 200px;
+    width: 200px;
+    i {
+      font-size: 150px;
+      margin-top: 22px;
+      margin-left: 31px;
+    }
+  }
+}
+
+
+.media-body {
+  > h4{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    > a{
+      color: black;
+    }
+    margin-top: 4px;
+  }
+}
+
+.circle{
+  border-radius: 100px;
+}
+
+.text-divider{
+  margin-top: 9px;
+  background: #fff;
+
+  span{
+    width: 40px;
+    display: inline-block;
+    background: white;
+  }
+
+  hr{
+    margin-top: -9px;
+    border-top: 1px solid #cfcfcf;
+    border-top: 1px solid #cfcfcf;
+  }
+}
+
+.content-header {
+  color: #fff;
+  background: #2a3745 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+  //background: #159957 linear-gradient(120deg, #191727, #211b47);
+  padding: 40px;
+}
+
+.padding-top-20{
+  padding-top: 20px;
+}
+
+.audio-player{
+  width: 500px;
+}
+
+.rating-input{
+  font-size: 20px;
+  i{
+    margin-left: 8px;
+    margin-left: 8px;
+  }
+}
+
+.col-song-img{
+  width: 240px;
+}

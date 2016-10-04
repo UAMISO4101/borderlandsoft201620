@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block paddingBody %}{% endblock %}
+
+{% block content %}
+    <section class="content-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-song-img">
+                    <div class="song-img si200">
+                        <i class="fa fa-music"></i>
+                    </div>
+
+                </div>
+                <div class="col-sm-9">
+                    <div class="pull-left">
+                        <h2>Isn't this a Lovely Day?</h2>
+                        <h5>1027 reproducciónes</h5>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        {#                        <input type="number" class="rating" />#}
+                        <input type="number" class="rating" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-trash-o"/>
+                        <small class="text-right">12 Calificaciones</small>
+                    </div>
+                    <div class="clearfix"></div>
+                    <audio controls class="audio-player">
+                        <source src="horse.mp3" type="audio/mpeg">
+                    </audio>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Artistas <span class="counter">3</span></a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Comentarios</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Convocatorias</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab1">
+                        <div class="container">
+                            <div class="row">
+                                <br>
+                                <div class="col-sm-6 box">
+                                    {#                                    "xxxxx"#}
+                                    {% for index in "xxx" %}
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <div class="song-img si50 text-center">
+                                                        <i class="fa fa-music"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="/audio">Harder, Better, Faster, Stronger</a></h4>
+                                                The Smashing Pumpkins
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab2">...</div>
+                    <div role="tabpanel" class="tab-pane" id="tab3">...</div>
+                    <div role="tabpanel" class="tab-pane" id="tab4">...</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagescripts %}
+    <script src="{% static "js/lib/bootstrap-rating-input/src/bootstrap-rating-input.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/audio.js" %}" type="text/javascript"></script>
+
+{% endblock %}

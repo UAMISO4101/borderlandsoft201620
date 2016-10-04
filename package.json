@@ -7,7 +7,7 @@
     "node": "4.6.0"
   },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt"
+    "postinstall": "bower install && grunt"
   },
   "repository": {
     "type": "git",

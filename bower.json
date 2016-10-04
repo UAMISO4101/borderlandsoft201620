@@ -22,5 +22,8 @@
     "bootstrap-rating-input": "^0.4.0",
     "normalize-css": "^4.2.0",
     "jQuery": "2.2.4"
+  },
+  "resolutions": {
+    "font-awesome": "^4.6.3"
   }
 }

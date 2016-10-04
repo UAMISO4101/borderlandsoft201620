@@ -22,6 +22,7 @@ class AudiosView(ListView):
         context['artista'] = self.artista
         return context
 
+
 class AlbumesView(ListView):
     template_name = 'contenido/albumes.html'
     context_object_name = 'lista_artista_album'
@@ -36,14 +37,14 @@ class AlbumesView(ListView):
         context['artista'] = self.artista
         return context
 
-class BuscadorView(View):
 
+class BuscadorView(View):
     def get(self, request, *args, **kwargs):
         filtro = request.GET.get('q', '')
         if filtro:
             qset = (
-                Q(nom_audio__icontains=filtro) #|
-                #Q(artista__nom_artistico__icontains=query)
+                Q(nom_audio__icontains=filtro)  # |
+                # Q(artista__nom_artistico__icontains=query)
             )
             audios = Audio.objects.filter(qset).distinct()
 
@@ -56,6 +57,15 @@ class BuscadorView(View):
             artistas = []
         return render_to_response("contenido/busqueda.html", {
             "audios": audios,
-            "artistas" : artistas,
+            "artistas": artistas,
             "filtro": filtro
         })
+
+
+class SongView(ListView):
+    template_name = 'contenido/audio.html'
+    context_object_name = 'song'
+    audio = Audio
+
+    def get_queryset(self):
+        return get_object_or_404(Audio, id=int(self.kwargs['song_id']))

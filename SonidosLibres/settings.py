@@ -157,10 +157,10 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 # Nombre de la carpeta que crea
-STATIC_ROOT = '/app/SonidosLibres/staticfiles'  # os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Ruta que apunta los archivos en el front
-STATIC_URL = '/s/'
+STATIC_URL = '/static/'
 
 # Carpeta donde se encuentran los archivos estáticos
 STATICFILES_DIRS = (

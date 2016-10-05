@@ -148,3 +148,74 @@ footer{
 .col-song-img{
   width: 240px;
 }
+
+.tag {
+    max-width: 115px;
+    display: inline-block;
+    position: relative;
+    border: 1px solid #ececec;
+    color: #7e7e7e;
+    font-weight: 600;
+    font-size: .689em;
+    text-align: left;
+    text-transform: capitalize;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    background-clip: padding-box;
+}
+
+.tag-small:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-right: 9px solid #ececec;
+    position: absolute;
+    top: 0;
+    left: -10px;
+}
+    .tag-small:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #fff;
+    position: absolute;
+    top: 1px;
+    left: -8px;
+
+}
+
+.tag-wrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+}
+
+.tag-wrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+}
+
+.tag-small .tag-wrap:after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    border: 1px solid #dfdfdf;
+    border-radius: 3px;
+    background-clip: padding-box;
+}

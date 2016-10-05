@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-left">
-                                <h2>Isn't this a Lovely Day?</h2>
+                                <span class="song-title">Isn't this a Lovely Day?</span><small class="bg-sonidoslibres">Videojuegos</small>
                             </div>
                             <div class="pull-right">
                                 {#                        <input type="number" class="rating" />#}
@@ -29,7 +29,10 @@
                             </div>
                             <div class="clearfix"></div>
                             <a href="#" class="tag tag-small in-chart">
-                                <span class="tag-wrap">ambient</span>
+                                <span class="tag-wrap">Rock</span>
+                            </a>
+                            <a href="#" class="tag tag-small in-chart">
+                                <span class="tag-wrap">Vallenato</span>
                             </a>
 
                         </div>
@@ -64,8 +67,11 @@
                                         <li><a href="#">Agregar a Album</a></li>
                                     </ul>
                                 </div>
-                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Donar"><i class="fa fa-heart fa-lg"></i></button>
+                                <button type="button" id="donationButton" data-target="#donationModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Donar"><i class="fa fa-heart fa-lg"></i></button>
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Denunciar"><i class="fa fa-ban fa-lg"></i></button>
+{#                                <span data-placement="bottom" data-toggle="tooltip" title="Donar">#}
+{#                                    <a href="#donationModal" role="button" data-toggle="modal" class="btn btn-sonidoslibres btn-2" role="button"><i class="fa fa-heart fa-lg"></i></a>#}
+{#                                </span>#}
 
                             </div>
                         </div>
@@ -132,6 +138,7 @@
             </div>
         </div>
     </div>
+    {% include "modals/donation.html" %}
 {% endblock %}
 
 {% block pagescripts %}

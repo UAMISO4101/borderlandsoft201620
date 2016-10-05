@@ -39,12 +39,14 @@ class AlbumesView(ListView):
 
 
 class BuscadorView(View):
+
     def get(self, request, *args, **kwargs):
         filtro = request.GET.get('q', '')
+        active_tab = "tab1"
         if filtro:
             qset = (
-                Q(nom_audio__icontains=filtro)  # |
-                # Q(artista__nom_artistico__icontains=query)
+                Q(nom_audio__icontains=filtro) #|
+                #Q(artista__nom_artistico__icontains=query)
             )
             audios = Audio.objects.filter(qset).distinct()
 
@@ -52,14 +54,20 @@ class BuscadorView(View):
                 Q(nom_artistico__icontains=filtro)
             )
             artistas = Artista.objects.filter(qset).distinct()
+
+            active_tab = "tab2"
         else:
             audios = []
             artistas = []
-        return render_to_response("contenido/busqueda.html", {
+
+        return render_to_response("homepage.html", {
             "audios": audios,
-            "artistas": artistas,
-            "filtro": filtro
+            "artistas" : artistas,
+            "filtro": filtro,
+            "active_tab" : active_tab,
+            "audios_recientes" : Audio.objects.all().order_by('-fec_entrada_audio')[:5]
         })
+
 
 
 class SongView(ListView):

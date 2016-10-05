@@ -1,0 +1,16 @@
+{% load static %}
+<div class="media">
+    <div class="media-left">
+        {% if 0 == 1 %}
+            <div class="detail-img song-img si50 text-center">
+                <i class="fa fa-music"></i>
+            </div>
+        {% else %}
+            <img class="detail-img si50" src="{% static "img/examples/discovery.jpg" %}"  >
+        {% endif %}
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading"><a href="/audio">Harder, Better, Faster, Stronger</a></h4>
+        Daft Punk
+    </div>
+</div>

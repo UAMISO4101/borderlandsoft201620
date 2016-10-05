@@ -10,8 +10,10 @@ body{
 .body{
   background-color: $color-body;
   padding-bottom: 100px;
+  font-size: 100%;
 }
 a{
+  transition: all .2s linear;
   &, &:hover, &:focus{
     color: $color-main1;
   }
@@ -56,12 +58,51 @@ footer{
   padding-bottom: 20px;
 }
 
-.song-img{
-  background: $color-main1;
+.detail-img{
   i{
     color: white;
   }
 
+  &.song-img{
+    background: $color-main2;
+  }
+
+  &.artist-img{
+    background: $color-main3;
+
+    &.si125{
+      i{
+        font-size: 90px;
+        margin-top: 18px;
+        margin-left: 26px;
+      }
+    }
+    &.si200 {
+      i {
+        font-size: 140px;
+        margin-top: 27px;
+        margin-left: 45px;
+      }
+
+      @media (min-width: $width-sm) and (max-width: $width-md){
+        i {
+          font-size: 110px;
+          margin-top: 19px;
+          margin-left: 31px;
+
+        }
+      }
+    }
+  }
+
+  &.si125 {
+    height: 125px;
+    width: 125px;
+    i {
+      font-size: 28px;
+      margin-top: 10px;
+    }
+  }
   &.si50 {
     height: 50px;
     width: 50px;
@@ -77,6 +118,16 @@ footer{
       font-size: 150px;
       margin-top: 22px;
       margin-left: 31px;
+    }
+
+    @media (min-width: $width-sm) and (max-width: $width-md){
+      height: 150px;
+      width: 150px;
+      i {
+        font-size: 110px;
+        margin-top: 19px;
+        margin-left: 25px;
+      }
     }
   }
 }
@@ -117,9 +168,18 @@ footer{
 
 .content-header {
   color: #fff;
+  padding: 30px 40px 20px 40px;
   background: #2a3745 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
-  //background: #159957 linear-gradient(120deg, #191727, #211b47);
-  padding: 40px;
+  border-bottom: 10px $color-main2 solid;
+
+  &.h-2{
+    background: $color-bg-2 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+    border-bottom: 10px $color-main2 solid;
+  }
+  &.h-3{
+    background: $color-bg-3 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+    border-bottom: 10px $color-main3 solid;
+  }
 }
 
 .padding-top-20{
@@ -127,17 +187,60 @@ footer{
 }
 
 .audio-player{
-  width: 500px;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
+
+
 
 .rating-input{
   font-size: 20px;
   i{
     margin-left: 8px;
-    margin-left: 8px;
   }
 }
 
 .col-song-img{
-  width: 240px;
+  width: 200px;
+  @media (max-width: 720px){
+    width: 200px;
+  }
+}
+
+.song-metadata{
+  margin-left: 40px;
+  margin-top: 7px;
+  > div{
+    display: inline-block;
+    margin-left: 20px;
+    &:first-child{
+      margin-left: 0;
+    }
+
+  }
+}
+
+.artist-info{
+  margin-top: 15px;
+}
+
+.bg-sonidoslibres{
+  padding: 3px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  &.bg-artist{
+    margin-top: 5px;
+    margin-left: 15px;
+  }
+  &.bg-2{
+    background-color: $color-main2;
+  }
+  &.bg-3{
+    background-color: $color-main3;
+  }
+}
+
+.song-title{
+  font-size: 30px;
 }

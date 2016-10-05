@@ -62,5 +62,5 @@ class BuscadorView(View):
             "artistas" : artistas,
             "filtro": filtro,
             "active_tab" : active_tab,
-            "audios_recientes" : Audio.objects.all().order_by('+fec_entrada_audio')[:5]
+            "audios_recientes" : Audio.objects.all().order_by('-fec_entrada_audio')[:5]
         })

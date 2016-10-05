@@ -1,18 +1,16 @@
 {% load static %}
 <div class="media">
     <div class="media-left">
-        <a href="#">
-            {% if 0 == 1 %}
-                <div class="detail-img artist-img si50 text-center">
-                    <i class="fa fa-user"></i>
-                </div>
-            {% else %}
-                <img class="detail-img si50" src="{% static "img/examples/daft-punk.jpg" %}"  >
-            {% endif %}
-        </a>
+        {% if 1 == 1 %}
+            <div class="detail-img artist-img si50 text-center">
+                <i class="fa fa-user"></i>
+            </div>
+        {% else %}
+            <img class="detail-img si50" src="{% static "img/examples/daft-punk.jpg" %}"  >
+        {% endif %}
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><a href="/audio">Daft Punk</a></h4>
+        <h4 class="media-heading"><a href="/user">Daft Punk</a></h4>
         35 obras
     </div>
 </div>

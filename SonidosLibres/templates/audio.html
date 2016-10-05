@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-                    <div class="center-block col-song-img">
+                    <div class="pull-right">
                         <div class="detail-img song-img si200">
                             <i class="fa fa-music"></i>
                         </div>
@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-left">
-                                <span class="song-title">Isn't this a Lovely Day?</span><small class="bg-sonidoslibres">Videojuegos</small>
+                                <span class="song-title">Isn't this a Lovely Day?</span><small class="bg-sonidoslibres bg-2">Videojuegos</small>
                             </div>
                             <div class="pull-right">
                                 {#                        <input type="number" class="rating" />#}
@@ -46,14 +46,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 song-metadata">
-                            {#                            <div class="song-metadata" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> 1027</div>#}
-                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
-                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
-                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="btn-group pull-right" role="group" aria-label="...">
+                        <div class="col-sm-12">
+                            <div class="btn-group pull-left" role="group" aria-label="...">
                                 <button type="button" class="btn btn-sonidoslibres btn-2 active" data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta">
                                     <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i> 1027
                                 </button>
@@ -67,14 +61,16 @@
                                         <li><a href="#">Agregar a Album</a></li>
                                     </ul>
                                 </div>
-                                <button type="button" id="donationButton" data-target="#donationModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Donar"><i class="fa fa-heart fa-lg"></i></button>
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Denunciar"><i class="fa fa-ban fa-lg"></i></button>
-{#                                <span data-placement="bottom" data-toggle="tooltip" title="Donar">#}
-{#                                    <a href="#donationModal" role="button" data-toggle="modal" class="btn btn-sonidoslibres btn-2" role="button"><i class="fa fa-heart fa-lg"></i></a>#}
-{#                                </span>#}
-
+                            </div>
+                            <div class="song-metadata pull-left">
+                                {#                            <div class="song-metadata" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> 1027</div>#}
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
                             </div>
                         </div>
+
                     </div>
                     <br>
                     <div class="row">
@@ -138,11 +134,9 @@
             </div>
         </div>
     </div>
-    {% include "modals/donation.html" %}
 {% endblock %}
 
 {% block pagescripts %}
     <script src="{% static "js/lib/bootstrap-rating-input/src/bootstrap-rating-input.js" %}" type="text/javascript"></script>
     <script src="{% static "js/audio.js" %}" type="text/javascript"></script>
-
 {% endblock %}

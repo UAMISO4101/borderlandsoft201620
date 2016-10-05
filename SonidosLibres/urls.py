@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^register/', TemplateView.as_view(template_name='register.html'), name="homepage"),
     url(r'^404/', TemplateView.as_view(template_name='404.html'), name="homepage"),
     url(r'^audio/', TemplateView.as_view(template_name='audio.html'), name="homepage"),
+    url(r'^user/', TemplateView.as_view(template_name='user.html'), name="homepage"),
     # url(r'^front/', include('fronttemplates.urls')),
     # url(r'', include('contenido.urls')),
     url(r'^admin/', admin.site.urls),

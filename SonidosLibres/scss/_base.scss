@@ -56,11 +56,18 @@ footer{
   padding-bottom: 20px;
 }
 
-.song-img{
-  background: $color-main1;
-  i{
-    color: white;
-  }
+.detail-img{
+    i{
+      color: white;
+    }
+
+    &.song-img{
+        background: $color-main1;
+    }
+
+    &.artist-img{
+        background: $color-main2;
+    }
 
   &.si50 {
     height: 50px;

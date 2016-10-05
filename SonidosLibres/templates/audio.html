@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 col-song-img">
-                    <div class="song-img si200">
+                    <div class="detail-img song-img si200">
                         <i class="fa fa-music"></i>
                     </div>
 
@@ -30,12 +30,6 @@
                     <audio controls class="audio-player">
                         <source src="horse.mp3" type="audio/mpeg">
                     </audio>
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -70,21 +64,9 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6 box">
-                                    {#                                    "xxxxx"#}
+                                    {#"xxxxx"#}
                                     {% for index in "xxx" %}
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <div class="song-img si50 text-center">
-                                                        <i class="fa fa-music"></i>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="/audio">Harder, Better, Faster, Stronger</a></h4>
-                                                The Smashing Pumpkins
-                                            </div>
-                                        </div>
+                                        {% include "partials/artist-detail.html" %}
                                     {% endfor %}
                                 </div>
                             </div>

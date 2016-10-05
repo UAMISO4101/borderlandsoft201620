@@ -27,16 +27,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><span class="title-part1">Sonidos</span><span class="title-part2">Libres</span></a>
+            <a class="navbar-brand" href="/" target="_self"><span class="title-part1">Sonidos</span><span class="title-part2">Libres</span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control form-bootstrap" placeholder="Buscar audios">
+                    <input type="text" class="form-control form-bootstrap" placeholder="Buscador" name="q" value="{{ filtro|escape }}">
                     <span class="input-group-btn">
                             <button type="submit" class="btn btn-sonidoslibres"><i class="fa fa-search"></i></button>
                         </span>

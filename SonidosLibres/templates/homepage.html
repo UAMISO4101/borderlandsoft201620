@@ -8,40 +8,109 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
+                        <li role="presentation" class="{% if active_tab == 'tab1' %} active{% endif %}">
                             <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Lo útlimo {# <span class="counter">12</span> #}</a>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" class="{% if active_tab == 'tab2' %} active{% endif %}">
                             <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Buscar un Tema</a>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" class="{% if active_tab == 'tab3' %} active{% endif %}">
                             <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Convocatorias abiertas</a>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" class="{% if active_tab == 'tab4' %} active{% endif %}">
                             <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Votar en convocatorias</a>
                         </li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="tab1">
+                        <div role="tabpanel" class="tab-pane {% if active_tab == 'tab1' or not active_tab %} active{% endif %}" id="tab1">
                             <div class="container">
                                 <div class="row">
                                     <br>
                                     <div class="col-sm-6 box">
-{#                                    "xxxxx"#}
-                                        {% for index in "xxxxx" %}
-                                            {% include "partials/audio-detail.html"%}
+                                        {% for audio in audios_recientes %}
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <div class="song-img si50 text-center">
+                                                            <i class="fa fa-music"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading"><a href="/audio">{{ audio|escape }}</a></h4>
+                                                    {{ audio.artista|escape }}
+                                                </div>
+                                            </div>
                                         {% endfor %}
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="tab2">...</div>
+
+                        <div role="tabpanel" class="tab-pane {% if active_tab == 'tab2' %} active{% endif %}" id="tab2">
+                            <div class="container">
+                                <div class="row">
+                                        <br>
+                                        <div class="col-sm-10 box">
+                                            {% if filtro %}
+                                                <h4>Resultados para "{{ filtro|escape }}":</h4>
+
+                                                <div class="col-sm-6 box">
+                                                    {% if audios %}
+                                                        <h5>Audios encontrados {{ audios|length }}:</h5>
+                                                        <ul>
+                                                          {% for audio in audios %}
+                                                            <div class="media">
+                                                                <div class="media-left">
+                                                                    <a href="#">
+                                                                        <div class="song-img si50 text-center">
+                                                                            <i class="fa fa-music"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h4 class="media-heading"><a href="/audio">{{ audio|escape }}</a></h4>
+                                                                        {{ audio.artista|escape }}
+                                                                </div>
+                                                            </div>
+                                                          {% endfor %}
+                                                        </ul>
+                                                    {% else %}
+                                                        <h5>No se encontraron audios</h5>
+                                                    {% endif %}
+                                                </div>
+
+
+                                                <div class="col-sm-6 box">
+                                                    {% if artistas %}
+                                                        <h5>Artistas encontrados {{ artistas|length }}:</h5>
+                                                        <ul>
+                                                          {% for artista in artistas %}
+                                                            <div class="media">
+                                                                <div class="media-left">
+                                                                    <a href="#">
+                                                                        <div class="song-img si50 text-center">
+                                                                            <i class="fa fa-user"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h4 class="media-heading"><a href="/artista">{{ artista|escape }}</a></h4>
+                                                                </div>
+                                                            </div>
+                                                          {% endfor %}
+                                                        </ul>
+                                                    {% else %}
+                                                        <h5>No se encontraron artistas</h5>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                         <div role="tabpanel" class="tab-pane" id="tab3">...</div>
                         <div role="tabpanel" class="tab-pane" id="tab4">...</div>
                     </div>

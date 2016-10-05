@@ -24,6 +24,7 @@
     "jQuery": "2.2.4"
   },
   "resolutions": {
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "jQuery": "2.2.4"
   }
 }

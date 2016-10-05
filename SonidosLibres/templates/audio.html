@@ -4,13 +4,16 @@
 {% block paddingBody %}{% endblock %}
 
 {% block content %}
-    <section class="content-header">
+    <section class="content-header h-2">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3 col-song-img">
-                    <div class="detail-img song-img si200">
-                        <i class="fa fa-music"></i>
+                <div class="col-sm-3">
+                    <div class="center-block col-song-img">
+                        <div class="detail-img song-img si200">
+                            <i class="fa fa-music"></i>
+                        </div>
                     </div>
+
 
                 </div>
                 <div class="col-sm-9">
@@ -18,10 +21,6 @@
                         <div class="col-sm-12">
                             <div class="pull-left">
                                 <h2>Isn't this a Lovely Day?</h2>
-                                <h5>1027 reproducciónes</h5>
-                                <div>
-
-                                </div>
                             </div>
                             <div class="pull-right">
                                 {#                        <input type="number" class="rating" />#}
@@ -32,17 +31,48 @@
                             <a href="#" class="tag tag-small in-chart">
                                 <span class="tag-wrap">ambient</span>
                             </a>
-                            <audio controls class="audio-player">
-                                <source src="horse.mp3" type="audio/mpeg">
-                            </audio>
+
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
+                            <audio controls class="audio-player">
+                                <source src="horse.mp3" type="audio/mpeg">
+                            </audio>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 song-metadata">
+                            {#                            <div class="song-metadata" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> 1027</div>#}
+                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
+                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
+                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="btn-group pull-right" role="group" aria-label="...">
+                                <button type="button" class="btn btn-sonidoslibres btn-2 active" data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta">
+                                    <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i> 1027
+                                </button>
+                                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a...">
+                                    <button type="button" class="btn btn-sonidoslibres btn-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-plus fa-lg"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Agregar a Lista de Reproducción</a></li>
+                                        <li><a href="#">Agregar a Album</a></li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Donar"><i class="fa fa-heart fa-lg"></i></button>
+                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Denunciar"><i class="fa fa-ban fa-lg"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
                     </div>
 
 

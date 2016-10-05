@@ -25,6 +25,10 @@
     outline: 2px auto #3D9A63;
     outline-offset: -2px;
   }
+
+  &.btn-2{
+    @include button-variant(#fff, $color-main2, darken($color-main2, 5%));
+  }
 }
 
 .btn-social > :first-child {

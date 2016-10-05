@@ -1,0 +1,70 @@
+.tag {
+  $tag-border-color: #afafaf;
+  $tag-bg-color: #323e4a;
+
+  max-width: 115px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid $tag-border-color;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: left;
+  text-transform: capitalize;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 2px;
+  background-clip: padding-box;
+
+  &.tag-small{
+
+    height: 18px;
+    margin: 5px 4px 0 8px;
+    padding: 0px 10px;
+
+    &:before, &:after{
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    &:before {
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-right: 10px solid $tag-border-color;
+      top: 0;
+      left: -10px;
+    }
+    &:after {
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid $tag-bg-color;
+      top: 1px;
+      left: -8px;
+    }
+
+    .tag-wrap:after {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 4px;
+      background: #323e4a;
+      position: absolute;
+      top: 6px;
+      left: 0;
+      border: 1px solid #dfdfdf;
+      border-radius: 3px;
+      background-clip: padding-box;
+    }
+  }
+
+  .tag-wrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
+}

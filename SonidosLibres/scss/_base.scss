@@ -10,8 +10,10 @@ body{
 .body{
   background-color: $color-body;
   padding-bottom: 100px;
+  font-size: 100%;
 }
 a{
+  transition: all .2s linear;
   &, &:hover, &:focus{
     color: $color-main1;
   }
@@ -57,17 +59,17 @@ footer{
 }
 
 .detail-img{
-    i{
-      color: white;
-    }
+  i{
+    color: white;
+  }
 
-    &.song-img{
-        background: $color-main1;
-    }
+  &.song-img{
+    background: $color-main2;
+  }
 
-    &.artist-img{
-        background: $color-main2;
-    }
+  &.artist-img{
+    background: $color-main1;
+  }
 
   &.si50 {
     height: 50px;
@@ -85,6 +87,17 @@ footer{
       margin-top: 22px;
       margin-left: 31px;
     }
+
+    @media (min-width: $width-sm) and (max-width: $width-md){
+      height: 150px;
+      width: 150px;
+      i {
+      font-size: 110px;
+    margin-top: 19px;
+    margin-left: 25px;
+    }
+    }
+
   }
 }
 
@@ -124,9 +137,14 @@ footer{
 
 .content-header {
   color: #fff;
+  padding: 30px 40px 20px 40px;
   background: #2a3745 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
-  //background: #159957 linear-gradient(120deg, #191727, #211b47);
-  padding: 40px;
+  border-bottom: 10px $color-main2 solid;
+
+  &.h-2{
+    background: $color-bg-2 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+    border-bottom: 10px $color-main2 solid;
+  }
 }
 
 .padding-top-20{
@@ -134,88 +152,34 @@ footer{
 }
 
 .audio-player{
-  width: 500px;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
+
+
 
 .rating-input{
   font-size: 20px;
   i{
-    margin-left: 8px;
     margin-left: 8px;
   }
 }
 
 .col-song-img{
   width: 240px;
+  @media (max-width: 720px){
+    width: 200px;
+  }
 }
 
-.tag {
-    max-width: 115px;
+.song-metadata{
+  > div{
     display: inline-block;
-    position: relative;
-    border: 1px solid #ececec;
-    color: #7e7e7e;
-    font-weight: 600;
-    font-size: .689em;
-    text-align: left;
-    text-transform: capitalize;
-    line-height: 18px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-radius: 2px;
-    background-clip: padding-box;
-}
+  margin-left: 20px;
+  &:first-child{
+    margin-left: 0;
+  }
 
-.tag-small:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    border-right: 9px solid #ececec;
-    position: absolute;
-    top: 0;
-    left: -10px;
-}
-    .tag-small:after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid #fff;
-    position: absolute;
-    top: 1px;
-    left: -8px;
-
-}
-
-.tag-wrap {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    display: block;
-}
-
-.tag-wrap {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    display: block;
-}
-
-.tag-small .tag-wrap:after {
-    content: "";
-    display: block;
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    position: absolute;
-    top: 6px;
-    left: 0;
-    border: 1px solid #dfdfdf;
-    border-radius: 3px;
-    background-clip: padding-box;
+  }
 }

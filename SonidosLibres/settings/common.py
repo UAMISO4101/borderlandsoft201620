@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import dj_database_url
 from pathlib import Path
 
 # Utilities
@@ -19,7 +18,7 @@ PROJECT_PACKAGE = Path(__file__).resolve().parent.parent
 
 # The full path to the repository root.
 BASE_DIR = PROJECT_PACKAGE.parent
-PROJECT_ROOT = BASE_DIR.parent # os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = PROJECT_PACKAGE # os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/

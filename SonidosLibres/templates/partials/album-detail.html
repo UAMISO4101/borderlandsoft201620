@@ -1,16 +1,16 @@
 {% load static %}
 <div class="media">
     <div class="media-left">
-        {% if audio_image.strip == "" or  audio_image == null %}
+        {% if album_image.strip == "" or  album_image == null %}
             <div class="detail-img song-img si50 text-center">
                 <i class="fa fa-music"></i>
             </div>
         {% else %}
-            <img class="detail-img si50" src="{% static audio_image %}"  >
+            <img class="detail-img si50" src="{% static album_image %}"  >
         {% endif %}
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><a href="/audio">{{ audio_name  }}</a></h4>
+        <h4 class="media-heading"><a href="/album">{{ album_name  }}</a></h4>
         {{ artist }}
     </div>
 </div>

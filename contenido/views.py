@@ -7,20 +7,38 @@ from .models import *
 
 
 # Create your views here.
+class ArtistaView(ListView):
+    #template_name = 'SonidosLibres/user.html'
+    context_object_name = 'lista_artistas'
+    def get_queryset(self):
+        return Audio.objects.all()
+
 
 class AudiosView(ListView):
-    template_name = 'contenido/audios.html'
+    template_name = 'SonidosLibres/user.html'
     context_object_name = 'lista_audios'
     artista = Artista
 
     def get_queryset(self):
-        self.artista = get_object_or_404(Artista, id=int(self.kwargs['artista_id']))
-        return Audio.objects.filter(artista__pk=self.artista.pk)
+        self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+        audios = Audio.objects.filter(artista__pk=self.artista.pk)
+        albums = Artista_album.objects.filter(artista__pk=self.artista.pk)
 
     def get_context_data(self, **kwargs):
         context = super(AudiosView, self).get_context_data(**kwargs)
-        context['artista'] = self.artista
+        self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+        audios = Audio.objects.filter(artista__pk=self.artista.pk)
+        albums_artist = Artista_album.objects.filter(artista__pk=self.artista.pk)
+
+        context['audios'] = audios
+        context['albums_artist'] = albums_artist
+        context['artist'] = self.artista
         return context
+
+    #def get_context_data(self, **kwargs):
+    #    context = super(AudiosView, self).get_context_data(**kwargs)
+    #    context['artista'] = self.artista
+    #    return context
 
 
 class AlbumesView(ListView):

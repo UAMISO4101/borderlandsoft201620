@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-left">
-                                <div><span class="song-title pull-left">Daft Punk</span><small class="bg-sonidoslibres bg-3 bg-artist pull-left">Te está siguiendo</small></div>
+                                <div><span class="song-title pull-left">{{ artist }}</span><small class="bg-sonidoslibres bg-3 bg-artist pull-left">Te está siguiendo</small></div>
                                 <div class="clearfix"></div>
                                 <div><span>Guy-Manuel de Homem-Christo</span></div>
                             </div>
@@ -61,10 +61,10 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Obras <span class="counter">3</span></a>
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Obras <span class="counter">{{ audios|length }}</span></a>
                     </li>
                     <li role="presentation">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums</a>
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="counter">{{ albums_artist|length }} </span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Listas</a>
@@ -87,10 +87,9 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6 box">
-                                    {#"xxxxx"#}
-                                    {% for index in "xxx" %}
-                                        {% include "partials/audio-detail.html" %}
-                                    {% endfor %}
+                                {% for audio in audios %}
+                                    {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=audio.artista.nom_artistico%}
+                                {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -99,7 +98,19 @@
 
 
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="tab2">...</div>
+                    <div role="tabpanel" class="tab-pane" id="tab2">
+                        <div class="container">
+                            <div class="row">
+                                <br>
+                                <div class="col-sm-6 box">
+
+                                {% for album_artist in albums_artist %}
+                                    {% include "partials/album-detail.html" with album_name=album_artist.album.nom_album album_image=album_artist.album.val_imagen artist=album_artist.artista.nom_artistico %}
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div role="tabpanel" class="tab-pane" id="tab3">...</div>
                     <div role="tabpanel" class="tab-pane" id="tab4">...</div>
                     <div role="tabpanel" class="tab-pane" id="tab5">...</div>

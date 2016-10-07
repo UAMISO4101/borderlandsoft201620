@@ -114,3 +114,7 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+DATABASES = {
+    'default': {}
+}

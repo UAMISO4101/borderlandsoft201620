@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-left">
-                                <span class="song-title">Isn't this a Lovely Day?</span><small class="bg-sonidoslibres bg-2">Videojuegos</small>
+                                <span class="song-title">{{ song.nom_audio }}</span><small class="bg-sonidoslibres bg-2"> Videojuegos</small>
                             </div>
                             <div class="pull-right">
                                 {#                        <input type="number" class="rating" />#}
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <audio controls class="audio-player">
-                                <source src="horse.mp3" type="audio/mpeg">
+                                <source src="{{ song.val_recurso }}" type="audio/mpeg">
                             </audio>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="col-sm-12">
                             <div class="btn-group pull-left" role="group" aria-label="...">
                                 <button type="button" class="btn btn-sonidoslibres btn-2 active" data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta">
-                                    <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i> 1027
+                                    <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i> {{ total_likes }}
                                 </button>
                                 <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a...">
                                     <button type="button" class="btn btn-sonidoslibres btn-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

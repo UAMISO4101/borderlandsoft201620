@@ -32,6 +32,9 @@
   &.btn-3{
     @include button-variant(#fff, $color-main3, darken($color-main3, 5%));
   }
+  &.btn-4{
+    @include button-variant(#fff, $color-main4, darken($color-main4, 5%));
+  }
 }
 
 .btn-social > :first-child {

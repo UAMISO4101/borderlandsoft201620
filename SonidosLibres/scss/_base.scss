@@ -26,6 +26,9 @@ h3{
   margin-bottom: 20px;
   font-weight: 600;
 }
+h4{
+  line-height: 1.2;
+}
 .title-part1{
   color: #fff;
 }
@@ -35,20 +38,9 @@ h3{
 }
 
 footer{
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   color: #fff;
-}
-
-
-.counter {
-  display: inline-block;
-  padding: 4px 5px 3px 5px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  color: #fff;
-  background-color: $color-main1;
-  border-radius: 20px;
 }
 
 .box{
@@ -57,81 +49,6 @@ footer{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
-.detail-img{
-  i{
-    color: white;
-  }
-
-  &.song-img{
-    background: $color-main2;
-  }
-
-  &.artist-img{
-    background: $color-main3;
-
-    &.si125{
-      i{
-        font-size: 90px;
-        margin-top: 18px;
-        margin-left: 26px;
-      }
-    }
-    &.si200 {
-      i {
-        font-size: 140px;
-        margin-top: 27px;
-        margin-left: 45px;
-      }
-
-      @media (min-width: $width-sm) and (max-width: $width-md){
-        i {
-          font-size: 110px;
-          margin-top: 19px;
-          margin-left: 31px;
-
-        }
-      }
-    }
-  }
-
-  &.si125 {
-    height: 125px;
-    width: 125px;
-    i {
-      font-size: 28px;
-      margin-top: 10px;
-    }
-  }
-  &.si50 {
-    height: 50px;
-    width: 50px;
-    i {
-      font-size: 28px;
-      margin-top: 10px;
-    }
-  }
-  &.si200 {
-    height: 200px;
-    width: 200px;
-    i {
-      font-size: 150px;
-      margin-top: 22px;
-      margin-left: 31px;
-    }
-
-    @media (min-width: $width-sm) and (max-width: $width-md){
-      height: 150px;
-      width: 150px;
-      i {
-        font-size: 110px;
-        margin-top: 19px;
-        margin-left: 25px;
-      }
-    }
-  }
-}
-
 
 .media-body {
   > h4{
@@ -167,23 +84,33 @@ footer{
 }
 
 .content-header {
+  a {
+    color: #fff;
+    &.user{
+      &:hover, &:focus{
+        color: lighten($color-main3,10%);
+      }
+    }
+  }
   color: #fff;
   padding: 30px 40px 20px 40px;
-  background: #2a3745 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
-  border-bottom: 10px $color-main2 solid;
+
+  @mixin header($bg-color, $color){
+    background: $bg-color url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+    border-bottom: 10px $color solid;
+  }
+
+  @include header(#2a3745, $color-main1);
 
   &.h-2{
-    background: $color-bg-2 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
-    border-bottom: 10px $color-main2 solid;
+    @include header($color-bg-2, $color-main2);
   }
   &.h-3{
-    background: $color-bg-3 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
-    border-bottom: 10px $color-main3 solid;
+    @include header($color-bg-3, $color-main3);
   }
-}
-
-.padding-top-20{
-  padding-top: 20px;
+  &.h-4{
+    @include header($color-bg-4, $color-main4);
+  }
 }
 
 .audio-player{
@@ -239,8 +166,277 @@ footer{
   &.bg-3{
     background-color: $color-main3;
   }
+  &.bg-4{
+    background-color: $color-main4;
+  }
 }
 
 .song-title{
   font-size: 30px;
+}
+
+.details-box{
+  padding: 5px;
+}
+
+.album-box{
+  margin-bottom: 30px;
+  padding: 0;
+  transition: box-shadow .5s cubic-bezier(0, 0.42, 0.58, 1);
+
+  &:hover{
+    box-shadow: 0 0 20px 1px #7f7f7f;
+    //border: 1px solid #ccc;
+  }
+
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.table-album{
+  >thead>tr>th{
+    //border-bottom: 2px solid $color-main4;
+  }
+  .cell-song a{
+    color: $color-main2;
+    font-weight: 600;
+  }
+  .cell-user a{
+    color: $color-main3;
+  }
+
+  > tbody > tr > td.td-remove {
+    padding: 2px 0 0;
+
+    .btn-remove{
+      padding: 0;
+      font-size: 20px;
+      color: #6ba2a0;
+
+      &:hover, &:focus{
+        color: $color-error;
+      }
+    }
+  }
+}@import "variables";
+@import "mixins";
+
+//noinspection CssUnknownTarget
+body{
+  font-family: 'Open Sans', sans-serif;
+  background: $color-navbar url("../img/music-pattern3.png");
+  background-size: 500px;
+}
+.body{
+  background-color: $color-body;
+  padding-bottom: 100px;
+  font-size: 100%;
+}
+a{
+  transition: all .2s linear;
+  &, &:hover, &:focus{
+    color: $color-main1;
+  }
+}
+h2{
+  margin-top: 0;
+}
+h3{
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.title-part1{
+  color: #fff;
+}
+.title-part2{
+  color: $color-main1;
+  font-weight: 600;
+}
+
+footer{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #fff;
+}
+
+.box{
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.media-body {
+  > h4{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    > a{
+      color: black;
+    }
+    margin-top: 4px;
+  }
+}
+
+.circle{
+  border-radius: 100px;
+}
+
+.text-divider{
+  margin-top: 9px;
+  background: #fff;
+
+  span{
+    width: 40px;
+    display: inline-block;
+    background: white;
+  }
+
+  hr{
+    margin-top: -9px;
+    border-top: 1px solid #cfcfcf;
+    border-top: 1px solid #cfcfcf;
+  }
+}
+
+.content-header {
+  a {
+    color: #fff;
+    &.user{
+      &:hover, &:focus{
+        color: lighten($color-main3,10%);
+      }
+    }
+  }
+  color: #fff;
+  padding: 30px 40px 20px 40px;
+
+  @mixin header($bg-color, $color){
+    background: $bg-color url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
+    border-bottom: 10px $color solid;
+  }
+
+  @include header(#2a3745, $color-main1);
+
+  &.h-2{
+    @include header($color-bg-2, $color-main2);
+  }
+  &.h-3{
+    @include header($color-bg-3, $color-main3);
+  }
+  &.h-4{
+    @include header($color-bg-4, $color-main4);
+  }
+}
+
+.audio-player{
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+
+
+.rating-input{
+  font-size: 20px;
+  i{
+    margin-left: 8px;
+  }
+}
+
+.col-song-img{
+  width: 200px;
+  @media (max-width: 720px){
+    width: 200px;
+  }
+}
+
+.song-metadata{
+  margin-left: 40px;
+  margin-top: 7px;
+  > div{
+    display: inline-block;
+    margin-left: 20px;
+    &:first-child{
+      margin-left: 0;
+    }
+
+  }
+}
+
+.artist-info{
+  margin-top: 15px;
+}
+
+.bg-sonidoslibres{
+  padding: 3px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  &.bg-artist{
+    margin-top: 5px;
+    margin-left: 15px;
+  }
+  &.bg-2{
+    background-color: $color-main2;
+  }
+  &.bg-3{
+    background-color: $color-main3;
+  }
+  &.bg-4{
+    background-color: $color-main4;
+  }
+}
+
+.song-title{
+  font-size: 30px;
+}
+
+.details-box{
+  padding: 5px;
+}
+
+.album-box{
+  margin-bottom: 30px;
+  padding: 0;
+  transition: box-shadow .5s cubic-bezier(0, 0.42, 0.58, 1);
+
+  &:hover{
+    box-shadow: 0 0 20px 1px #7f7f7f;
+    //border: 1px solid #ccc;
+  }
+
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.table-album{
+  >thead>tr>th{
+    //border-bottom: 2px solid $color-main4;
+  }
+  .cell-song a{
+    color: $color-main2;
+    font-weight: 600;
+  }
+  .cell-user a{
+    color: $color-main3;
+  }
+
+  > tbody > tr > td.td-remove {
+    padding: 2px 0 0;
+
+    .btn-remove{
+      padding: 0;
+      font-size: 20px;
+      color: #6ba2a0;
+
+      &:hover, &:focus{
+        color: $color-error;
+      }
+    }
+  }
 }

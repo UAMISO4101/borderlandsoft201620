@@ -1,5 +1,126 @@
 {% extends "base.html" %}
+{% load static%}
 {% block title %}ALBUM NOMBRE{% endblock %}
 {% block content %}
-    <h1>Ey soy un album</h1>
+    <section class="content-header h-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="pull-right">
+                        <div class="detail-img album-img album-normal text-center">
+                            <i class="fa fa-music"></i>
+                            <i class="fa fa fa-circle-thin"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-left">
+                                <span class="song-title">Random Access Memories</span>
+                                <div class="clearfix"></div>
+                                <div><span>Por <a href="" class="user">Daft Punk</a></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            4 temas
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group pull-left" role="group" aria-label="...">
+                                <button type="button" class="btn btn-sonidoslibres btn-4" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil fa-lg"></i></button>
+                                <button type="button" class="btn btn-sonidoslibres btn-4" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-trash fa-lg"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+
+                <div class="container">
+                    <div class="row">
+                        <br>
+                        <div class="col-sm-12 box">
+                            <table class="table table-hover table-album">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Audio</th>
+                                    <th>Colaboradores</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="cell-song"><a href="/audio/1">One More Time</a></td>
+                                    <td class="cell-user"></td>
+                                    <td class="td-remove">
+                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="cell-song"><a href="/audio/1">Aerodynamic</a></td>
+                                    <td class="cell-user"><a href="/user/1">Giorgio Moroder</a></td>
+                                    <td class="td-remove">
+                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="cell-song"><a href="/audio/1">Digital Love</a></td>
+                                    <td class="cell-user"><a href="/user/1">The Beat Broker</a></td>
+                                    <td class="td-remove">
+                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td class="cell-song"><a href="/audio/1">Harder, Better, Faster,Stronger</a></td>
+                                    <td class="cell-user"></td>
+                                    <td class="td-remove">
+                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagescripts %}
+    <script src="{% static "js/album.js" %}" type="text/javascript"></script>
 {% endblock %}

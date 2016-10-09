@@ -40,12 +40,8 @@
 
   &.album-img{
     background: $color-main4;
-
-
-    &.album-big{
-      @mixin album($mediawidth, $width, $fsize1, $mtop1, $fsize2, $mtop2){
-        @media (min-width: $mediawidth){
-          width: $width;
+    @mixin album($width, $fsize1, $mtop1, $fsize2, $mtop2) {
+      width: $width;
           height: $width;
           i{
             &:first-child{
@@ -57,12 +53,20 @@
               margin-top: $mtop2;
             }
           }
+    }
+    @mixin album-responsive($mediawidth, $width, $fsize1, $mtop1, $fsize2, $mtop2){
+        @media (min-width: $mediawidth){
+          @include album($width, $fsize1, $mtop1, $fsize2, $mtop2)
         }
       }
 
-      @include album($width-sm, 220px, 90px, 58px, 175px, -127px);
-      @include album($width-md, 213px, 90px, 58px, 175px, -127px);
-      @include album($width-lg, 165px, 70px, 44px, 145px, -103px);
+    &.album-big{
+      @include album-responsive($width-sm, 220px, 90px, 58px, 175px, -127px);
+      @include album-responsive($width-md, 213px, 90px, 58px, 175px, -127px);
+      @include album-responsive($width-lg, 165px, 70px, 44px, 145px, -103px);
+    }
+    &.album-normal{
+      @include album(200px, 90px, 58px, 175px, -132px)
     }
   }
 

@@ -60,11 +60,11 @@
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Obras <span class="counter">{{ audios|length }}</span></a>
+                    <li role="presentation" class="tab-type-2 active">
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Obras <span class="tab-counter">{{ audios|length }}</span></a>
                     </li>
-                    <li role="presentation">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="counter">{{ albums_artist|length }} </span></a>
+                    <li role="presentation" class="tab-type-4">
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter">{{ albums_artist|length }} </span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Listas</a>
@@ -93,17 +93,12 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tab2">
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6 box">
-
+                                <div class="col-sm-6">
                                 {% for album_artist in albums_artist %}
                                     {% include "partials/album-detail.html" with album_name=album_artist.album.nom_album album_image=album_artist.album.val_imagen artist=album_artist.artista.nom_artistico %}
                                 {% endfor %}

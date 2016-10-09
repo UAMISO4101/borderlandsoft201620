@@ -1,0 +1,104 @@
+@import "variables";
+@import "mixins";
+
+.detail-img{
+  i{
+    color: white;
+  }
+
+  &.song-img{
+    background: $color-main2;
+  }
+
+  &.artist-img{
+    background: $color-main3;
+
+    &.si125{
+      i{
+        font-size: 90px;
+        margin-top: 18px;
+        margin-left: 26px;
+      }
+    }
+    &.si200 {
+      i {
+        font-size: 140px;
+        margin-top: 27px;
+        margin-left: 45px;
+      }
+
+      @media (min-width: $width-sm) and (max-width: $width-md){
+        i {
+          font-size: 110px;
+          margin-top: 19px;
+          margin-left: 31px;
+
+        }
+      }
+    }
+  }
+
+  &.album-img{
+    background: $color-main4;
+
+
+    &.album-big{
+      @mixin album($mediawidth, $width, $fsize1, $mtop1, $fsize2, $mtop2){
+        @media (min-width: $mediawidth){
+          width: $width;
+          height: $width;
+          i{
+            &:first-child{
+              font-size: $fsize1;
+              margin-top: $mtop1;
+            }
+            &:last-child{
+              font-size: $fsize2;
+              margin-top: $mtop2;
+            }
+          }
+        }
+      }
+
+      @include album($width-sm, 220px, 90px, 58px, 175px, -127px);
+      @include album($width-md, 213px, 90px, 58px, 175px, -127px);
+      @include album($width-lg, 165px, 70px, 44px, 145px, -103px);
+    }
+  }
+
+  &.si125 {
+    height: 125px;
+    width: 125px;
+    i {
+      font-size: 28px;
+      margin-top: 10px;
+    }
+  }
+  &.si50 {
+    height: 50px;
+    width: 50px;
+    i {
+      font-size: 28px;
+      margin-top: 10px;
+    }
+  }
+  &.si200 {
+    height: 200px;
+    width: 200px;
+    i {
+      font-size: 150px;
+      margin-top: 22px;
+      margin-left: 31px;
+    }
+
+    @media (min-width: $width-sm) and (max-width: $width-md){
+      height: 150px;
+      width: 150px;
+      i {
+        font-size: 110px;
+        margin-top: 19px;
+        margin-left: 25px;
+      }
+    }
+  }
+}

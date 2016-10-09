@@ -35,20 +35,9 @@ h3{
 }
 
 footer{
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   color: #fff;
-}
-
-
-.counter {
-  display: inline-block;
-  padding: 4px 5px 3px 5px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  color: #fff;
-  background-color: $color-main1;
-  border-radius: 20px;
 }
 
 .box{
@@ -57,81 +46,6 @@ footer{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
-.detail-img{
-  i{
-    color: white;
-  }
-
-  &.song-img{
-    background: $color-main2;
-  }
-
-  &.artist-img{
-    background: $color-main3;
-
-    &.si125{
-      i{
-        font-size: 90px;
-        margin-top: 18px;
-        margin-left: 26px;
-      }
-    }
-    &.si200 {
-      i {
-        font-size: 140px;
-        margin-top: 27px;
-        margin-left: 45px;
-      }
-
-      @media (min-width: $width-sm) and (max-width: $width-md){
-        i {
-          font-size: 110px;
-          margin-top: 19px;
-          margin-left: 31px;
-
-        }
-      }
-    }
-  }
-
-  &.si125 {
-    height: 125px;
-    width: 125px;
-    i {
-      font-size: 28px;
-      margin-top: 10px;
-    }
-  }
-  &.si50 {
-    height: 50px;
-    width: 50px;
-    i {
-      font-size: 28px;
-      margin-top: 10px;
-    }
-  }
-  &.si200 {
-    height: 200px;
-    width: 200px;
-    i {
-      font-size: 150px;
-      margin-top: 22px;
-      margin-left: 31px;
-    }
-
-    @media (min-width: $width-sm) and (max-width: $width-md){
-      height: 150px;
-      width: 150px;
-      i {
-        font-size: 110px;
-        margin-top: 19px;
-        margin-left: 25px;
-      }
-    }
-  }
-}
-
 
 .media-body {
   > h4{
@@ -180,10 +94,6 @@ footer{
     background: $color-bg-3 url(//static.tutsplus.com/assets/tiled-bg@2x-d9d12c3df5f8d062a3219ff99361021c.png);
     border-bottom: 10px $color-main3 solid;
   }
-}
-
-.padding-top-20{
-  padding-top: 20px;
 }
 
 .audio-player{
@@ -243,4 +153,24 @@ footer{
 
 .song-title{
   font-size: 30px;
+}
+
+.details-box{
+  padding: 5px;
+}
+
+.album-box{
+  margin-bottom: 30px;
+  padding: 0;
+  transition: box-shadow .5s cubic-bezier(0, 0.42, 0.58, 1);
+
+  &:hover{
+    box-shadow: 0 0 20px 1px #7f7f7f;
+    //border: 1px solid #ccc;
+  }
+
+  a{
+    text-decoration: none;
+    color: #000;
+  }
 }

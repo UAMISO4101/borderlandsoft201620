@@ -32,17 +32,58 @@
 
 .nav-tabs > li {
   > a {
+    transition:none;
     &, &:hover, &:focus {
       color: #555;
     }
   }
 
-  &.active > a {
-    &, &:hover, &:focus {
-      background-color: $color-body;
-      font-weight: 600;
-      border: 0;
-      border-bottom: 2px solid $color-main1;
+  .tab-counter {
+    display: inline-block;
+    padding: 4px 5px 3px 5px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    background-color: $color-main1;
+    border-radius: 20px;
+  }
+
+  @mixin tab-type($color){
+    &.active > a {
+      &, &:hover, &:focus {
+        background-color: $color-body;
+        font-weight: 600;
+        border: 0;
+        border-bottom: 2px solid $color;
+      }
+    }
+
+    .tab-counter{
+      background-color: $color;
+    }
+  }
+
+  &.tab-type-2{
+    @include tab-type($color-main2);
+  }
+
+  &.tab-type-3{
+    @include tab-type($color-main3);
+  }
+
+  &.tab-type-4{
+    @include tab-type($color-main4);
+  }
+
+  &.active {
+    > a {
+      &, &:hover, &:focus {
+        background-color: $color-body;
+        font-weight: 600;
+        border: 0;
+        border-bottom: 2px solid $color-main1;
+      }
     }
   }
 }

@@ -2,7 +2,6 @@ boto3==1.4.0
 botocore==1.4.58
 dj-database-url==0.4.1
 Django==1.10
-django-bootstrap3==7.0.1
 django-storages==1.5.0
 docutils==0.12
 gunicorn==19.6.0

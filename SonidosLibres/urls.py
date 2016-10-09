@@ -23,10 +23,12 @@ urlpatterns = [
     url(r'^login/', TemplateView.as_view(template_name='login.html'), name="homepage"),
     url(r'^register/', TemplateView.as_view(template_name='register.html'), name="homepage"),
     url(r'^404/', TemplateView.as_view(template_name='404.html'), name="homepage"),
-    url(r'^audio/', TemplateView.as_view(template_name='audio.html'), name="homepage"),
+    #url(r'^audio/', TemplateView.as_view(template_name='audio.html'), name="homepage"),
     #url(r'^user/(?P<user_id>[0-9]+)/$', views.AudiosView.as_view(template_name='user.html'), name="homepage"),
     url(r'^user/(?P<user_id>[0-9]+)/$', views.AudiosView.as_view(template_name='user.html'), name='user'),
     # url(r'^front/', include('fronttemplates.urls')),
     # url(r'', include('contenido.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^donation/', views.donation_view, name="donation"),
+    url(r'^song/(?P<song_id>[0-9]+)/$', views.SongView.as_view(), name='song'),
 ]

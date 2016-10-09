@@ -90,12 +90,19 @@ class BuscadorView(View):
 
 
 class SongView(ListView):
-    template_name = 'contenido/audio.html'
+    template_name = 'audio.html'
     context_object_name = 'song'
     audio = Audio
 
     def get_queryset(self):
         return get_object_or_404(Audio, id=int(self.kwargs['song_id']))
+
+    def get_context_data(self, **kwargs):
+        audio = Audio.objects.get(id=int(self.kwargs['song_id']))
+        total_likes = audio.likes.count()
+        context = super(SongView, self).get_context_data(**kwargs)
+        context['total_likes'] = total_likes
+        return context
 
 
 def donation_view(request):

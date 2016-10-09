@@ -24,6 +24,7 @@ class Audio(models.Model):
     val_recurso = models.CharField(max_length=1000, verbose_name='Recurso', help_text='URL del recurso del audio')
     fec_entrada_audio = models.DateField(auto_now_add=True, help_text='Fecha de subida del audio')
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(Artista, related_name="likes")
 
     def __str__(self):
         return self.nom_audio

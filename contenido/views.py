@@ -4,12 +4,15 @@ from django.views.generic import *
 from django.db.models import Q
 from django.shortcuts import render_to_response
 from .models import *
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 # Create your views here.
 class ArtistaView(ListView):
-    #template_name = 'SonidosLibres/user.html'
+    # template_name = 'SonidosLibres/user.html'
     context_object_name = 'lista_artistas'
+
     def get_queryset(self):
         return Audio.objects.all()
 
@@ -35,10 +38,10 @@ class AudiosView(ListView):
         context['artist'] = self.artista
         return context
 
-    #def get_context_data(self, **kwargs):
-    #    context = super(AudiosView, self).get_context_data(**kwargs)
-    #    context['artista'] = self.artista
-    #    return context
+        # def get_context_data(self, **kwargs):
+        #    context = super(AudiosView, self).get_context_data(**kwargs)
+        #    context['artista'] = self.artista
+        #    return context
 
 
 class AlbumesView(ListView):
@@ -57,14 +60,13 @@ class AlbumesView(ListView):
 
 
 class BuscadorView(View):
-
     def get(self, request, *args, **kwargs):
         filtro = request.GET.get('q', '')
         active_tab = "tab1"
         if filtro:
             qset = (
-                Q(nom_audio__icontains=filtro) #|
-                #Q(artista__nom_artistico__icontains=query)
+                Q(nom_audio__icontains=filtro)  # |
+                # Q(artista__nom_artistico__icontains=query)
             )
             audios = Audio.objects.filter(qset).distinct()
 
@@ -80,12 +82,11 @@ class BuscadorView(View):
 
         return render_to_response("homepage.html", {
             "audios": audios,
-            "artistas" : artistas,
+            "artistas": artistas,
             "filtro": filtro,
-            "active_tab" : active_tab,
-            "audios_recientes" : Audio.objects.all().order_by('-fec_entrada_audio')[:5]
+            "active_tab": active_tab,
+            "audios_recientes": Audio.objects.all().order_by('-fec_entrada_audio')[:5]
         })
-
 
 
 class SongView(ListView):
@@ -95,3 +96,13 @@ class SongView(ListView):
 
     def get_queryset(self):
         return get_object_or_404(Audio, id=int(self.kwargs['song_id']))
+
+
+def donation_view(request):
+    value = request.POST.get("value")
+    credit_card = request.POST.get("credit_card")
+    artista_a_donar = Artista.objects.get(pk=request.POST.get("artist_to_donation"))
+    donation = Donaciones(valor=value, tarjeta_credito=credit_card, artista=artista_a_donar)
+    donation.save()
+    messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
+    return HttpResponseRedirect('/user/'+request.POST.get("artist_to_donation"))

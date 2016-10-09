@@ -6,13 +6,13 @@
                 <h4 class="modal-title" id="myModalLabel">Donación a Daft Punk</h4>
             </div>
             <div class="modal-body">
-
-                <form novalidate>
+                <form id="donation_form" action="{% url 'donation'%}" method="post" novalidate>
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group input-group">
                                 <span class="input-group-addon">$</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Valor">
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Valor" name="value">
                             </div>
                         </div>
                     </div>
@@ -20,18 +20,18 @@
                     <div class="row">
                         <div class="col-xs-8">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Tarjeta de Crédito">
+                                <input type="text" class="form-control" name="credit_card" placeholder="Tarjeta de Crédito">
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="CVC">
+                                <input type="text" class="form-control" name="cvc" placeholder="CVC">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-7">
-                            <select class="form-control">
+                            <select class="form-control" name="month_dd">
                                 <option>Mes</option>
                                 <option>Enero</option>
                                 <option>Febrero</option>
@@ -48,7 +48,7 @@
                             </select>
                         </div>
                         <div class="col-xs-5">
-                            <select class="form-control">
+                            <select class="form-control" name="year_dd">
                                 <option>Año</option>
                                 <option >2016</option>
                                 <option >2017</option>
@@ -63,13 +63,12 @@
                             </select>
                         </div>
                     </div>
-
+                    <input type="hidden" name="artist_to_donation" value="{{ artist.id }}">
                 </form>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-sonidoslibres">Hacer donación</button>
+                <button type="submit" form="donation_form" class="btn btn-sonidoslibres">Hacer donación</button>
             </div>
         </div>
     </div>

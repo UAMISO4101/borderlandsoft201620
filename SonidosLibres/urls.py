@@ -29,4 +29,5 @@ urlpatterns = [
     # url(r'^front/', include('fronttemplates.urls')),
     # url(r'', include('contenido.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^donation/', views.donation_view, name="donation"),
 ]

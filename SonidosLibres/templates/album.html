@@ -26,7 +26,7 @@
                     <br>
                     <div class="row">
                         <div class="col-xs-12">
-                            4 temas
+                        {{audios|length}} temas
                         </div>
                     </div>
                     <br>
@@ -69,46 +69,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {% for audio in audios %}
                                 <tr>
                                     <td>1</td>
-                                    <td class="cell-song"><a href="/song/1">One More Time</a></td>
-                                    <td class="cell-user"></td>
+                                    <td class="cell-song"><a href="/song/{{audio.id}}">{{audio.nom_audio}}</a></td>
+                                    <td class="cell-user">{{audio.artistas|length}}</td>
                                     <td class="td-remove">
                                         <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="cell-song"><a href="/song/1">Aerodynamic</a></td>
-                                    <td class="cell-user"><a href="/user/1">Giorgio Moroder</a></td>
-                                    <td class="td-remove">
-                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="cell-song"><a href="/song/1">Digital Love</a></td>
-                                    <td class="cell-user"><a href="/user/1">The Beat Broker</a></td>
-                                    <td class="td-remove">
-                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="cell-song"><a href="/song/1">Harder, Better, Faster,Stronger</a></td>
-                                    <td class="cell-user"></td>
-                                    <td class="td-remove">
-                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
 

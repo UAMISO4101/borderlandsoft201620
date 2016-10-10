@@ -23,40 +23,33 @@ class AudiosView(ListView):
     artista = Artista
 
     def get_queryset(self):
-        self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
-        audios = Audio.objects.filter(artista__pk=self.artista.pk)
-        albums = Artista_album.objects.filter(artista__pk=self.artista.pk)
+        return get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+
 
     def get_context_data(self, **kwargs):
         context = super(AudiosView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
-        audios = Audio.objects.filter(artista__pk=self.artista.pk)
-        albums_artist = Artista_album.objects.filter(artista__pk=self.artista.pk)
-
-        context['audios'] = audios
-        context['albums_artist'] = albums_artist
+        self.albums = Album.objects.filter(artista__pk=self.artista.pk)
+        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk)
         context['artist'] = self.artista
+        context['albums'] = self.albums
+        context['audios'] = self.audios
         return context
 
-        # def get_context_data(self, **kwargs):
-        #    context = super(AudiosView, self).get_context_data(**kwargs)
-        #    context['artista'] = self.artista
-        #    return context
+class AlbumsView(ListView):
+    template_name = 'SonidosLibres/album.html'
+    context_object_name = 'audios'
 
-
-class AlbumesView(ListView):
-    template_name = 'contenido/albumes.html'
-    context_object_name = 'lista_artista_album'
-    artista = Artista
 
     def get_queryset(self):
-        self.artista = get_object_or_404(Artista, id=int(self.kwargs['artista_id']))
-        return Artista_album.objects.filter(artista__pk=self.artista.pk)
+        self.album = get_object_or_404(Album, id=int(self.kwargs['album_id']))
 
-    def get_context_data(self, **kwargs):
-        context = super(AlbumesView, self).get_context_data(**kwargs)
-        context['artista'] = self.artista
-        return context
+        return Audio.objects.filter(albums=self.album.pk)
+
+    #def get_context_data(self, **kwargs):
+     #   context = super(AlbumsView, self).get_context_data(**kwargs)
+      #  context['album'] = self.album
+       # return context
 
 
 class BuscadorView(View):

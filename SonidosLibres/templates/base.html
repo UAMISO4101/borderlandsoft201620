@@ -49,7 +49,6 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
                 {% if 1 == 1 %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -61,10 +60,6 @@
                             <li><a href="#"><i class="fa fa-list nav-icon"></i> Lista de Reproducción</a></li>
                         </ul>
                     </li>
-=======
-                {% if user.is_authenticated %}
-                    <li><a href="#"><i class="fa fa-upload nav-icon"></i> Subir</a></li>
->>>>>>> master
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img class="circle img-small" src="{% static "img/examples/zuckerberg.jpg" %}" alt="">
@@ -80,9 +75,6 @@
                     <li><a href="/usuarios/register">Registrarse</a></li>
                     <li><a href="/accounts/login/">Iniciar Sesión</a></li>
                 {% endif %}
-
-
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

@@ -450,3 +450,27 @@ footer{
 .btn-group-user{
   margin-left: 10px;
 }
+
+.modal-header{
+  color: white;
+
+  &.bg-2{
+    background: $color-main2;
+  }
+
+  &.bg-3{
+    background: $color-main3;
+  }
+
+  &.bg-4{
+    background: $color-main4;
+  }
+}
+
+.modal-footer{
+  background: #efefef;
+
+  &.bg-3{
+    border-top: 1px solid transparentize($color-main3, 0.5);
+  }
+}

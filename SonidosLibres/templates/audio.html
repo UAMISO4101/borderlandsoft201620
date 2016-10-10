@@ -147,7 +147,8 @@
             </div>
         </div>
     </div>
-    {% include "modals/comment.html" %}
+    {% include "modals/textarea.html" with id="commentModal" title="Agregar comentario" %}
+    {% include "modals/textarea.html" with id="reportModal" title="Reportar audio" label="Por favor coméntenos porqué está reportando este audio"%}
 {% endblock %}
 
 {% block pagescripts %}

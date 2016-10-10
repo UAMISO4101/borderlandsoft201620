@@ -63,7 +63,7 @@
                         <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Obras <span class="tab-counter">{{ audios|length }}</span></a>
                     </li>
                     <li role="presentation" class="tab-type-4">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter">{{ albums_artist|length }} </span></a>
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter">{{ albums|length }} </span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Listas</a>
@@ -87,7 +87,7 @@
                                 <br>
                                 <div class="col-sm-6 box">
                                 {% for audio in audios %}
-                                    {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=audio.artista.nom_artistico%}
+                                    {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist%}
                                 {% endfor %}
                                 </div>
                             </div>
@@ -98,8 +98,8 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6">
-                                {% for album_artist in albums_artist %}
-                                    {% include "partials/album-detail.html" with album_name=album_artist.album.nom_album album_image=album_artist.album.val_imagen artist=album_artist.artista.nom_artistico %}
+                                {% for album in albums %}
+                                    {% include "partials/album-detail.html" with album_name=album.nom_album album_image=album.val_imagen artist=album.artista %}
                                 {% endfor %}
                                 </div>
                             </div>

@@ -7,14 +7,18 @@ class ArtistaAdmin(admin.ModelAdmin):
     search_fields = ('nom_artistico',)
 
 class AudioAdmin(admin.ModelAdmin):
-    list_display = ('nom_audio', 'val_imagen', 'val_recurso', 'artista')
+    list_display = ('nom_audio', 'val_imagen', 'val_recurso', 'fec_entrada_audio',)
     search_fields = ('nom_audio',)
+    filter_horizontal = ('artistas','likes','albums')
 
 class AlbumAdmin(admin.ModelAdmin):
-    list_display = ('val_imagen', 'nom_album')
+    list_display = ('val_imagen', 'nom_album','fec_creacion_album','artista')
     search_fields = ('nom_album',)
+
+
 
 
 admin.site.register(Artista, ArtistaAdmin)
 admin.site.register(Audio, AudioAdmin)
 admin.site.register(Album, AlbumAdmin)
+

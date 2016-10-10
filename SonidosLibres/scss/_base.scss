@@ -29,6 +29,12 @@ h3{
 h4{
   line-height: 1.2;
 }
+textarea{
+  &.no-resizable{
+    resize: none;
+  }
+}
+
 .title-part1{
   color: #fff;
 }
@@ -439,4 +445,8 @@ footer{
       }
     }
   }
+}
+
+.btn-group-user{
+  margin-left: 10px;
 }

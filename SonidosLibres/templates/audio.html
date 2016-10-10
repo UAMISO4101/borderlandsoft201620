@@ -46,20 +46,28 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="btn-group pull-left" role="group" aria-label="...">
-                                <button type="button" class="btn btn-sonidoslibres btn-2 active" data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta">
+                                <button type="button" id="likeButton" class="btn btn-sonidoslibres btn-2 active" data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta">
                                     <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i> {{ total_likes }}
                                 </button>
-                                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a...">
-                                    <button type="button" class="btn btn-sonidoslibres btn-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-plus fa-lg"></i>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Agregar a Lista de Reproducción</a></li>
-                                        <li><a href="#">Agregar a Album</a></li>
-                                    </ul>
-                                </div>
-                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Denunciar"><i class="fa fa-ban fa-lg"></i></button>
+                                <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
+                                <button type="button" id="addToListButton" data-target="#addToListModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a lista de reproducción"><i class="fa fa-list fa-lg"></i></button>
+                                <button type="button" id="reportButton" data-target="#reportModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Reportar"><i class="fa fa-ban fa-lg"></i></button>
+{#                                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a...">#}
+{#                                    <button type="button" class="btn btn-sonidoslibres btn-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                                        <i class="fa fa-plus fa-lg"></i>#}
+{#                                        <span class="caret"></span>#}
+{#                                    </button>#}
+{#                                    <ul class="dropdown-menu">#}
+{#                                        <li><a href="#">Agregar a Lista de Reproducción</a></li>#}
+{#                                        <li><a href="#">Agregar a Album</a></li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+
+                            </div>
+                            <div class="btn-group btn-group-user pull-left">
+                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Agregar a Album"><i class="fa fa-circle-thin fa-lg"></i></button>
+                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil fa-lg"></i></button>
+                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-trash fa-lg"></i></button>
                             </div>
                             <div class="song-metadata pull-left">
                                 {#                            <div class="song-metadata" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> 1027</div>#}
@@ -139,6 +147,7 @@
             </div>
         </div>
     </div>
+    {% include "modals/comment.html" %}
 {% endblock %}
 
 {% block pagescripts %}

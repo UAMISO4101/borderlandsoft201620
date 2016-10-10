@@ -29,6 +29,12 @@ h3{
 h4{
   line-height: 1.2;
 }
+textarea{
+  &.no-resizable{
+    resize: none;
+  }
+}
+
 .title-part1{
   color: #fff;
 }
@@ -414,29 +420,6 @@ footer{
   }
 }
 
-.table-album{
-  >thead>tr>th{
-    //border-bottom: 2px solid $color-main4;
-  }
-  .cell-song a{
-    color: $color-main2;
-    font-weight: 600;
-  }
-  .cell-user a{
-    color: $color-main3;
-  }
-
-  > tbody > tr > td.td-remove {
-    padding: 2px 0 0;
-
-    .btn-remove{
-      padding: 0;
-      font-size: 20px;
-      color: #6ba2a0;
-
-      &:hover, &:focus{
-        color: $color-error;
-      }
-    }
-  }
+.btn-group-user{
+  margin-left: 10px;
 }

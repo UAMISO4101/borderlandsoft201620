@@ -1,0 +1,34 @@
+@import "variables";
+@import "mixins";
+
+.modal-header{
+  color: white;
+
+  &.bg-2{
+    background: $color-main2;
+  }
+
+  &.bg-3{
+    background: $color-main3;
+  }
+
+  &.bg-4{
+    background: $color-main4;
+  }
+}
+
+.modal-footer{
+  background: #efefef;
+
+  &.bg-2{
+    border-top: 1px solid transparentize($color-main2, 0.5);
+  }
+
+  &.bg-3{
+    border-top: 1px solid transparentize($color-main3, 0.5);
+  }
+
+  &.bg-4{
+    border-top: 1px solid transparentize($color-main4, 0.5);
+  }
+}

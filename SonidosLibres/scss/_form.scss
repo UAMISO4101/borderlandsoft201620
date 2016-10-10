@@ -52,3 +52,23 @@
     padding-top: 3px;
   }
 }
+
+.checkbox-awesome {
+  display:none;
+
+  &:checked + label:before {
+    content: "\f046";
+    letter-spacing: 5px;
+  }
+
+  + label{
+    height: 1px;
+    &:before {
+      font-size: 18px;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f096";
+      letter-spacing: 10px;
+    }
+  }
+}

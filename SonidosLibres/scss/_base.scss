@@ -420,57 +420,6 @@ footer{
   }
 }
 
-.table-album{
-  >thead>tr>th{
-    //border-bottom: 2px solid $color-main4;
-  }
-  .cell-song a{
-    color: $color-main2;
-    font-weight: 600;
-  }
-  .cell-user a{
-    color: $color-main3;
-  }
-
-  > tbody > tr > td.td-remove {
-    padding: 2px 0 0;
-
-    .btn-remove{
-      padding: 0;
-      font-size: 20px;
-      color: #6ba2a0;
-
-      &:hover, &:focus{
-        color: $color-error;
-      }
-    }
-  }
-}
-
 .btn-group-user{
   margin-left: 10px;
-}
-
-.modal-header{
-  color: white;
-
-  &.bg-2{
-    background: $color-main2;
-  }
-
-  &.bg-3{
-    background: $color-main3;
-  }
-
-  &.bg-4{
-    background: $color-main4;
-  }
-}
-
-.modal-footer{
-  background: #efefef;
-
-  &.bg-3{
-    border-top: 1px solid transparentize($color-main3, 0.5);
-  }
 }

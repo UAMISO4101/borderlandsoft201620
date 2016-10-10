@@ -43,13 +43,12 @@ class AlbumsView(ListView):
 
     def get_queryset(self):
         self.album = get_object_or_404(Album, id=int(self.kwargs['album_id']))
-
         return Audio.objects.filter(albums=self.album.pk)
 
     #def get_context_data(self, **kwargs):
-     #   context = super(AlbumsView, self).get_context_data(**kwargs)
-      #  context['album'] = self.album
-       # return context
+       #context = super(AlbumsView, self).get_context_data(**kwargs)
+       #context['album'] = self.album
+       #return context
 
 
 class BuscadorView(View):

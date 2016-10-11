@@ -55,7 +55,10 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading"><a href="{% url 'song' audio.id %}">{{ audio|escape }}</a></h4>
-                                                    {{ audio.artista|escape }}
+                                                    {% for artista in audio.artista %}
+                                                        {{ audio.artista|escape }},
+                                                    {% endfor %}
+                                                    {{ audio.artistas|escape }}
                                                 </div>
                                             </div>
                                         {% endfor %}

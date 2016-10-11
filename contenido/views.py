@@ -67,7 +67,7 @@ class BuscadorView(View):
                 Q(nom_audio__icontains=filtro)  # |
                 # Q(artista__nom_artistico__icontains=query)
             )
-            audios = Audio.objects.filter(qset).distinct()
+            audios = Audio.objects.filter(qset).distinct().prefetch_related('artistas')
 
             qset = (
                 Q(nom_artistico__icontains=filtro)

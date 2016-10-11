@@ -6,6 +6,8 @@ from django.shortcuts import render_to_response
 from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -25,7 +27,6 @@ class AudiosView(ListView):
     def get_queryset(self):
         return get_object_or_404(Artista, id=int(self.kwargs['user_id']))
 
-
     def get_context_data(self, **kwargs):
         context = super(AudiosView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
@@ -35,6 +36,7 @@ class AudiosView(ListView):
         context['albums'] = self.albums
         context['audios'] = self.audios
         return context
+
 
 class AlbumsView(ListView):
     template_name = 'SonidosLibres/album.html'
@@ -46,16 +48,16 @@ class AlbumsView(ListView):
         return self.audio
 
     def get_context_data(self, **kwargs):
-       context = super(AlbumsView, self).get_context_data(**kwargs)
-       self.artistas = Artista.objects.all()
-       self.audios = Audio.objects.filter(albums=self.album.pk).prefetch_related('artistas')
+        context = super(AlbumsView, self).get_context_data(**kwargs)
+        self.artistas = Artista.objects.all()
+        self.audios = Audio.objects.filter(albums=self.album.pk).prefetch_related('artistas')
 
-       #self.artistas = Artista.objects.filter(audios_in = self.audios)
-           #objects.prefetch_related('')
+        # self.artistas = Artista.objects.filter(audios_in = self.audios)
+        # objects.prefetch_related('')
 
-       context['album'] = self.album
-       context['audios'] = self.audios
-       return context
+        context['album'] = self.album
+        context['audios'] = self.audios
+        return context
 
 
 class BuscadorView(View):
@@ -101,7 +103,31 @@ class SongView(ListView):
         total_likes = audio.likes.count()
         context = super(SongView, self).get_context_data(**kwargs)
         context['total_likes'] = total_likes
+
+        if self.request.user.is_authenticated():
+            user_id = self.request.user.id
+        else:
+            user_id = 0
+        try:
+            Audio.objects.get(id=int(self.kwargs['song_id']), likes__id=user_id)
+            user_like = True
+        except Audio.DoesNotExist:
+            user_like = False
+        context['user_like'] = user_like
         return context
+
+
+@csrf_exempt
+def like_view(request):
+    if request.is_ajax():
+        song_id = request.POST.get("song_id")
+        audio = Audio.objects.get(pk=song_id)
+        audio.likes.add(User.objects.get(id=request.user.id))
+        audio.save()
+        message = "SUCCESS"
+    else:
+        message = "NO OK"
+    return HttpResponse(message)
 
 
 def donation_view(request):
@@ -111,4 +137,4 @@ def donation_view(request):
     donation = Donaciones(valor=value, tarjeta_credito=credit_card, artista=artista_a_donar)
     donation.save()
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
-    return HttpResponseRedirect('/user/'+request.POST.get("artist_to_donation"))
+    return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))

@@ -35,4 +35,5 @@ urlpatterns = [
     url(r'^usuarios/', include('usuarios.urls', namespace="usuarios")),
     url(r'^donation/', views.donation_view, name="donation"),
     url(r'^song/(?P<song_id>[0-9]+)/$', views.SongView.as_view(), name='song'),
+    url(r'^like/', views.like_view, name='like'),
 ]

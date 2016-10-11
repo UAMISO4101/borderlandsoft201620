@@ -1,5 +1,6 @@
 {% extends "partials/authenticate.html" %}
-
+{% block pic %}login-pic{% endblock %}
+{% block offset %}col-sm-offset-4{% endblock %}
 {% block facebook %}Continuar con Facebook{% endblock %}
 
 {% block title %}Inicio de Sesión{% endblock %}
@@ -14,7 +15,7 @@
     </div>
     <button type="submit" class="btn btn-block btn-lg btn-sonidoslibres" onclick="document.location.href='/'">Iniciar Sesión</button>
     <div class="text-center">
-        <small>¿No tienes una cuenta? <a href="/register">Regístrate</a></small>
+        <small>¿No tienes una cuenta? <a href="/usuarios/register/">Regístrate</a></small>
     </div>
     </form>
 {% endblock %}

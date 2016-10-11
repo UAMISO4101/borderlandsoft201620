@@ -1,5 +1,6 @@
 @import "variables";
 .navbar{
+  z-index: 2;
   border-bottom: 1px solid rgba($color-main1, 0.5);
   margin-bottom: 0;
 
@@ -7,6 +8,7 @@
     background-color: #efefef;
   }
 }
+
 .navbar-inverse{
   background-color: transparent;
   color: #fff;
@@ -93,14 +95,22 @@
   font-size: 18px;
 }
 
-.navbar-form .input-group{
+.search-box{
+  position: absolute;
+  left: 50%;
+
+  @mixin search-box($width){
+    width: $width;
+    margin-left: $width / -2;
+  }
+
   @media (min-width: 970px) {
-    width: 475px;
+    @include search-box(475px);
   }
   @media (min-width: 1170px) {
-    width: 675px;
+    @include search-box(675px);
   }
-  width: 280px;
+  @include search-box(280px);
 }
 
 .img-small{
@@ -110,3 +120,10 @@
   margin-right: 6px;
 }
 
+.title-part1{
+  color: #fff;
+}
+.title-part2{
+  color: $color-main1;
+  font-weight: 600;
+}

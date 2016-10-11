@@ -1,6 +1,32 @@
 @import "variables";
 @import "mixins";
 
+@mixin album-width($mediawidth, $width){
+  @media (min-width: $mediawidth){
+    width: $width;
+  }
+}
+
+.album-box{
+  margin-bottom: 30px;
+  padding: 0;
+  transition: box-shadow .5s cubic-bezier(0, 0.42, 0.58, 1);
+
+  @include album-width($width-sm, 220px);
+  @include album-width($width-md, 213px);
+  @include album-width($width-lg, 165px);
+
+  &:hover{
+    box-shadow: 0 0 20px 1px #7f7f7f;
+    //border: 1px solid #ccc;
+  }
+
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+}
+
 .detail-img{
   i{
     color: white;
@@ -42,23 +68,23 @@
     background: $color-main4;
     @mixin album($width, $fsize1, $mtop1, $fsize2, $mtop2) {
       width: $width;
-          height: $width;
-          i{
-            &:first-child{
-              font-size: $fsize1;
-              margin-top: $mtop1;
-            }
-            &:last-child{
-              font-size: $fsize2;
-              margin-top: $mtop2;
-            }
-          }
-    }
-    @mixin album-responsive($mediawidth, $width, $fsize1, $mtop1, $fsize2, $mtop2){
-        @media (min-width: $mediawidth){
-          @include album($width, $fsize1, $mtop1, $fsize2, $mtop2)
+      height: $width;
+      i{
+        &:first-child{
+          font-size: $fsize1;
+          margin-top: $mtop1;
+        }
+        &:last-child{
+          font-size: $fsize2;
+          margin-top: $mtop2;
         }
       }
+    }
+    @mixin album-responsive($mediawidth, $width, $fsize1, $mtop1, $fsize2, $mtop2){
+      @media (min-width: $mediawidth){
+        @include album($width, $fsize1, $mtop1, $fsize2, $mtop2)
+      }
+    }
 
     &.album-big{
       @include album-responsive($width-sm, 220px, 90px, 58px, 175px, -127px);

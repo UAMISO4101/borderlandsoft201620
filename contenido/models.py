@@ -36,8 +36,8 @@ class Audio(models.Model):
     val_recurso = models.CharField(max_length=1000, verbose_name='Recurso', help_text='URL del recurso del audio')
     fec_entrada_audio = models.DateField(auto_now_add=True, help_text='Fecha de subida del audio')
     artistas = models.ManyToManyField(Artista, related_name="artistas")
-    likes = models.ManyToManyField(Artista, related_name="likes")
-    albums = models.ManyToManyField(Album, related_name="albums")
+    likes = models.ManyToManyField(Artista, related_name="likes", blank=True)
+    albums = models.ManyToManyField(Album, related_name="albums", blank=True)
 
 
 class Donaciones(models.Model):

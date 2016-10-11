@@ -17,9 +17,11 @@
     height: 34px;
   }
 }
+.btn{
+  border-radius: 2px;
+}
 .btn-sonidoslibres{
   @include button-variant(#fff, $color-main1, darken($color-main1, 5%));
-  border-radius: 2px;
 
   &:focus {
     outline: 2px auto #3D9A63;
@@ -48,5 +50,25 @@
 
   .fa{
     padding-top: 3px;
+  }
+}
+
+.checkbox-awesome {
+  display:none;
+
+  &:checked + label:before {
+    content: "\f046";
+    letter-spacing: 5px;
+  }
+
+  + label{
+    height: 1px;
+    &:before {
+      font-size: 18px;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f096";
+      letter-spacing: 10px;
+    }
   }
 }

@@ -5,32 +5,38 @@
 {% block title %}Registro{% endblock %}
 
 {% block form %}
+    <form method="post">{% csrf_token %}
     <div class="form-group">
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombres">
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario" name="username">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Apellidos">
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombres" name="first_name">
     </div>
-    <div class="form-group has-error">
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico">
-        <div class="help-block">
+    <div class="form-group">
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Apellidos" name="last_name">
+    </div>
+    <!--div class="form-group has-error"-->
+    <div class="form-group">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico" name="email">
+        <!--div class="help-block">
             <ul class="list-unstyled">
                 <li>La dirección de correo electrónico no es válida</li>
             </ul>
-        </div>
+        </div-->
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Contraseña">
+        <input type="password" class="form-control" placeholder="Contraseña" name="password1">
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Confirme la Contreseña">
+        <input type="password" class="form-control" placeholder="Confirme la Contreseña" name="password2">
     </div>
     <small>Al hacer click en Registrarse, aceptas los <a href="#">términos y condiciones</a> y <a
             href="#">política de privacidad de SonidosLibres</a></small>
     <br><br>
 
-    <button type="button" class="btn btn-block btn-lg btn-sonidoslibres" onclick="document.location.href='/'">Registrarse</button>
+    <button type="submit" class="btn btn-block btn-lg btn-sonidoslibres">Registrarse</button>
     <div class="text-center">
         <small>¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></small>
     </div>
+    </form>
 {% endblock %}

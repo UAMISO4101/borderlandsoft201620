@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL(load_stores_from_sql()),
+        # migrations.RunSQL(load_stores_from_sql()),
 
         migrations.RemoveField(
             model_name='Artista_album',

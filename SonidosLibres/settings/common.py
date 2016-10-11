@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 from pathlib import Path
+from django.core.urlresolvers import reverse_lazy
 
 # Utilities
 PROJECT_PACKAGE = Path(__file__).resolve().parent.parent
@@ -34,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'contenido.apps.ContenidoConfig',
+    'usuarios',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,3 +120,6 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 DATABASES = {
     'default': {}
 }
+
+LOGIN_REDIRECT_URL= reverse_lazy('homepage')
+LOGOUT_REDIRECT_URL= reverse_lazy('login')

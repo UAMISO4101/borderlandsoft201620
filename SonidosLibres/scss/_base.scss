@@ -254,22 +254,6 @@ footer{
   padding: 5px;
 }
 
-.album-box{
-  margin-bottom: 30px;
-  padding: 0;
-  transition: box-shadow .5s cubic-bezier(0, 0.42, 0.58, 1);
-
-  &:hover{
-    box-shadow: 0 0 20px 1px #7f7f7f;
-    //border: 1px solid #ccc;
-  }
-
-  a{
-    text-decoration: none;
-    color: #000;
-  }
-}
-
 .table-album{
   >thead>tr>th{
     //border-bottom: 2px solid $color-main4;

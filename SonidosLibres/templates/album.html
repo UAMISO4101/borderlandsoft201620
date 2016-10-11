@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="pull-right">
-                        {% if 0 == 1 %}
-                            <img class="detail-img si200" src="https://images.rapgenius.com/5e9b9cad9538537291de8901eaa5f15f.450x450x1.png">
+                        {% if album.val_imagen.strip == "" or  album.val_imagen == null %}
+                            <div class="detail-img album-img album-normal text-center">
+                                <i class="fa fa-music"></i>
+                                <i class="fa fa fa-circle-thin"></i>
+                            </div>
                         {% else %}
-                        <div class="detail-img album-img album-normal text-center">
-                            <i class="fa fa-music"></i>
-                            <i class="fa fa fa-circle-thin"></i>
-                        </div>
+                            <img class="detail-img album-img album-normal" src="{{album.val_imagen}}"  >
                         {% endif %}
                     </div>
                 </div>
@@ -21,16 +21,16 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-left">
-                                <span class="song-title">Random Access Memories</span>
+                                <span class="song-title">{{album}}</span>
                                 <div class="clearfix"></div>
-                                <div><span>Por <a href="/user/1" class="user">Daft Punk</a></span></div>
+                                <div><span>Por <a href="/user/{{album.artista.id}}" class="user">{{album.artista}}</a></span></div>
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-xs-12">
-                        {{audios|length}} temas
+                            {{audios|length}} temas
                         </div>
                     </div>
                     <br>
@@ -67,17 +67,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 {% for audio in audios %}
-                                <tr>
-                                    <td>1</td>
-                                    <td class="cell-song"><a href="/song/{{audio.id}}">{{audio.nom_audio}}</a></td>
-                                    <td class="cell-user">{{audio.artistas|length}}</td>
-                                    <td class="td-remove">
-                                        <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+
+                                    <tr>
+                                        <td>{{ forloop.counter}}</td>
+                                        <td class="cell-song"><a href="/song/{{audio.id}}">{{audio.nom_audio}}</a></td>
+                                        <td class="cell-user">
+                                            {% for artista in audio.artistas.all %}
+                                                {{ artista }}
+                                                {%if forloop.counter != 1%}
+                                                    ,
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td class="td-remove">
+                                            <button class="btn btn-link btn-remove" data-toggle="tooltip" data-placement="left" title="Remover del album">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>

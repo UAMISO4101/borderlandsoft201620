@@ -36,14 +36,38 @@ textarea{
   }
 }
 
+.auth-form{
+  position: absolute;
+  top: 100px;
+  //left: 100px;
+}
 
 .main-pic{
-  position: relative;
   margin-top: -52px;
   width: 100%;
-  height: 900px;
-  background: url(../img/photos/01.jpg) center;
   background-size: cover;
+
+  &.homepage-pic{
+    position: relative;
+    height: 900px;
+    background: url(../img/photos/01.jpg) center;
+  }
+
+  &.register-pic{
+    position: absolute;
+    top: 102px;
+    bottom: 0;
+    background: url(../img/photos/02.jpg);
+    background-size: cover;
+  }
+
+  &.login-pic{
+    position: absolute;
+    top: 102px;
+    bottom: 0;
+    background: url(../img/photos/03.jpg);
+    background-size: cover;
+  }
 }
 
 .titles-container{
@@ -94,6 +118,15 @@ footer{
   box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
   padding-top: 20px;
   padding-bottom: 20px;
+
+  &.box-transparent{
+    background: rgba(255, 255, 255, 0.8);
+
+    .form-control{
+      background-color: rgba(255, 255, 255, 0.5);
+      @include placeholder-color(#777);
+    }
+  }
 }
 
 .media-body {
@@ -114,17 +147,16 @@ footer{
 
 .text-divider{
   margin-top: 9px;
-  background: #fff;
+  //background: #fff;
 
   span{
     width: 40px;
     display: inline-block;
-    background: white;
+    background: rgba(255, 255, 255, 0.62);
   }
 
   hr{
     margin-top: -9px;
-    border-top: 1px solid #cfcfcf;
     border-top: 1px solid #cfcfcf;
   }
 }

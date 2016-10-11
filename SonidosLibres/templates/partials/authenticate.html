@@ -1,22 +1,24 @@
 {% extends "../base.html" %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4 box">
-                <h3>{% block title %}{% endblock %}</h3>
-                <form novalidate>
-                    <a class="btn btn-block btn-social btn-facebook btn-tall">
-                        <span class="fa fa-facebook"></span>
-                        {% block facebook %}{% endblock %}
-                    </a>
-                    <div class="text-divider">
-                        <div class="text-center">
-                            <span>o</span>
+    <div class="main-pic {% block pic %}register-pic{% endblock %}">
+        <div class="container auth-form">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-5 col-md-4 box box-transparent">
+                    <h3>{% block title %}{% endblock %}</h3>
+                    <form novalidate>
+                        <a class="btn btn-block btn-social btn-facebook btn-tall">
+                            <span class="fa fa-facebook"></span>
+                            {% block facebook %}{% endblock %}
+                        </a>
+                        <div class="text-divider">
+                            <div class="text-center">
+                                <span>o</span>
+                            </div>
+                            <hr>
                         </div>
-                        <hr>
-                    </div>
-                </form>
-                {% block form %}{% endblock %}
+                    </form>
+                    {% block form %}{% endblock %}
+                </div>
             </div>
         </div>
     </div>

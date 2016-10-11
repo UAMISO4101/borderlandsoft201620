@@ -8,12 +8,14 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="pull-right">
-                        <div class="detail-img artist-img si125">
-                            <i class="fa fa-user"></i>
-                        </div>
+                        {% if 0 == 1 %}
+                            <img class="detail-img si125" src="https://images.rapgenius.com/5e9b9cad9538537291de8901eaa5f15f.450x450x1.png">
+                        {% else %}
+                            <div class="detail-img artist-img si125">
+                                <i class="fa fa-user"></i>
+                            </div>
+                        {% endif %}
                     </div>
-
-
                 </div>
                 <div class="col-sm-9">
                     <div class="row">
@@ -25,18 +27,22 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col-sm-12 artist-info">
+                        <div class="col-sm-4 ">
                             <div class="btn-group pull-left" role="group" aria-label="...">
                                 <button type="button" class="btn btn-sonidoslibres btn-3" data-toggle="tooltip" data-placement="bottom" title="Dar autoría a obra"><i class="fa fa-copyright fa-lg"></i></button>
                                 <button type="button" class="btn btn-sonidoslibres btn-3 active" data-toggle="tooltip" data-placement="bottom" title="Dejar de Seguir"><i class="fa fa-heart fa-lg"></i></button>
                                 <button type="button" id="donationButton" data-target="#donationModal" class="btn btn-sonidoslibres btn-3" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Donar"><i class="fa fa-money fa-lg"></i></button>
                             </div>
-                            <div class="song-metadata pull-left">
-                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Seguidores"><i class="fa fa-users"></i> 64</div>
-                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Estás siguiendo"><i class="fa fa-eye"></i> 112</div>
-                            <div class="" data-toggle="tooltip" data-placement="bottom" title="Convocatorias ganadas"><i class="fa fa-trophy"></i> 1</div>
                         </div>
+                        <div class="col-sm-8">
+                            <div class="song-metadata pull-right">
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Seguidores"><i class="fa fa-users"></i> 64</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Estás siguiendo"><i class="fa fa-eye"></i> 112</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Ubicación"><i class="fa fa-globe"></i> Oslo, Noruega</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Convocatorias ganadas"><i class="fa fa-trophy"></i> 1</div>
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -86,9 +92,9 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6 box">
-                                {% for audio in audios %}
-                                    {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist%}
-                                {% endfor %}
+                                    {% for audio in audios %}
+                                        {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist%}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -98,9 +104,9 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6">
-                                {% for album in albums %}
-                                    {% include "partials/album-detail.html" with album_name=album.nom_album album_image=album.val_imagen artist=album.artista %}
-                                {% endfor %}
+                                    {% for album in albums %}
+                                        {% include "partials/album-detail.html" with album_name=album.nom_album album_image=album.val_imagen artist=album.artista %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

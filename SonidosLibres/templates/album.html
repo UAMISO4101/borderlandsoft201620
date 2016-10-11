@@ -7,10 +7,14 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="pull-right">
+                        {% if 0 == 1 %}
+                            <img class="detail-img si200" src="https://images.rapgenius.com/5e9b9cad9538537291de8901eaa5f15f.450x450x1.png">
+                        {% else %}
                         <div class="detail-img album-img album-normal text-center">
                             <i class="fa fa-music"></i>
                             <i class="fa fa fa-circle-thin"></i>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-sm-9">
@@ -19,7 +23,7 @@
                             <div class="pull-left">
                                 <span class="song-title">Random Access Memories</span>
                                 <div class="clearfix"></div>
-                                <div><span>Por <a href="" class="user">Daft Punk</a></span></div>
+                                <div><span>Por <a href="/user/1" class="user">Daft Punk</a></span></div>
                             </div>
                         </div>
                     </div>
@@ -40,15 +44,9 @@
 
                     </div>
                     <br>
-
-
-
                 </div>
             </div>
-
         </div>
-
-
     </section>
     <div class="container">
         <div class="row">

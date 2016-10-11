@@ -51,7 +51,7 @@
                         <div class="col-md-6 col-lg-7">
                             {#                            Acciones objeto#}
                             <div class="btn-group pull-left" role="group" aria-label="...">
-                                <button type="button" id="likeButton" class="btn btn-sonidoslibres btn-2 active" data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta">
+                                <button type="button" id="likeButton" {% if user_like %} class="btn btn-sonidoslibres btn-2 active" disabled {% else %} class="btn btn-sonidoslibres btn-2 inactive" {% endif %} data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta" onclick="test({{ song.id }})">
                                     <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i> {{ total_likes }}
                                 </button>
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>

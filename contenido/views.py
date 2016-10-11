@@ -39,16 +39,23 @@ class AudiosView(ListView):
 class AlbumsView(ListView):
     template_name = 'SonidosLibres/album.html'
     context_object_name = 'audios'
-
+    audio = Audio
 
     def get_queryset(self):
         self.album = get_object_or_404(Album, id=int(self.kwargs['album_id']))
-        return Audio.objects.filter(albums=self.album.pk)
+        return self.audio
 
-    #def get_context_data(self, **kwargs):
-       #context = super(AlbumsView, self).get_context_data(**kwargs)
-       #context['album'] = self.album
-       #return context
+    def get_context_data(self, **kwargs):
+       context = super(AlbumsView, self).get_context_data(**kwargs)
+       self.artistas = Artista.objects.all()
+       self.audios = Audio.objects.filter(albums=self.album.pk).prefetch_related('artistas')
+
+       #self.artistas = Artista.objects.filter(audios_in = self.audios)
+           #objects.prefetch_related('')
+
+       context['album'] = self.album
+       context['audios'] = self.audios
+       return context
 
 
 class BuscadorView(View):

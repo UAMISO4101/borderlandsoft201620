@@ -40,7 +40,6 @@ class Audio(models.Model):
     albums = models.ManyToManyField(Album, related_name="albums")
 
 
-
 class Donaciones(models.Model):
     """
     Describe una donación

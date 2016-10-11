@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Artista(models.Model):
@@ -9,6 +10,7 @@ class Artista(models.Model):
     nom_artistico = models.CharField(max_length=200)
     nom_pais = models.CharField(max_length=50)
     nom_ciudad = models.CharField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.nom_artistico
@@ -36,7 +38,7 @@ class Audio(models.Model):
     val_recurso = models.CharField(max_length=1000, verbose_name='Recurso', help_text='URL del recurso del audio')
     fec_entrada_audio = models.DateField(auto_now_add=True, help_text='Fecha de subida del audio')
     artistas = models.ManyToManyField(Artista, related_name="artistas")
-    likes = models.ManyToManyField(Artista, related_name="likes", blank=True)
+    likes = models.ManyToManyField(User, related_name="likes", blank=True)
     albums = models.ManyToManyField(Album, related_name="albums", blank=True)
 
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {%  load static %}
 {% block content %}
-    {% if user.is_authenticated %}
+    {% if not user.is_authenticated %}
         <div class="main-pic homepage-pic">
             <div class="titles-container text-center">
                 <div>
@@ -108,14 +108,14 @@
                                                         {% for artista in artistas %}
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    <a href="#">
+                                                                    <a href="{% url 'user' artista.id %}">
                                                                         <div class="song-img si50 text-center">
                                                                             <i class="fa fa-user"></i>
                                                                         </div>
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="/a">{{ artista|escape }}</a></h4>
+                                                                    <h4 class="media-heading"><a href="{% url 'user' artista.id %}">{{ artista|escape }}</a></h4>
                                                                 </div>
                                                             </div>
                                                         {% endfor %}

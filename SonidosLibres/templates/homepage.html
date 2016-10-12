@@ -44,21 +44,18 @@
                                 <div class="row">
                                     <br>
                                     <div class="col-sm-6 box">
-                                        {% for audio in audios_recientes %}
+                                        {% for reciente in audios_recientes %}
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="{% url 'song' audio.id %}">
+                                                    <a href="{% url 'song' reciente.audio.id %}">
                                                         <div class="detail-img song-img si50 text-center">
                                                             <i class="fa fa-music"></i>
                                                         </div>
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4 class="media-heading"><a href="{% url 'song' audio.id %}">{{ audio|escape }}</a></h4>
-                                                    {% for artista in audio.artista %}
-                                                        {{ audio.artista|escape }},
-                                                    {% endfor %}
-                                                    {{ audio.artistas|escape }}
+                                                    <h4 class="media-heading"><a href="{% url 'song' reciente.audio.id %}">{{ reciente.audio|escape }}</a></h4>
+                                                        {{ reciente.artistas }}
                                                 </div>
                                             </div>
                                         {% endfor %}
@@ -82,15 +79,15 @@
                                                         {% for audio in audios %}
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    <a href="{% url 'song' audio.id %}">
+                                                                    <a href="{% url 'song' audio.audio.id %}">
                                                                         <div class="song-img si50 text-center">
                                                                             <i class="fa fa-music"></i>
                                                                         </div>
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="{% url 'song' audio.id %}">{{ audio|escape }}</a></h4>
-                                                                    {{ audio.artista|escape }}
+                                                                    <h4 class="media-heading"><a href="{% url 'song' audio.audio.id %}">{{ audio.audio|escape }}</a></h4>
+                                                                    {{ audio.artistas|escape }}
                                                                 </div>
                                                             </div>
                                                         {% endfor %}

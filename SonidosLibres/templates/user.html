@@ -104,7 +104,7 @@
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                 {% for album in albums %}
                                     {% include "partials/album-detail.html" with album_date=album.fec_creacion_album album_id=album.id album_name=album.nom_album album_image=album.val_imagen artist=album.artista %}
                                 {% endfor %}

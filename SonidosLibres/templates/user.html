@@ -8,12 +8,13 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="pull-right">
-                        {% if 0 == 1 %}
-                            <img class="detail-img si125" src="https://images.rapgenius.com/5e9b9cad9538537291de8901eaa5f15f.450x450x1.png">
-                        {% else %}
+                        {% if artist.val_imagen.strip == "" or  artist.val_imagen == null %}
                             <div class="detail-img artist-img si125">
                                 <i class="fa fa-user"></i>
                             </div>
+
+                        {% else %}
+                            <img class="detail-img si125" src="{{ artist.val_imagen }}">
                         {% endif %}
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                             <div class="pull-left">
                                 <div><span class="song-title pull-left">{{ artist }}</span><small class="bg-sonidoslibres bg-3 bg-artist pull-left">Te está siguiendo</small></div>
                                 <div class="clearfix"></div>
-                                <div><span>Guy-Manuel de Homem-Christo</span></div>
+                                <div><span>{{artist.user.first_name}} {{artist.user.last_name}}</span></div>
                             </div>
                         </div>
                     </div>

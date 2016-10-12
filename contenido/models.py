@@ -10,6 +10,8 @@ class Artista(models.Model):
     nom_artistico = models.CharField(max_length=200)
     nom_pais = models.CharField(max_length=50)
     nom_ciudad = models.CharField(max_length=50)
+    val_imagen = models.CharField(max_length=1000, verbose_name='Imágen', help_text='URL de la imagen del artista',
+                                  blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
@@ -66,12 +67,42 @@ class BuscadorView(View):
     def get(self, request, *args, **kwargs):
         filtro = request.GET.get('q', '')
         active_tab = "tab1"
+
+        recientes = Audio.objects.all().order_by('-fec_entrada_audio')[:5].prefetch_related(Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).all()
+
+        recientes_list = []
+        for reciente in recientes:
+            audio_item = {}
+            audio_item["audio"] = reciente
+            nombres = ""
+            for artista in reciente.artistas.all():
+                if len(nombres) > 0:
+                    nombres = nombres + ", "
+                nombres = nombres + artista.nom_artistico
+
+            audio_item["artistas"] = nombres
+            recientes_list.append(audio_item)
+
         if filtro:
             qset = (
                 Q(nom_audio__icontains=filtro)  # |
                # Q(artista__nom_artistico__icontains=query)
             )
-            audios = Audio.objects.filter(qset).distinct().prefetch_related('artistas')
+            audios = Audio.objects.prefetch_related(Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).filter(qset).distinct().all()
+
+            audio_list = []
+            for audio in audios :
+                audio_item={}
+                audio_item["audio"]= audio
+                nombres =  ""
+                for artista in audio.artistas.all():
+                    if len(nombres) > 0:
+                        nombres = nombres + ", "
+                    nombres = nombres + artista.nom_artistico
+
+                audio_item["artistas"]= nombres
+                audio_list.append(audio_item)
+
 
             qset = (
                 Q(nom_artistico__icontains=filtro)
@@ -80,14 +111,14 @@ class BuscadorView(View):
 
             active_tab = "tab2"
         else:
-            audios = []
+            audio_list = []
             artistas = []
         return render(request, "homepage.html", {
-            "audios": audios,
+            "audios": audio_list,
             "artistas": artistas,
             "filtro": filtro,
             "active_tab": active_tab,
-            "audios_recientes": Audio.objects.all().order_by('-fec_entrada_audio')[:5]
+            "audios_recientes": recientes_list
             }, )
 
 

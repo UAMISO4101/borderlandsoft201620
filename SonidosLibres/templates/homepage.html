@@ -7,7 +7,7 @@
                 <div>
                     <div class="super-title1">La mejor comunidad de artistas independientes</div>
                     <div class="super-title2">Descubre la mejor biblioteca de obras de la galaxia</div>
-                    <a href="usuarios/register/" class="btn btn-sonidoslibres btn-lg btn-join">¡Únete!</a>
+                    <a href="/usuarios/register/" class="btn btn-sonidoslibres btn-lg btn-join">¡Únete!</a>
                     <div><a class="chevron-down" href="#bottom"><i class="fa fa-chevron-down"></i></a></div>
 
                 </div>
@@ -44,8 +44,9 @@
                                 <div class="row">
                                     <br>
                                     <div class="col-sm-6 box">
-                                        {% for audio in audios_recientes %}
-                                            {% include "partials/audio-detail.html" with audio_name=audio audio_image=audio.val_imagen artist=audio.artista%}
+                                        {% for reciente in audios_recientes %}
+                                            {% include "partials/audio-detail.html" with audio_name=reciente.audio audio_image=reciente.audio.val_imagen artist=reciente.artistas audioid=reciente.audio.id%}
+                                            
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -67,15 +68,15 @@
                                                         {% for audio in audios %}
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    <a href="{% url 'song' audio.id %}">
+                                                                    <a href="{% url 'song' audio.audio.id %}">
                                                                         <div class="song-img si50 text-center">
                                                                             <i class="fa fa-music"></i>
                                                                         </div>
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="{% url 'song' audio.id %}">{{ audio|escape }}</a></h4>
-                                                                    {{ audio.artista|escape }}
+                                                                    <h4 class="media-heading"><a href="{% url 'song' audio.audio.id %}">{{ audio.audio|escape }}</a></h4>
+                                                                    {{ audio.artistas|escape }}
                                                                 </div>
                                                             </div>
                                                         {% endfor %}

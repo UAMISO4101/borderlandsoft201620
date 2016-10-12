@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {%  load static %}
 {% block content %}
-    {% if 1 == 1 %}
+    {% if user.is_authenticated %}
         <div class="main-pic homepage-pic">
             <div class="titles-container text-center">
                 <div>
@@ -47,7 +47,7 @@
                                         {% for audio in audios_recientes %}
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#">
+                                                    <a href="{% url 'song' audio.id %}">
                                                         <div class="detail-img song-img si50 text-center">
                                                             <i class="fa fa-music"></i>
                                                         </div>
@@ -82,14 +82,14 @@
                                                         {% for audio in audios %}
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    <a href="#">
+                                                                    <a href="{% url 'song' audio.id %}">
                                                                         <div class="song-img si50 text-center">
                                                                             <i class="fa fa-music"></i>
                                                                         </div>
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="/audio">{{ audio|escape }}</a></h4>
+                                                                    <h4 class="media-heading"><a href="{% url 'song' audio.id %}">{{ audio|escape }}</a></h4>
                                                                     {{ audio.artista|escape }}
                                                                 </div>
                                                             </div>

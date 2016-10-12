@@ -94,7 +94,7 @@
                                 <br>
                                 <div class="col-sm-6 box">
                                     {% for audio in audios %}
-                                        {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist%}
+                                        {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist audioid=audio.id%}
                                     {% endfor %}
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                 {% for album in albums %}
                                     {% include "partials/album-detail.html" with album_date=album.fec_creacion_album album_id=album.id album_name=album.nom_album album_image=album.val_imagen artist=album.artista %}
                                 {% endfor %}

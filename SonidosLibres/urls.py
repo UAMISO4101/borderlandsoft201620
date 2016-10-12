@@ -28,7 +28,7 @@ urlpatterns = [
     # url(r'^audio/', TemplateView.as_view(template_name='audio.html'), name="homepage"),
     # url(r'^user/(?P<user_id>[0-9]+)/$', views.AudiosView.as_view(template_name='user.html'), name="homepage"),
     url(r'^user/(?P<user_id>[0-9]+)/$', views.AudiosView.as_view(template_name='user.html'), name='user'),
-    url(r'^album/(?P<album_id>[0-9]+)/$', views.AlbumsView.as_view(template_name='album.html'), name='user'),
+    url(r'^album/(?P<album_id>[0-9]+)/$', views.AlbumsView.as_view(template_name='album.html'), name='album'),
     # url(r'^front/', include('fronttemplates.urls')),
     # url(r'', include('contenido.urls')),
     url(r'^admin/', admin.site.urls),

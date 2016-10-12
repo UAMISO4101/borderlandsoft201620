@@ -41,6 +41,8 @@ class Audio(models.Model):
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
     albums = models.ManyToManyField(Album, related_name="albums", blank=True)
 
+    def __str__(self):
+        return self.nom_audio
 
 class Donaciones(models.Model):
     """

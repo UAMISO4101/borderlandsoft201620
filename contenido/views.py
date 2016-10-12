@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.template import RequestContext
 from django.views.generic import *
 from django.db.models import Q
 from django.shortcuts import render_to_response
@@ -61,13 +62,14 @@ class AlbumsView(ListView):
 
 
 class BuscadorView(View):
+    #template_name = 'homepage.html'
     def get(self, request, *args, **kwargs):
         filtro = request.GET.get('q', '')
         active_tab = "tab1"
         if filtro:
             qset = (
                 Q(nom_audio__icontains=filtro)  # |
-                # Q(artista__nom_artistico__icontains=query)
+               # Q(artista__nom_artistico__icontains=query)
             )
             audios = Audio.objects.filter(qset).distinct().prefetch_related('artistas')
 
@@ -80,14 +82,13 @@ class BuscadorView(View):
         else:
             audios = []
             artistas = []
-
-        return render_to_response("homepage.html", {
+        return render(request, "homepage.html", {
             "audios": audios,
             "artistas": artistas,
             "filtro": filtro,
             "active_tab": active_tab,
             "audios_recientes": Audio.objects.all().order_by('-fec_entrada_audio')[:5]
-        })
+            }, )
 
 
 class SongView(ListView):

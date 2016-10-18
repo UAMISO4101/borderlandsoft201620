@@ -10,7 +10,14 @@
         {% endif %}
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><a href="/user/1">Daft Punk</a></h4>
-        35 obras
+        <span class="media-heading artist-detail-title"><a href="/user/1">Daft Punk</a></span>
+        {% if not is_comment %}
+            35 obras
+        {% else %}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum est id eros sagittis, eu volutpat elit consequat.
+            Phasellus ut odio ac lorem molestie blandit. Aliquam volutpat felis ex, consequat convallis leo molestie ac. Suspendisse
+            rutrum condimentum ex et accumsan. Aenean eget tellus justo.
+            <div class="date-comment"><small>Octubre 12 de 2016, 3:08 PM</small></div>
+        {% endif %}
     </div>
 </div>

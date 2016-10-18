@@ -12,7 +12,7 @@
                         {% if song.val_imagen.strip != "" %}
                             <img class="detail-img si200" src="{{ song.val_imagen }}">
                         {% else %}
-                            <div class="detail-img song-img si200">
+                            <div class="detail-img song-img si200 text-center">
                                 <i class="fa fa-music"></i>
                             </div>
                         {% endif %}
@@ -112,7 +112,7 @@
                         <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter">7</span></a>
                     </li>
                     <li role="presentation">
-                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Comentarios</a>
+                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Comentarios <span class="tab-counter">4</span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Convocatorias</a>
@@ -141,14 +141,26 @@
                                 <div class="col-sm-12">
                                     <div class="row">
                                         {% for index in "xxxxxxx" %}
-                                            {% include "partials/album-detail.html" %}
+                                            {% include "partials/album-detail.html" with is_comment=False %}
                                         {% endfor %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="tab3">...</div>
+                    <div role="tabpanel" class="tab-pane" id="tab3">
+                        <div class="container">
+                            <div class="row">
+                                <br>
+                                <div class="col-sm-6 box">
+                                    {#"xxxxx"#}
+                                    {% for index in "xxxx" %}
+                                        {% include "partials/artist-detail.html" with is_comment=True %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div role="tabpanel" class="tab-pane" id="tab4">...</div>
                 </div>
             </div>

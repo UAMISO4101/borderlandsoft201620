@@ -2,8 +2,108 @@
 {% load static%}
 {% block title %}AUDIO NOMBRE{% endblock %}
 {% block jquery %}{% static "js/lib/jquery2/dist/jquery.js" %}{% endblock %}
-
 {% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+    function getAudios() {
+        $.ajax({
+            type:"GET",
+            contentType:"application/json; charset=utf8",
+            url:"/api/audios/{{song.id}}/?format=json",
+            success:function (response) {
+
+                var listArtistas = response.artistas;
+                var listAlbums = response.albums;
+                var numArtistas = 0;
+                var numAlbums = 0;
+                if(listArtistas != null && listArtistas != undefined && listArtistas != "") {
+                    for (i = 0; i <= listArtistas.length - 1; i++) {
+                        getArtistas(listArtistas[i]);
+                    }
+                    numArtistas = i;
+                }
+
+                if(listAlbums != null && listAlbums != undefined && listAlbums != "") {
+                    for (i = 0; i <= listArtistas.length - 1; i++) {
+                        getAlbums(listAlbums[i]);
+                    }
+                    numAlbums = i;
+              }
+                $('#spanNumArtistas').append(numArtistas);
+                $('#spanNumAlbums').append(numAlbums);
+            }
+
+        });
+    }
+
+    function getConteoAudiosByArtista(idArtista) {
+        var conteoObras = 0;
+        return $.ajax({
+            type:"GET",
+            contentType:"application/json; charset=utf8",
+            url:"/api/audiosbyartista/"+idArtista+"/?format=json",
+            async: false
+        }).responseText;
+   }
+
+    function getArtistas(artista) {
+
+        conteoObras = JSON.parse(getConteoAudiosByArtista(artista.id)).length;
+        divArtistas = '<div class="media">' +
+            '<div class="media-left">';
+                if(artista.val_imagen == null || artista.val_imagen == "") {
+                    divArtistas = divArtistas + '<div class="detail-img artist-img si50 text-center">' +
+                            '<i class="fa fa-user"></i>' +
+                            '</div>';
+                }
+                else {
+                    divArtistas = divArtistas + '<img class="detail-img si50" src="'+artista.val_imagen+'">';
+                }
+            divArtistas = divArtistas +  '</div>' +
+            '<div class="media-body">' +
+                '<h4 class="media-heading"><a href="/user/'+ artista.id + '">'+ artista.nom_artistico +'</a></h4>' +
+                conteoObras + ' obras' +
+            '</div>' +
+         '</div>';
+
+
+        $('#divArtistas').append(divArtistas);
+    }
+
+    function getAlbums(album) {
+         var divAlbums = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">'+
+            '<div class="box album-box">'+
+                '<a href="/album/'+ album.id + '">'
+                    if(album.val_imagen == null || album.val_imagen == undefined || album.val_imagen.trim() == "") {
+                        divAlbums = divAlbums + '<div class="detail-img album-img album-big text-center">' +
+                                '<i class="fa fa-music"></i>' +
+                                '<i class="fa fa fa-circle-thin"></i>' +
+                                '</div>';
+                    }
+                    else{
+                            divAlbums = divAlbums + '<img class="detail-img album-img album-big" src="' + album.val_imagen + '"  >';
+                    }
+                    divAlbums = divAlbums + '<div class="details-box">'+
+                        '<span>'+album.nom_album+'</span>'+
+                        '<br>'+
+                        '<div class="text-right"><small>'+new Date(album.fec_creacion_album).getFullYear()+'</small></div>'+
+                    '</div>'+
+                '</a>'+
+            '</div>'+
+        '</div>';
+
+        $('#divAlbums').append(divAlbums);
+
+    }
+
+    $(document).on('ready',function () {
+        getAudios();
+    })
+</script>
+
     <section class="content-header h-2">
         <div class="container">
             <div class="row">
@@ -106,10 +206,10 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="tab-type-3 active">
-                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Artistas <span class="tab-counter">3</span></a>
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Artistas <span class="tab-counter" id="spanNumArtistas"></span></a>
                     </li>
                     <li role="presentation" class="tab-type-4">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter">7</span></a>
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter" id="spanNumAlbums"></span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Comentarios <span class="tab-counter">4</span></a>
@@ -125,11 +225,7 @@
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6 box">
-                                    {#"xxxxx"#}
-                                    {% for index in "xxx" %}
-                                        {% include "partials/artist-detail.html" %}
-                                    {% endfor %}
+                                <div class="col-sm-6 box" id="divArtistas">
                                 </div>
                             </div>
                         </div>
@@ -139,10 +235,7 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-12">
-                                    <div class="row">
-                                        {% for index in "xxxxxxx" %}
-                                            {% include "partials/album-detail.html" with is_comment=False %}
-                                        {% endfor %}
+                                    <div class="row" id="divAlbums">
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +245,7 @@
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6 box">
+                                <div class="col-sm-6 box" >
                                     {#"xxxxx"#}
                                     {% for index in "xxxx" %}
                                         {% include "partials/artist-detail.html" with is_comment=True %}

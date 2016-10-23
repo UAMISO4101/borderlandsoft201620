@@ -32,39 +32,33 @@ function getAudios() {
 }
 
 function getArtistas(artista) {
-    var conteoObras = JSON.parse(getConteoAudiosByArtista(artista.id)).length;
-    var divArtistas = '<div class="media">' +
-        '<div class="media-left">';
-    if(artista.val_imagen == null || artista.val_imagen == "") {
-        divArtistas = divArtistas + '<div class="detail-img artist-img si50 text-center">' +
-            '<i class="fa fa-user"></i>' +
-            '</div>';
-    }
-    else {
-        divArtistas = divArtistas + '<img class="detail-img si50" src="'+artista.val_imagen+'">';
-    }
-    divArtistas = divArtistas +  '</div>' +
-        '<div class="media-body">' +
-        '<h4 class="media-heading"><a href="/user/'+ artista.id + '">'+ artista.nom_artistico +'</a></h4>' +
-        conteoObras + ' obras' +
-        '</div>' +
-        '</div>';
-
-
-    $('#divArtistas').append(divArtistas);
-}
-
-function getConteoAudiosByArtista(idArtista) {
-    var count = 0;
     $.ajax({
         type:"GET",
         contentType:"application/json; charset=utf8",
-        url:"/api/audiosbyartista/"+idArtista+"/?format=json",
+        url:"/api/audiosbyartista/"+artista.id+"/?format=json",
         success: function (response) {
-            count = response;
+            var conteoObras = response.length;
+            var divArtistas = '<div class="media">' +
+                '<div class="media-left">';
+            if(artista.val_imagen == null || artista.val_imagen == "") {
+                divArtistas = divArtistas + '<div class="detail-img artist-img si50 text-center">' +
+                    '<i class="fa fa-user"></i>' +
+                    '</div>';
+            }
+            else {
+                divArtistas = divArtistas + '<img class="detail-img si50" src="'+artista.val_imagen+'">';
+            }
+            divArtistas = divArtistas +  '</div>' +
+                '<div class="media-body">' +
+                '<span class="media-heading artist-detail-title"><a href="/user/'+ artista.id + '">'+ artista.nom_artistico +'</a></span>' +
+                conteoObras + ' obras' +
+                '</div>' +
+                '</div>';
+
+
+            $('#divArtistas').append(divArtistas);
         }
     });
-    return count;
 }
 
 function getAlbums(album) {

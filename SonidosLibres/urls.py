@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from contenido import views
 from django.contrib.auth.views import login, logout_then_login
+from django.conf.urls.static import static
+from .router import urlpatterns
+from .settings import common
 
 urlpatterns = [
     url(r'^$', views.BuscadorView.as_view(), name="homepage"),
@@ -36,4 +39,6 @@ urlpatterns = [
     url(r'^donation/', views.donation_view, name="donation"),
     url(r'^song/(?P<song_id>[0-9]+)/$', views.SongView.as_view(), name='song'),
     url(r'^like/', views.like_view, name='like'),
-]
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(urlpatterns)),
+]+static(common.MEDIA_URL, document_root=common.MEDIA_ROOT)

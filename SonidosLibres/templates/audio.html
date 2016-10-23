@@ -1,109 +1,7 @@
 {% extends "base.html" %}
 {% load static%}
 {% block title %}AUDIO NOMBRE{% endblock %}
-{% block jquery %}{% static "js/lib/jquery2/dist/jquery.js" %}{% endblock %}
 {% block content %}
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-<script type="text/javascript">
-    function getAudios() {
-        $.ajax({
-            type:"GET",
-            contentType:"application/json; charset=utf8",
-            url:"/api/audios/{{song.id}}/?format=json",
-            success:function (response) {
-
-                var listArtistas = response.artistas;
-                var listAlbums = response.albums;
-                var numArtistas = 0;
-                var numAlbums = 0;
-                if(listArtistas != null && listArtistas != undefined && listArtistas != "") {
-                    for (i = 0; i <= listArtistas.length - 1; i++) {
-                        getArtistas(listArtistas[i]);
-                    }
-                    numArtistas = i;
-                }
-
-                if(listAlbums != null && listAlbums != undefined && listAlbums != "") {
-                    for (i = 0; i <= listArtistas.length - 1; i++) {
-                        getAlbums(listAlbums[i]);
-                    }
-                    numAlbums = i;
-              }
-                $('#spanNumArtistas').append(numArtistas);
-                $('#spanNumAlbums').append(numAlbums);
-            }
-
-        });
-    }
-
-    function getConteoAudiosByArtista(idArtista) {
-        var conteoObras = 0;
-        return $.ajax({
-            type:"GET",
-            contentType:"application/json; charset=utf8",
-            url:"/api/audiosbyartista/"+idArtista+"/?format=json",
-            async: false
-        }).responseText;
-   }
-
-    function getArtistas(artista) {
-
-        conteoObras = JSON.parse(getConteoAudiosByArtista(artista.id)).length;
-        divArtistas = '<div class="media">' +
-            '<div class="media-left">';
-                if(artista.val_imagen == null || artista.val_imagen == "") {
-                    divArtistas = divArtistas + '<div class="detail-img artist-img si50 text-center">' +
-                            '<i class="fa fa-user"></i>' +
-                            '</div>';
-                }
-                else {
-                    divArtistas = divArtistas + '<img class="detail-img si50" src="'+artista.val_imagen+'">';
-                }
-            divArtistas = divArtistas +  '</div>' +
-            '<div class="media-body">' +
-                '<h4 class="media-heading"><a href="/user/'+ artista.id + '">'+ artista.nom_artistico +'</a></h4>' +
-                conteoObras + ' obras' +
-            '</div>' +
-         '</div>';
-
-
-        $('#divArtistas').append(divArtistas);
-    }
-
-    function getAlbums(album) {
-         var divAlbums = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">'+
-            '<div class="box album-box">'+
-                '<a href="/album/'+ album.id + '">'
-                    if(album.val_imagen == null || album.val_imagen == undefined || album.val_imagen.trim() == "") {
-                        divAlbums = divAlbums + '<div class="detail-img album-img album-big text-center">' +
-                                '<i class="fa fa-music"></i>' +
-                                '<i class="fa fa fa-circle-thin"></i>' +
-                                '</div>';
-                    }
-                    else{
-                            divAlbums = divAlbums + '<img class="detail-img album-img album-big" src="' + album.val_imagen + '"  >';
-                    }
-                    divAlbums = divAlbums + '<div class="details-box">'+
-                        '<span>'+album.nom_album+'</span>'+
-                        '<br>'+
-                        '<div class="text-right"><small>'+new Date(album.fec_creacion_album).getFullYear()+'</small></div>'+
-                    '</div>'+
-                '</a>'+
-            '</div>'+
-        '</div>';
-
-        $('#divAlbums').append(divAlbums);
-
-    }
-
-    $(document).on('ready',function () {
-        getAudios();
-    })
-</script>
-
     <section class="content-header h-2">
         <div class="container">
             <div class="row">
@@ -126,7 +24,7 @@
                             </div>
                             <div class="pull-right">
                                 {#                        <input type="number" class="rating" />#}
-                                <input type="number" class="rating" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-trash-o"/>
+                                <input type="number" title="" class="rating" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-trash-o"/>
                                 <small class="text-right">12 Calificaciones</small>
                             </div>
                             <div class="clearfix"></div>
@@ -152,15 +50,15 @@
                             {#                            Acciones objeto#}
                             <div class="btn-group pull-left" role="group" aria-label="...">
                                 {% if user.is_authenticated %}
-                                <button type="button" id="likeButton"
-                                        {% if user_like %}
+                                    <button type="button" id="likeButton"
+                                            {% if user_like %}
                                             class="btn btn-sonidoslibres btn-2 active" disabled
-                                        {% else %}
+                                            {% else %}
                                             class="btn btn-sonidoslibres btn-2 inactive"
-                                        {% endif %}
-                                        data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta" onclick="test({{ song.id }})" value="">
-                                    <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
-                                </button>
+                                            {% endif %}
+                                            data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta" onclick="test({{ song.id }})" value="">
+                                        <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
+                                    </button>
                                 {% endif %}
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
                                 <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
@@ -179,11 +77,11 @@
                         </div>
                         <div class="col-md-6 col-lg-5">
                             <div class="song-metadata pull-right">
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> {{ total_likes }}</div>
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
-                                </div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> {{ total_likes }}</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
+                            </div>
                         </div>
                         <br>
                         <div class="row">
@@ -193,10 +91,8 @@
 
                     </div>
                 </div>
-
             </div>
-
-
+        </div>
     </section>
     <div class="container">
         <div class="row">
@@ -264,8 +160,13 @@
     {% include "modals/list.html" with id="addToListModal" title="Agregar a lista de Reproducción" prefix="lst" %}
     {% include "modals/list.html" with id="addToAlbumModal" title="Agregar a album" prefix="alb" %}
 {% endblock %}
-
+{% block jquery %}{% static "js/lib/jquery2/dist/jquery.js" %}{% endblock %}
 {% block pagescripts %}
     <script src="{% static "js/lib/bootstrap-rating-input/src/bootstrap-rating-input.js" %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var backVars = {
+            songId: {{ song.id }}
+        };
+    </script>
     <script src="{% static "js/audio.js" %}" type="text/javascript"></script>
 {% endblock %}

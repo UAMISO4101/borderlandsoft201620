@@ -2,16 +2,19 @@
 @import "mixins";
 
 //noinspection CssUnknownTarget
-body{
+html, body{
   font-family: 'Open Sans', sans-serif;
-  background: $color-navbar url("../img/music-pattern3.png");
-  background-size: 500px;
+  background-color: #F2F4F5;
+  height: 100%;
+}
+.cc {
+   min-height:100%;
+   position:relative;
 }
 .body{
   background-color: $color-body;
   padding-bottom: 100px;
   font-size: 100%;
-  margin-top: 50px;
 }
 a{
   transition: all .2s linear;
@@ -107,11 +110,7 @@ textarea{
 
 
 
-footer{
-  padding-top: 15px;
-  padding-bottom: 15px;
-  color: #fff;
-}
+
 
 .box{
   background: #fff;
@@ -286,15 +285,25 @@ footer{
 }
 
 .date-comment{
-    color: $color-main1;
-    margin-top: 5px;
+  color: $color-main1;
+  margin-top: 5px;
 }
 
 .artist-detail-title{
-    a {
-        font-weight: 600;
-        color: black;
-        display: block;    
-    }
+  a {
+    font-weight: 600;
+    color: black;
+    display: block;
+  }
 
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  color: #fff;
+  padding-top: 10px;
+  background: #232D32 url(../img/music-pattern3.png);
 }

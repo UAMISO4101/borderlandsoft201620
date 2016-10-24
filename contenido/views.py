@@ -63,12 +63,13 @@ class AlbumsView(ListView):
 
 
 class BuscadorView(View):
-    #template_name = 'homepage.html'
+    # template_name = 'homepage.html'
     def get(self, request, *args, **kwargs):
         filtro = request.GET.get('q', '')
         active_tab = "tab1"
 
-        recientes = Audio.objects.all().order_by('-fec_entrada_audio')[:5].prefetch_related(Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).all()
+        recientes = Audio.objects.all().order_by('-fec_entrada_audio')[:5].prefetch_related(
+            Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).all()
 
         recientes_list = []
         for reciente in recientes:
@@ -86,23 +87,24 @@ class BuscadorView(View):
         if filtro:
             qset = (
                 Q(nom_audio__icontains=filtro)  # |
-               # Q(artista__nom_artistico__icontains=query)
+                # Q(artista__nom_artistico__icontains=query)
             )
-            audios = Audio.objects.prefetch_related(Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).filter(qset).distinct().all()
+            audios = Audio.objects.prefetch_related(
+                Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).filter(
+                qset).distinct().all()
 
             audio_list = []
-            for audio in audios :
-                audio_item={}
-                audio_item["audio"]= audio
-                nombres =  ""
+            for audio in audios:
+                audio_item = {}
+                audio_item["audio"] = audio
+                nombres = ""
                 for artista in audio.artistas.all():
                     if len(nombres) > 0:
                         nombres = nombres + ", "
                     nombres = nombres + artista.nom_artistico
 
-                audio_item["artistas"]= nombres
+                audio_item["artistas"] = nombres
                 audio_list.append(audio_item)
-
 
             qset = (
                 Q(nom_artistico__icontains=filtro)
@@ -119,7 +121,7 @@ class BuscadorView(View):
             "filtro": filtro,
             "active_tab": active_tab,
             "audios_recientes": recientes_list
-            }, )
+        }, )
 
 
 class SongView(ListView):
@@ -156,9 +158,24 @@ def like_view(request):
         audio = Audio.objects.get(pk=song_id)
         audio.likes.add(User.objects.get(id=request.user.id))
         audio.save()
-        message = "SUCCESS"
+        total_likes = audio.likes.count()
+        message = total_likes
     else:
-        message = "NO OK"
+        message = "ERROR"
+    return HttpResponse(message)
+
+
+@csrf_exempt
+def unlike_view(request):
+    if request.is_ajax():
+        song_id = request.POST.get("song_id")
+        audio = Audio.objects.get(pk=song_id)
+        audio.likes.remove(User.objects.get(id=request.user.id))
+        audio.save()
+        total_likes = audio.likes.count()
+        message = total_likes
+    else:
+        message = "ERROR"
     return HttpResponse(message)
 
 

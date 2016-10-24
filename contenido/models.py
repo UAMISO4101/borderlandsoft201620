@@ -22,13 +22,15 @@ class Album(models.Model):
     """
     Describe un album.
     """
+    nom_album = models.CharField(max_length=1000, verbose_name='Album', help_text='Nombre del album')
     val_imagen = models.CharField(max_length=1000, verbose_name='Imágen', help_text='URL de la imagen del album',
                                   blank=True)
-    nom_album = models.CharField(max_length=1000, verbose_name='Album', help_text='Nombre del album')
-    fec_creacion_album = models.DateField(auto_now_add=True, help_text='Fecha de creación del album')
+    fec_creacion_album = models.DateField(auto_now_add=False, help_text='Fecha de creación del album')
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.nom_album
+
 
 class Audio(models.Model):
     """
@@ -45,6 +47,7 @@ class Audio(models.Model):
 
     def __str__(self):
         return self.nom_audio
+
 
 class Donaciones(models.Model):
     """

@@ -20,7 +20,7 @@ function getAudios() {
             }
 
             if(listAlbums != null && listAlbums != undefined && listAlbums != "") {
-                for (i = 0; i <= listArtistas.length - 1; i++) {
+                for (i = 0; i <= listAlbums.length - 1; i++) {
                     getAlbums(listAlbums[i]);
                 }
             }
@@ -62,6 +62,7 @@ function getArtistas(artista) {
 }
 
 function getAlbums(album) {
+    console.log(album);
     var divAlbums = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">'+
         '<div class="box album-box">'+
         '<a href="/album/'+ album.id + '">';

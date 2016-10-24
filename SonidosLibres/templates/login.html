@@ -1,10 +1,9 @@
 {% extends "partials/authenticate.html" %}
 {% load static%}
-{% block pic %}login-pic{% endblock %}
-{% block offset %}col-sm-offset-4{% endblock %}
+{#{% block offset %}col-sm-offset-4{% endblock %}#}
 {% block facebook %}Continuar con Facebook{% endblock %}
-
 {% block title %}Inicio de Sesión{% endblock %}
+{% block bodyClass %}main-pic login-pic{% endblock %}
 
 {% block form %}
     <form method="post" id="login_form" novalidate>{% csrf_token %}

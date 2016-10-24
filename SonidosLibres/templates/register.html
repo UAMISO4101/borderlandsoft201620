@@ -1,11 +1,8 @@
 {% extends "partials/authenticate.html" %}
 {% load static%}
-
-{% block pic %}register-pic{% endblock %}
-
 {% block facebook %}Registrarse con Facebook{% endblock %}
-
 {% block title %}Registro{% endblock %}
+{% block bodyClass %}main-pic register-pic{% endblock %}
 
 {% block form %}
     <form id="registro_form" method="post" novalidate>{% csrf_token %}

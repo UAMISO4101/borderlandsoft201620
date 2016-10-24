@@ -1,0 +1,264 @@
+[
+{
+  "model": "contenido.album",
+  "pk": 1,
+  "fields": {
+    "nom_album": "Lindsey Stirling (Album)",
+    "val_imagen": "/static/img/examples/lindsey_album.jpeg",
+    "fec_creacion_album": "2016-10-23",
+    "artista": 1
+  }
+},
+{
+  "model": "contenido.album",
+  "pk": 2,
+  "fields": {
+    "nom_album": "Shatter Me",
+    "val_imagen": "/static/img/examples/Shatter_me_album_art.jpg",
+    "fec_creacion_album": "2014-10-24",
+    "artista": 1
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$eVtEFzkyzB0p$BzNWZ9MUASierUMEvar+LPKr2vQ0KpHtJGXV2bMVtN0=",
+    "last_login": "2016-10-24T02:19:28.512Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "a@aa.aa",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:03:58.461Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$aDWLDgWnUQvQ$sxLT4IePXKX04bMUtnWivLbsN4NMf7pb9upDb0lOwXw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lindsey",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:20:02.143Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$GAxgYl9xSbAN$/kJiZYvSqdEY3hgEfqZ9UTEvonQSf1BNc1f4d4qJgB8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "hollens",
+    "first_name": "Peter",
+    "last_name": "Hollens",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:20:26Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$QxXXR8KQliOh$i1iOlecOPGNZEdrErAozo+mb3WmQeEcnnngKl37ym+8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "daftpunk",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:20:36.935Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$zEUrgVtZ7xRa$6hg5tQCfCHAPwV6bZcNomqJv4XjbuOUBDLI8buheUrg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lzzyhale",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T05:58:17.246Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dygo0vjwmqr71570zqy4bw8vdds9bh5j",
+  "fields": {
+    "session_data": "ODg4NzMzMmFlZWRmOTYyYzAyZjZmOWE0YWFhZjQ0ZDY3MjdkMTVhMzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI4YzAxNGE1NTA5YWIyMGQyODQzMDQ1MTY2Yzk0NjQzYmM1Mjc2ZjVmIn0=",
+    "expire_date": "2016-11-07T02:19:28.521Z"
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 1,
+  "fields": {
+    "nom_audio": "Skyrim (Main Theme)",
+    "val_imagen": "/static/img/examples/skyrim.jpg",
+    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/2ed6768b-890f-4e53-85da-007f9a58307f.mp3?X-Amz-Date=20161024T043011Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=7a576fa5ae1cfe13ec48cdb6d94546cef92fe099b3cda22f3521d9cc9a7c9c58&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "fec_entrada_audio": "2016-10-23",
+    "artistas": [
+      1,
+      2
+    ],
+    "likes": [
+      [
+        "admin"
+      ],
+      [
+        "lindsey"
+      ]
+    ],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 2,
+  "fields": {
+    "nom_audio": "Electric Daisy Violin",
+    "val_imagen": "",
+    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/6c51d54b-a5ad-45cf-a34a-e15d131aa185.mp3?X-Amz-Date=20161024T043736Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=108be77da40cc9458c182fdb6de4225edf78885627482b0792e63118d7235b9a&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "fec_entrada_audio": "2016-10-23",
+    "artistas": [
+      1
+    ],
+    "likes": [],
+    "albums": [
+      1
+    ]
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 3,
+  "fields": {
+    "nom_audio": "Crystallize",
+    "val_imagen": "",
+    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/14085ea6-8cdb-4b10-bd75-b1ec026bca10.mp3?X-Amz-Date=20161024T044701Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=9ef11048f09b25565a4a2a72cbe302a64b681965c2f49b30bd344c0bd15c7d4c&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "fec_entrada_audio": "2016-10-23",
+    "artistas": [
+      1
+    ],
+    "likes": [],
+    "albums": [
+      1
+    ]
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 4,
+  "fields": {
+    "nom_audio": "Beyond The Veil",
+    "val_imagen": "",
+    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/99cff06a-b9dc-422f-bad2-f0d2dce26dfc.mp3?X-Amz-Date=20161024T053756Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=e9264a798116d6451cee3e3bec43b825317f47d25097b05e35a1d07dc0a51def&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "fec_entrada_audio": "2016-10-24",
+    "artistas": [
+      1
+    ],
+    "likes": [],
+    "albums": [
+      2
+    ]
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 5,
+  "fields": {
+    "nom_audio": "Shatter Me",
+    "val_imagen": "",
+    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/b41f86e7-b9a6-4a10-a087-bcf824886a7f.mp3?X-Amz-Date=20161024T055649Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=2e5e21721013af060d003d08dc20fe8eaf94c7e3c3c4445ad4b863d071a053ee&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "fec_entrada_audio": "2016-10-24",
+    "artistas": [
+      1,
+      4
+    ],
+    "likes": [],
+    "albums": [
+      2
+    ]
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 1,
+  "fields": {
+    "nom_artistico": "Lindsey Stirling",
+    "nom_pais": "Estados Unidos",
+    "nom_ciudad": "Santa Ana (CA)",
+    "val_imagen": "/static/img/examples/Lindsey-Stirling.jpg",
+    "user": [
+      "lindsey"
+    ]
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 2,
+  "fields": {
+    "nom_artistico": "Peter Hollens",
+    "nom_pais": "Estados Unidos",
+    "nom_ciudad": "Eugene (OR)",
+    "val_imagen": "/static/img/examples/peter-hollens.jpg",
+    "user": [
+      "hollens"
+    ]
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 3,
+  "fields": {
+    "nom_artistico": "Administrador",
+    "nom_pais": "Colombia",
+    "nom_ciudad": "Bogot\u00e1",
+    "val_imagen": "/static/img/examples/seneca.jpg",
+    "user": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 4,
+  "fields": {
+    "nom_artistico": "Lzzy Hale",
+    "nom_pais": "Estados Unidos",
+    "nom_ciudad": "Red Lion (PA)",
+    "val_imagen": "/static/img/examples/lzzylespaul.jpg",
+    "user": [
+      "lzzyhale"
+    ]
+  }
+}
+]

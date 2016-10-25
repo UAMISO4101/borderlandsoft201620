@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static%}
-{% block title %}AUDIO NOMBRE{% endblock %}
-{% block jquery %}{% static "js/lib/jquery2/dist/jquery.js" %}{% endblock %}
-
+{% block title %}{{ song.nom_audio }}{% endblock %}
 {% block content %}
     <section class="content-header h-2">
         <div class="container">
@@ -26,7 +24,7 @@
                             </div>
                             <div class="pull-right">
                                 {#                        <input type="number" class="rating" />#}
-                                <input type="number" class="rating" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-trash-o"/>
+                                <input type="number" title="" class="rating" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-trash-o"/>
                                 <small class="text-right">12 Calificaciones</small>
                             </div>
                             <div class="clearfix"></div>
@@ -52,38 +50,37 @@
                             {#                            Acciones objeto#}
                             <div class="btn-group pull-left" role="group" aria-label="...">
                                 {% if user.is_authenticated %}
-                                <button type="button" id="likeButton"
-                                        {% if user_like %}
+                                    <button type="button" id="likeButton"
+                                            {% if user_like %}
                                             class="btn btn-sonidoslibres btn-2 active" title="Ya no me Gusta" onclick="unlike_song({{ song.id }})"
-                                        {% else %}
+                                            {% else %}
                                             class="btn btn-sonidoslibres btn-2 inactive" title="Me Gusta"  onclick="like_song({{ song.id }})"
-                                        {% endif %}
-                                        data-toggle="tooltip" data-placement="bottom" value="">
-                                    <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
-                                </button>
+                                            {% endif %}
+                                            data-toggle="tooltip" data-placement="bottom" value="">
+                                        <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
+                                    </button>
                                 {% endif %}
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
                                 <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
                                 <button type="button" id="addToListButton" data-target="#addToListModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a lista de reproducción"><i class="fa fa-list fa-lg"></i></button>
-                                <button type="button" id="reportButton" data-target="#reportModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Reportar"><i class="fa fa-ban fa-lg"></i></button>
+                                <button type="button" id="reportButton" data-target="#reportModal" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Reportar"><i class="fa fa-ban fa-lg"></i></button>
                             </div>
                             {#                            Acciones propietario#}
-                            <div class="btn-group btn-group-user pull-le">
+                            <div class="btn-group btn-group-user pull-le hidden">
                                 <button type="button" id="addToAlbumButton" data-target="#addToAlbumModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a album"><i class="fa fa-circle-thin fa-lg"></i></button>
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil fa-lg"></i></button>
                                 <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-trash fa-lg"></i></button>
-                                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a...">
-                                </div>
+                                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a..."></div>
                             </div>
 
                         </div>
                         <div class="col-md-6 col-lg-5">
                             <div class="song-metadata pull-right">
-                                    <div id="song_likes_val_counter" class="" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> {{ total_likes }}</div>
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
-                                    <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
-                                </div>
+                                <div id="song_likes_val_counter" class="" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> {{ total_likes }}</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>
+                            </div>
                         </div>
                         <br>
                         <div class="row">
@@ -93,10 +90,8 @@
 
                     </div>
                 </div>
-
             </div>
-
-
+        </div>
     </section>
     <div class="container">
         <div class="row">
@@ -106,15 +101,15 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="tab-type-3 active">
-                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Artistas <span class="tab-counter">3</span></a>
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Artistas <span class="tab-counter" id="spanNumArtistas"></span></a>
                     </li>
                     <li role="presentation" class="tab-type-4">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter">7</span></a>
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter" id="spanNumAlbums"></span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Comentarios <span class="tab-counter">4</span></a>
                     </li>
-                    <li role="presentation">
+                    <li role="presentation" class="hidden">
                         <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Convocatorias</a>
                     </li>
                 </ul>
@@ -125,11 +120,7 @@
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6 box">
-                                    {#"xxxxx"#}
-                                    {% for index in "xxx" %}
-                                        {% include "partials/artist-detail.html" %}
-                                    {% endfor %}
+                                <div class="col-sm-6 box" id="divArtistas">
                                 </div>
                             </div>
                         </div>
@@ -139,10 +130,7 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-12">
-                                    <div class="row">
-                                        {% for index in "xxxxxxx" %}
-                                            {% include "partials/album-detail.html" with is_comment=False %}
-                                        {% endfor %}
+                                    <div class="row" id="divAlbums">
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +140,7 @@
                         <div class="container">
                             <div class="row">
                                 <br>
-                                <div class="col-sm-6 box">
+                                <div class="col-sm-6 box" >
                                     {#"xxxxx"#}
                                     {% for index in "xxxx" %}
                                         {% include "partials/artist-detail.html" with is_comment=True %}
@@ -171,8 +159,13 @@
     {% include "modals/list.html" with id="addToListModal" title="Agregar a lista de Reproducción" prefix="lst" %}
     {% include "modals/list.html" with id="addToAlbumModal" title="Agregar a album" prefix="alb" %}
 {% endblock %}
-
+{% block jquery %}{% static "js/lib/jquery2/dist/jquery.js" %}{% endblock %}
 {% block pagescripts %}
     <script src="{% static "js/lib/bootstrap-rating-input/src/bootstrap-rating-input.js" %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var backVars = {
+            songId: {{ song.id }}
+        };
+    </script>
     <script src="{% static "js/audio.js" %}" type="text/javascript"></script>
 {% endblock %}

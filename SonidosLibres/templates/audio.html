@@ -52,11 +52,11 @@
                                 {% if user.is_authenticated %}
                                     <button type="button" id="likeButton"
                                             {% if user_like %}
-                                            class="btn btn-sonidoslibres btn-2 active" disabled
+                                            class="btn btn-sonidoslibres btn-2 active" title="Ya no me Gusta" onclick="unlike_song({{ song.id }})"
                                             {% else %}
-                                            class="btn btn-sonidoslibres btn-2 inactive"
+                                            class="btn btn-sonidoslibres btn-2 inactive" title="Me Gusta"  onclick="like_song({{ song.id }})"
                                             {% endif %}
-                                            data-toggle="tooltip" data-placement="bottom" title="Ya no me Gusta" onclick="test({{ song.id }})" value="">
+                                            data-toggle="tooltip" data-placement="bottom" value="">
                                         <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
                                     </button>
                                 {% endif %}
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-md-6 col-lg-5">
                             <div class="song-metadata pull-right">
-                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> {{ total_likes }}</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Likes"><i class="glyphicon glyphicon-thumbs-up"></i> <span id="song_likes_val_counter"> {{ total_likes }}</span></div>
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Reproducciones"><i class="glyphicon glyphicon-headphones"></i> 1027</div>
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Calificación promedio"><i class="glyphicon glyphicon-star"></i> 4.3</div>
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Fecha de subida"><i class="glyphicon glyphicon-arrow-up"></i> 14 de Julio de 2016</div>

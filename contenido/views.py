@@ -187,3 +187,7 @@ def donation_view(request):
     donation.save()
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))
+
+
+def upload_song_view(request):
+    return HttpResponseRedirect('/')

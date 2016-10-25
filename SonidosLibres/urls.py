@@ -40,4 +40,5 @@ urlpatterns = [
     url(r'^like/', views.like_view, name='like'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(urlpatterns)),
+    url(r'^unlike/', views.unlike_view, name='unlike'),
 ]+static(common.MEDIA_URL, document_root=common.MEDIA_ROOT)

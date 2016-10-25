@@ -107,7 +107,7 @@ function like_song(song_id){
       $('#likeButton').tooltip('hide').attr('data-original-title', "Ya no me Gusta").tooltip('fixTitle');
       $("#likeButton").attr("onclick","unlike_song("+song_id+")");
       $('#song_likes_val_counter').empty()
-      $('#song_likes_val_counter').append('<i class=\"glyphicon glyphicon-thumbs-up\"></i> '+data+'')
+      $('#song_likes_val_counter').append(data)
 
     },
     error: function () {
@@ -129,7 +129,7 @@ function unlike_song(song_id){
       $('#likeButton').tooltip('hide').attr('data-original-title', "Me Gusta").tooltip('fixTitle');
       $("#likeButton").attr("onclick","like_song("+song_id+")");
       $('#song_likes_val_counter').empty()
-      $('#song_likes_val_counter').append('<i class=\"glyphicon glyphicon-thumbs-up\"></i> '+data+'')
+      $('#song_likes_val_counter').text(data)
 
     },
     error: function () {

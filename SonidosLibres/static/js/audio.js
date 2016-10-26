@@ -137,3 +137,34 @@ function unlike_song(song_id){
     }
   });
 }
+
+
+
+function agregarComentario(){
+    var songId = $('#songId').val();
+    var userId = $('#userId').val();
+
+    item = {}
+    item ["val_comentario"] = $('#texto_comentario').val();
+    item ["ind_publicado"] = 'True';
+    item ["audio"] = songId;
+
+    if(userId != null && userId != undefined && userId != 'None'){
+        item ["autor"] = userId;
+    }
+
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: '/api/comment/',
+        dataType: "json",
+        data:  JSON.stringify(item),
+        contentType: "application/json; charset=utf-8",
+        success: function (msg)
+        {
+            mostrarComentarios();
+        },
+        error: function (err)
+        { alert(err.responseText);}
+    });
+}

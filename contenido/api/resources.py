@@ -1,7 +1,10 @@
 from rest_framework import viewsets, generics
-from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer
-from ..models import Artista,Audio,User,Album,Donaciones
+from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer
+from ..models import Artista,Audio,User,Album,Donaciones,Comentario
 from django.contrib.auth.models import Permission
+from rest_framework.response import Response
+from rest_framework import status
+
 
 class ArtistaViewSet(generics.ListAPIView):
     serializer_class = ArtistaSerializer
@@ -45,3 +48,14 @@ class DonacionesViewSet(viewsets.ModelViewSet):
 class PermissionsViewSet(viewsets.ModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionsSerializer
+
+class ComentarioViewSet(viewsets.ModelViewSet):
+    queryset = Comentario.objects.all()
+    serializer_class = ComentarioSerializer
+
+    def create(self, request, format=None):
+        serializer = ComentarioSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

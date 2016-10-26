@@ -187,3 +187,14 @@ def donation_view(request):
     donation.save()
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))
+
+
+def comentario_view(request):
+    texto_comentario = request.POST.get("texto_comentario")
+    audio_comentario = Audio.objects.get(pk=request.POST.get("songId"))
+
+    comentario = Comentario(val_comentario=texto_comentario, audio=audio_comentario)
+    comentario.save()
+    messages.success(request, 'Tu comentario fue registrado.')
+
+    return HttpResponseRedirect('/song/' + request.POST.get("songId"))

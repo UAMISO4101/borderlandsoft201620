@@ -20,6 +20,7 @@ from django.contrib.auth.views import login, logout_then_login
 from django.conf.urls.static import static
 from .router import urlpatterns
 from .settings import common
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^$', views.BuscadorView.as_view(), name="homepage"),
@@ -41,4 +42,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(urlpatterns)),
     url(r'^unlike/', views.unlike_view, name='unlike'),
+    url(r'^comment-add/', login_required(views.comentario_view), name="comment_add"),
 ]+static(common.MEDIA_URL, document_root=common.MEDIA_ROOT)

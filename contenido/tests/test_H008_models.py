@@ -1,20 +1,16 @@
 from django.test import TestCase
 from datetime import datetime
-from django.urls import reverse
-from ..api.serializers import AudioSerializer
-
 
 from contenido.models import Comentario
 from contenido.models import Audio
 from contenido.models import Comentario
 from contenido.models import Artista
 from django.contrib.auth.models import User
-from rest_framework import status
-from rest_framework.test import APIClient
 
 MODELS = [Comentario, Audio, Artista, User]
 
-class ComentarioAPITest(TestCase):
+
+class ComentarioTest(TestCase):
     def setUp(self):
         # Se elimina el contenido de las tablas del modelo
         for model in MODELS:
@@ -33,16 +29,24 @@ class ComentarioAPITest(TestCase):
                                           val_recurso='url-recurso.mp3')
         self.audio.artistas.add(self.artista)
 
-        # Se inicializa un cliente de api Rest
-        self.client = APIClient()
-
-
-    # Prueba utilizada para el registro de comentarios mediante el API REST
+    # Prueba utilizada para el registro de comentarios mediante acceso a datos directo
     def test_comentario_registro(self):
-        self.client.login(username='William78', password='william1234')
-        url = reverse('comment-create')
-        data = {'val_comentario': 'DabApps','ind_publicado':True,'autor':self.usuario_regular.id, 'audio':self.audio.id}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Comentario.objects.count(), 1)
-        self.assertEqual(Comentario.objects.get().val_comentario, 'DabApps')
+        instance = Comentario.objects.create(val_comentario='Una estupenda cancion', autor=self.usuario_regular, audio=self.audio)
+        self.assertEqual(instance.__str__(), "Una estupenda cancion")
+
+
+    # Prueba utilizada para la consulta de comentarios
+    def test_comentario_consultar(self):
+        Comentario.objects.create(val_comentario='Una estupenda cancion 1',autor=self.usuario_regular,audio=self.audio)
+        Comentario.objects.create(val_comentario='Una estupenda cancion 2',autor=self.usuario_regular,audio=self.audio)
+
+        comentarios = Comentario.objects.all()
+
+        self.assertEqual(len(comentarios), 2)
+
+    # Prueba utilizada para la consulta de comentarios
+    def test_comentario_consultar_contenido(self):
+        Comentario.objects.create(val_comentario='Una estupenda cancion 1', autor=self.usuario_regular,
+                                      audio=self.audio)
+        comentarios = Comentario.objects.all()
+        self.assertEqual(comentarios[0].val_comentario, 'Una estupenda cancion 1')

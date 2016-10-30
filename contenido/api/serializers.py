@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario
+from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings
 from django.contrib.auth.models import Permission
+from rest_framework.response import Response
+from rest_framework import status
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -47,3 +49,13 @@ class ComentarioSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         comentario = Comentario.objects.create(**validated_data)
         return comentario
+
+class RatingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ratings
+        fields = ('__all__')
+
+    def create(self, validated_data):
+        rating = Ratings.objects.create(**validated_data)
+        return rating
+

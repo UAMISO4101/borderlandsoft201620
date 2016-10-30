@@ -50,7 +50,7 @@ class FollowersView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FollowersView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
-        self.followers = artista.seguidores.all()
+        self.followers = self.artista.seguidores.all()
         context['artist'] = self.artista
         context['followers'] = self.followers
         return context

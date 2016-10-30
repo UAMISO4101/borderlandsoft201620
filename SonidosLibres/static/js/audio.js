@@ -82,11 +82,11 @@ function getRatingsByAudio(){
                     sumatoria =  sumatoria + response[i].val_rating;
                 }
 
-                average = Math.round((sumatoria / i)*10)/10;
-
-                console.log(average);
+                if(sumatoria > 0) {
+                    average = Math.round((sumatoria / i) * 10) / 10;
+                    $('#classPromedio').append(average);
+                }
                 $('#smallCalificaciones').append(txtCalificacion);
-                $('#classPromedio').append(average);
             }
         });
     }

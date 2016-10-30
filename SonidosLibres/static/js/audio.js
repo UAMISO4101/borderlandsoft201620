@@ -31,6 +31,7 @@ $(function () {
 */
     getRatingsByAudio();
     getAudios();
+    getComentarios();
     getUltimaCalificacion();
 
 });
@@ -256,7 +257,7 @@ function agregarComentario(){
 /**
  * Consume api rate, para calificar un artista
  */
-function calificar(){
+function calificar() {
     var calificacion = $('.rating').val();
     var songId = $('#songId').val();
     var userId = $('#userId').val();
@@ -268,7 +269,7 @@ function calificar(){
     item ["val_rating"] = calificacion;
     item ["audio"] = songId;
 
-    if(userId != null && userId != undefined && userId != 'None'){
+    if (userId != null && userId != undefined && userId != 'None') {
         item ["autor"] = userId;
     }
 
@@ -276,49 +277,45 @@ function calificar(){
         type: "POST",
         url: '/api/rate/',
         dataType: "json",
-        data:  JSON.stringify(item),
+        data: JSON.stringify(item),
         contentType: "application/json; charset=utf-8",
-        "beforeSend": function(xhr, settings) {
-        $.ajaxSettings.beforeSend(xhr, settings);
+        "beforeSend": function (xhr, settings) {
+            $.ajaxSettings.beforeSend(xhr, settings);
         },
-        success: function (msg)
-        {
+        success: function (msg) {
             console.log(calificacion);
         },
-        error: function (err)
-        {
+        error: function (err) {
             console.log(err.responseText);
         }
     });
 
 
-    function eliminarCalificacion(idRating){
-    $.ajax({
-        type: "DELETE",
-        url: '/api/rate-delete/'+idRating,
-        dataType: "json",
-        data:  JSON.stringify(item),
-        contentType: "application/json; charset=utf-8",
-        "beforeSend": function(xhr, settings) {
-        $.ajaxSettings.beforeSend(xhr, settings);
-        },
-        success: function (msg)
-        {
-            console.log(calificacion);
-        },
-        error: function (err)
-        {
-            console.log(err.responseText);
-        }
-    });
+    function eliminarCalificacion(idRating) {
+        $.ajax({
+            type: "DELETE",
+            url: '/api/rate-delete/' + idRating,
+            dataType: "json",
+            data: JSON.stringify(item),
+            contentType: "application/json; charset=utf-8",
+            "beforeSend": function (xhr, settings) {
+                $.ajaxSettings.beforeSend(xhr, settings);
+            },
+            success: function (msg) {
+                console.log(calificacion);
+            },
+            error: function (err) {
+                console.log(err.responseText);
+            }
+        });
     }
 
-    function getRatingsByAudioAutor(audioId, autorId){
+    function getRatingsByAudioAutor(audioId, autorId) {
         $.ajax({
-            type:"GET",
-            contentType:"application/json; charset=utf8",
-            url:"/api/ratebyuseraudio/" + audioId + "/"+ autorId + "/?format=json",
-            success:function (response) {
+            type: "GET",
+            contentType: "application/json; charset=utf8",
+            url: "/api/ratebyuseraudio/" + audioId + "/" + autorId + "/?format=json",
+            success: function (response) {
                 for (var i = 0; i <= response.length - 1; i++) {
                     eliminarCalificacion(response[i].id)
                 }
@@ -326,3 +323,61 @@ function calificar(){
         });
     }
 }
+
+    function getComentarios() {
+        var songId = backVars.songId; // $("#songId").val();
+        var monthNames = [
+            "Enero", "Febrero", "Marza",
+            "Abril", "Mayo", "Junio", "Julio",
+            "Agosto", "Septiembre", "Octubre",
+            "Noviembre", "Deciembre"
+        ];
+
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf8",
+            url: "/api/comments-list/" + songId + "/?format=json",
+            success: function (response) {
+                var conteoComentarios = response.length;
+                var divComments = '';
+                for (var i = 0; i <= response.length - 1; i++) {
+                    var comentario = response[i];
+
+                    divComments = '<div class="media">' +
+                        '<div class="media-left">';
+
+                    if (comentario.autor == null || comentario.autor == "" ||
+                        comentario.autor.val_imagen == null || comentario.autor.val_imagen == "") {
+                        divComments = divComments + '<div class="detail-img artist-img si50 text-center">' +
+                            '<i class="fa fa-user"></i>' +
+                            '</div>';
+                    }
+                    else {
+                        divComments = divComments + '<img class="detail-img si50" src="' + comentario.autor.val_imagen + '">';
+                    }
+                    divComments = divComments + '</div>' +
+                        '<div class="media-body">' +
+                        '<span class="media-heading artist-detail-title"> ';
+                    if (comentario.autor == null || comentario.autor == "" ||
+                        comentario.autor.full_name == null || comentario.autor.full_name == "") {
+
+                        divComments = divComments + '<a href="#">Desconocido</a>';
+
+                    } else {
+                        divComments = divComments + '<a href="#">' + comentario.autor.full_name + '</a>';
+                    }
+                    divComments = divComments + '</span>';
+                    divComments = divComments + comentario.val_comentario;
+                    //divComments = divComments + '<div class="date-comment"><small> ' + $.datepicker.parseDate( "yy-mm-dd", new DateTime(comentario.fec_creacion_comen)) + '| Octubre 12 de 2016, 3:08 PM ' + '</small></div>' ;
+                    divComments = divComments +
+                        '</div>' +
+                        '</div>';
+
+                }
+
+                $('#divComments').html(divComments);
+                $('#spanNumComentarios').html(conteoComentarios);
+            }
+        });
+    }
+

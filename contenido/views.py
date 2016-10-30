@@ -180,6 +180,7 @@ def like_view(request):
         message = "ERROR"
     return HttpResponse(message)
 
+
 @csrf_exempt
 def unlike_view(request):
     if request.is_ajax():
@@ -223,3 +224,22 @@ def comentario_view(request):
     messages.success(request, 'Tu comentario fue registrado.')
 
     return HttpResponseRedirect('/song/' + request.POST.get("songId"))
+
+
+
+class ComentariosView(ListView):
+    template_name = 'SonidosLibres/audio.html'
+    context_object_name = 'comentarios'
+    audio = Audio
+
+    def get_queryset(self):
+        self.audio = get_object_or_404(Audio, id=int(self.kwargs['song_id']))
+        return self.audio
+
+    def get_context_data(self, **kwargs):
+        context = super(ComentariosView, self).get_context_data(**kwargs)
+        self.comentarios = Comentario.objects.filter(audio__id=self.audio.pk).prefetch_related('')
+
+        context['comentarios'] = self.comentarios
+        return context
+

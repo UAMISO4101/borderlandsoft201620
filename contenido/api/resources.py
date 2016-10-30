@@ -59,3 +59,9 @@ class ComentarioViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ComentariosByAudioViewSet(generics.ListAPIView):
+    serializer_class = ComentarioSerializer
+
+    def get_queryset(self):
+        return Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen')

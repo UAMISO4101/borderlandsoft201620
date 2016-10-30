@@ -59,4 +59,4 @@ class ComentarioAPITest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Comentario.objects.count(), 1)
         self.assertEqual(Comentario.objects.get().val_comentario, 'DabApps')
-        
+

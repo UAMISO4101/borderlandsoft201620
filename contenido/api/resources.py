@@ -1,9 +1,10 @@
 from rest_framework import viewsets, generics
-from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer
-from ..models import Artista,Audio,User,Album,Donaciones,Comentario
+from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer
+from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
 from rest_framework import status
+from django.views.decorators.csrf import csrf_exempt
 
 
 class ArtistaViewSet(generics.ListAPIView):
@@ -24,6 +25,18 @@ class AudiosByArtistaViewSet(generics.ListAPIView):
     def get_queryset(self):
         return Audio.objects.filter(artistas__pk=self.kwargs['artista_id'])
 
+
+class RatingByUserAudioViewSet(generics.ListAPIView):
+    serializer_class = RatingsSerializer
+
+    def get_queryset(self):
+        return Ratings.objects.filter(audio_id=self.kwargs['audio_id']).filter(autor_id=self.kwargs['autor_id'])
+
+class RatingByAudioViewSet(generics.ListAPIView):
+    serializer_class = RatingsSerializer
+
+    def get_queryset(self):
+        return Ratings.objects.filter(audio_id=self.kwargs['audio_id'])
 
 class AudiosViewSet(viewsets.ModelViewSet):
     queryset = Audio.objects.all()
@@ -59,6 +72,24 @@ class ComentarioViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RatingsViewSet(viewsets.ModelViewSet):
+    queryset = Ratings.objects.all()
+    serializer_class = RatingsSerializer
+
+    @csrf_exempt
+    def create(self, request, format=None):
+        serializer = RatingsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        serializer = self.get_object()
+        serializer.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ComentariosByAudioViewSet(generics.ListAPIView):
     serializer_class = ComentarioSerializer

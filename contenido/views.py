@@ -39,6 +39,21 @@ class AudiosView(ListView):
         context['audios'] = self.audios
         return context
 
+class FollowersView(ListView):
+    template_name = 'SonidosLibres/user.html'
+    context_object_name = 'lista_audios'
+    usuario = User
+
+    def get_queryset(self):
+        return get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+
+    def get_context_data(self, **kwargs):
+        context = super(FollowersView, self).get_context_data(**kwargs)
+        self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+        self.followers = artista.seguidores.all()
+        context['artist'] = self.artista
+        context['followers'] = self.followers
+        return context
 
 class AlbumsView(ListView):
     template_name = 'SonidosLibres/album.html'
@@ -60,6 +75,7 @@ class AlbumsView(ListView):
         context['album'] = self.album
         context['audios'] = self.audios
         return context
+
 
 
 class BuscadorView(View):
@@ -178,6 +194,16 @@ def unlike_view(request):
         message = "ERROR"
     return HttpResponse(message)
 
+@csrf_exempt
+def follow_view(request):
+    if request.is_ajax():
+        artist_id = request.POST.get("artista_id")
+        artista = Artista.objects.get(pk=artist_id)
+        artista.seguidores.add(User.objects.get(id=request.user.id))
+        message = "SUCCESS"
+    else:
+        message = "NO OK"
+    return HttpResponse(message)
 
 def donation_view(request):
     value = request.POST.get("value")
@@ -216,3 +242,4 @@ class ComentariosView(ListView):
 
         context['comentarios'] = self.comentarios
         return context
+

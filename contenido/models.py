@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Artista(models.Model):
@@ -13,6 +14,8 @@ class Artista(models.Model):
     val_imagen = models.CharField(max_length=1000, verbose_name='Imágen', help_text='URL de la imagen del artista',
                                   blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+    seguidores = models.ManyToManyField(User, related_name='seguidos')
 
     def __str__(self):
         return self.nom_artistico
@@ -73,3 +76,16 @@ class Comentario(models.Model):
 
     class Meta:
         ordering = ('val_comentario',)
+
+class Ratings(models.Model):
+    """
+    Describe una calificación
+    """
+    val_rating = models.PositiveIntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
+    fec_creacion_rating = models.DateTimeField(auto_now_add=True, help_text='Fecha de creación del rating')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    audio = models.ForeignKey(Audio, on_delete=models.CASCADE)
+
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.val_rating

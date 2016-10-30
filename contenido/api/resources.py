@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics
-from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer, RatingsSerializer
+from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer
 from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
@@ -90,3 +90,9 @@ class RatingsViewSet(viewsets.ModelViewSet):
         serializer = self.get_object()
         serializer.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ComentariosByAudioViewSet(generics.ListAPIView):
+    serializer_class = ComentarioSerializer
+
+    def get_queryset(self):
+        return Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen')

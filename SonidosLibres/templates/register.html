@@ -5,30 +5,25 @@
 {% block bodyClass %}main-pic register-pic{% endblock %}
 
 {% block form %}
-    <form id="registro_form" method="post" novalidate>{% csrf_token %}
+    <form id="registro_form" name="registro_form" method="post" novalidate>{% csrf_token %}
     <div class="form-group">
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario" name="username">
+        <input type="text" class="form-control" id="username" placeholder="Usuario" name="username">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombres" name="first_name">
+        <input type="text" class="form-control" id="first_name" placeholder="Nombres" name="first_name">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Apellidos" name="last_name">
+        <input type="text" class="form-control" id="last_name" placeholder="Apellidos" name="last_name">
     </div>
     <!--div class="form-group has-error"-->
     <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico" name="email">
-        <!--div class="help-block">
-            <ul class="list-unstyled">
-                <li>La dirección de correo electrónico no es válida</li>
-            </ul>
-        </div-->
+        <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" name="email">
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Contraseña" name="password1">
+        <input type="password" class="form-control" placeholder="Contraseña" name="password1" id="password1">
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Confirme la Contreseña" name="password2">
+        <input type="password" class="form-control" placeholder="Confirme la Contraseña" name="password2" id="password2">
     </div>
     <small>Al hacer click en Registrarse, aceptas los <a href="#">términos y condiciones</a> y <a
             href="#">política de privacidad de SonidosLibres</a></small>

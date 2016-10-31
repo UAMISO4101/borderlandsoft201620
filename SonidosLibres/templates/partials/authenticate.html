@@ -8,6 +8,12 @@
                 <div class="col-sm-offset-1 col-sm-5 col-md-4 box box-transparent">
                     <h3>{% block title %}{% endblock %}</h3>
                     <form novalidate>
+                        <fb:login-button scope="email" onlogin="window.location.href='{% url 'social:begin' 'facebook' %}?next=/'">
+        Continuar Con Facebook
+    </fb:login-button>
+                    <div id="status">
+</div>
+
                         <a class="btn btn-block btn-social btn-facebook btn-tall">
                             <span class="fa fa-facebook"></span>
                             {% block facebook %}{% endblock %}

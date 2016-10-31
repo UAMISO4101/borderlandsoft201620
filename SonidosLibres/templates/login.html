@@ -1,7 +1,12 @@
 {% extends "partials/authenticate.html" %}
 {% load static%}
 {#{% block offset %}col-sm-offset-4{% endblock %}#}
-{% block facebook %}Continuar con Facebook{% endblock %}
+{% block facebook %}
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        Continuar Con Facebook
+    </fb:login-button>
+{% endblock %}
+
 {% block title %}Inicio de Sesión{% endblock %}
 {% block bodyClass %}main-pic login-pic{% endblock %}
 

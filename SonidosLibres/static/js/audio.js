@@ -343,7 +343,7 @@ function calificar() {
                 for (var i = 0; i <= response.length - 1; i++) {
                     var comentario = response[i];
 
-                    divComments = '<div class="media">' +
+                    divComments = divComments + '<div class="media">' +
                         '<div class="media-left">';
 
                     if (comentario.autor == null || comentario.autor == "" ||

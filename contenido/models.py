@@ -15,7 +15,7 @@ class Artista(models.Model):
                                   blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
-    seguidores = models.ManyToManyField(User, related_name='seguidos')
+    seguidores = models.ManyToManyField(User, related_name='seguidos', blank=True)
 
     def __str__(self):
         return self.nom_artistico

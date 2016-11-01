@@ -40,6 +40,10 @@ class AudiosView(ListView):
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
         self.audios = Audio.objects.filter(artistas__pk=self.artista.pk)
+        if not self.artista.user  is None :
+            self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
+            context['artistas_que_sigo'] = self.artistas_que_sigo
+
         context['artist'] = self.artista
         context['albums'] = self.albums
         context['audios'] = self.audios

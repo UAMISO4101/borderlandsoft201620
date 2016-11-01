@@ -1,3 +1,5 @@
+# - *- coding: utf-8 - *-
+
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
@@ -16,6 +18,7 @@ class Artista(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     seguidores = models.ManyToManyField(User, related_name='seguidos', blank=True)
+    email = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.nom_artistico
@@ -47,6 +50,8 @@ class Audio(models.Model):
     artistas = models.ManyToManyField(Artista, related_name="artistas")
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
     albums = models.ManyToManyField(Album, related_name="albums", blank=True)
+    type_audio = models.CharField(max_length=1000, verbose_name='Audio', help_text='Tipo del audio', blank=True)
+    tags_audio = models.CharField(max_length=1000, verbose_name='Audio', help_text='Etiquetas del audio', blank=True)
 
     def __str__(self):
         return self.nom_audio

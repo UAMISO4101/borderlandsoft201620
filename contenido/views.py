@@ -1,15 +1,23 @@
+# - *- coding: utf-8 - *-
+
 from django.db.models import Prefetch
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.template import RequestContext
 from django.views.generic import *
 from django.db.models import Q
-from django.shortcuts import render_to_response
 from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from io import BytesIO
+import uuid
+import datetime
+from django.conf import settings
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 
 
 # Create your views here.
@@ -34,10 +42,15 @@ class AudiosView(ListView):
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
         self.audios = Audio.objects.filter(artistas__pk=self.artista.pk)
+        if not self.artista.user  is None :
+            self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
+            context['artistas_que_sigo'] = self.artistas_que_sigo
+
         context['artist'] = self.artista
         context['albums'] = self.albums
         context['audios'] = self.audios
         return context
+
 
 class FollowersView(ListView):
     template_name = 'SonidosLibres/user.html'
@@ -54,6 +67,7 @@ class FollowersView(ListView):
         context['artist'] = self.artista
         context['followers'] = self.followers
         return context
+
 
 class AlbumsView(ListView):
     template_name = 'SonidosLibres/album.html'
@@ -75,7 +89,6 @@ class AlbumsView(ListView):
         context['album'] = self.album
         context['audios'] = self.audios
         return context
-
 
 
 class BuscadorView(View):
@@ -176,6 +189,11 @@ def like_view(request):
         audio.save()
         total_likes = audio.likes.count()
         message = total_likes
+        artistas = audio.artistas.all()
+        for artista in artistas:
+            send_mail('[SonidosLibres] Notificación de contenido',
+                      'Hola ' + artista.nom_artistico + '! Recibiste un like en tu contendido ' + audio.nom_audio + '!',
+                      'Notifications SL <notification@sonidoslibres.com>', [artista.email])
     else:
         message = "ERROR"
     return HttpResponse(message)
@@ -194,6 +212,7 @@ def unlike_view(request):
         message = "ERROR"
     return HttpResponse(message)
 
+
 @csrf_exempt
 def follow_view(request):
     if request.is_ajax():
@@ -205,6 +224,7 @@ def follow_view(request):
         message = "NO OK"
     return HttpResponse(message)
 
+
 def donation_view(request):
     value = request.POST.get("value")
     credit_card = request.POST.get("credit_card")
@@ -213,6 +233,34 @@ def donation_view(request):
     donation.save()
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))
+
+
+def upload_song_view(request):
+    song_name = request.POST.get('upload_song_name')
+    song_type = request.POST.get('upload_song_type')
+    song_tags = request.POST.get('upload_song_tags')
+    audio_file = request.FILES['upload_song_file_file'].read()
+    image_file = request.FILES['upload_song_img_file'].read()
+    audio_file_name = uuid.uuid4().urn[9:] + '.mp3'
+    image_file_name = uuid.uuid4().urn[9:] + '.png'
+    conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
+    bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+    k = Key(bucket)
+    k2 = Key(bucket)
+    k.key = 'images/' + image_file_name
+    k2.key = 'audios/' + audio_file_name
+    k.set_contents_from_file(BytesIO(image_file), policy='public-read')
+    k2.set_contents_from_file(BytesIO(audio_file), policy='public-read')
+    audio = Audio()
+    audio.nom_audio = song_name
+    audio.type_audio = song_type
+    audio.tags_audio = song_tags
+    audio.val_recurso = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/' + audio_file_name
+    audio.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
+    audio.fec_entrada_audio = datetime.datetime.now()
+    audio.save()
+    messages.success(request, '¡El audio fue agregado exitosamente!')
+    return HttpResponseRedirect('/song/' + str(audio.id))
 
 
 def comentario_view(request):
@@ -224,7 +272,6 @@ def comentario_view(request):
     messages.success(request, 'Tu comentario fue registrado.')
 
     return HttpResponseRedirect('/song/' + request.POST.get("songId"))
-
 
 
 class ComentariosView(ListView):

@@ -117,10 +117,23 @@
                         <br>
                         <div class="row">
                             <div class="col-sm-6">
+                                <h5>Seguidores ({{artist.seguidores.all|length}})</h5>
                                 <div class="box col-xs-12">
                                     {% if artist.seguidores.all %}
                                         {% for seguidor in artist.seguidores.all %}
                                                 {% include "partials/artist-detail.html" with is_comment=False user_name=seguidor.username artist_name=seguidor.artista artist_image=seguidor.artista.val_imagen artist_id=seguidor.artista.id%}
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>Aún nadie te esta siguiendo</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5>Siguiendo a ({{artistas_que_sigo|length}})</h5>
+                                <div class="box col-xs-12">
+                                    {% if artistas_que_sigo %}
+                                        {% for sigoA in artistas_que_sigo %}
+                                                {% include "partials/artist-detail.html" with is_comment=False user_name=sigoA.user.username artist_name=sigoA artist_image=sigoA.val_imagen artist_id=sigoA.id%}
                                         {% endfor %}
                                     {% else %}
                                         <span>Aún no estás siguiendo nadie ¿Qué esperas a ver a tus artistas favoritos?</span>

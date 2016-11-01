@@ -1,4 +1,9 @@
 /**
+ * Created by LuisSebastian on 10/25/16.
+ */
+
+
+/**
  * Created by LuisSebastian on 10/8/16.
  */
 
@@ -8,25 +13,21 @@ $(document).ready(function () {
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
         return arg != value;
      }, "");
-    $('#donation_form').validate({
+    $('#audio_upload_form').validate({
         rules: {
-            value: {
+            upload_song_file: {
                 required: true,
-                number: true,
+                extension: "mp3",
             },
-            credit_card: {
+            upload_song_img: {
                 required: true,
-                number: true,
+                extension: "png",
             },
-            cvc: {
+            upload_song_name: {
                 required: true,
-                number: true,
             },
-            month_dd: {
-                valueNotEquals: "Mes",
-            },
-            year_dd: {
-                valueNotEquals: "Año",
+            upload_song_type: {
+                valueNotEquals: "Seleccione un tipo...",
             },
         }, highlight: function(element) {
             $(element).parent().addClass('has-error');
@@ -35,7 +36,7 @@ $(document).ready(function () {
         }, errorPlacement: function(error, element) {
         },
         submitHandler: function () {
-            document.getElementById('donation_form').submit()
+            document.getElementById('audio_upload_form').submit()
             return false;
         }
     });

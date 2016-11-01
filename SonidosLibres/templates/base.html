@@ -51,12 +51,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-upload nav-icon"></i>
-                                Agregar <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="addObjectMenu">
+                                <i class="fa fa-upload nav-icon"></i> Agregar <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#newAudio" data-toggle="modal"><i class="fa fa-music nav-icon"></i> Audio</a></li>
-                                <li><a href="#newAlbum" data-toggle="modal"><i class="fa fa-circle-thin nav-icon"></i> Album</a></li>
+                                <li><a href="#newAlbum" data-toggle="modal" id="addNewAlbumBtn"><i class="fa fa-circle-thin nav-icon"></i> Album</a></li>
                                 {#                            <li><a href="#"><i class="fa fa-list nav-icon"></i> Lista de Reproducción</a></li>#}
                             </ul>
                         </li>

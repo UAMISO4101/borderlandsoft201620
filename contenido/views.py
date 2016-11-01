@@ -16,6 +16,8 @@ from io import BytesIO
 import uuid
 import datetime
 from django.conf import settings
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 
 
 # Create your views here.
@@ -45,6 +47,7 @@ class AudiosView(ListView):
         context['audios'] = self.audios
         return context
 
+
 class FollowersView(ListView):
     template_name = 'SonidosLibres/user.html'
     context_object_name = 'lista_audios'
@@ -60,6 +63,7 @@ class FollowersView(ListView):
         context['artist'] = self.artista
         context['followers'] = self.followers
         return context
+
 
 class AlbumsView(ListView):
     template_name = 'SonidosLibres/album.html'
@@ -81,7 +85,6 @@ class AlbumsView(ListView):
         context['album'] = self.album
         context['audios'] = self.audios
         return context
-
 
 
 class BuscadorView(View):
@@ -182,6 +185,11 @@ def like_view(request):
         audio.save()
         total_likes = audio.likes.count()
         message = total_likes
+        artistas = audio.artistas.all()
+        for artista in artistas:
+            send_mail('[SonidosLibres] Notificación de contenido',
+                      'Hola ' + artista.nom_artistico + '! Recibiste un like en tu contendido ' + audio.nom_audio + '!',
+                      'Notifications SL <notification@sonidoslibres.com>', [artista.email])
     else:
         message = "ERROR"
     return HttpResponse(message)
@@ -200,6 +208,7 @@ def unlike_view(request):
         message = "ERROR"
     return HttpResponse(message)
 
+
 @csrf_exempt
 def follow_view(request):
     if request.is_ajax():
@@ -211,6 +220,7 @@ def follow_view(request):
         message = "NO OK"
     return HttpResponse(message)
 
+
 def donation_view(request):
     value = request.POST.get("value")
     credit_card = request.POST.get("credit_card")
@@ -220,32 +230,33 @@ def donation_view(request):
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))
 
+
 def upload_song_view(request):
     song_name = request.POST.get('upload_song_name')
     song_type = request.POST.get('upload_song_type')
     song_tags = request.POST.get('upload_song_tags')
     audio_file = request.FILES['upload_song_file_file'].read()
     image_file = request.FILES['upload_song_img_file'].read()
-    audio_file_name = uuid.uuid4().urn[9:]+'.mp3'
-    image_file_name = uuid.uuid4().urn[9:]+'.png'
+    audio_file_name = uuid.uuid4().urn[9:] + '.mp3'
+    image_file_name = uuid.uuid4().urn[9:] + '.png'
     conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
     bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
     k = Key(bucket)
     k2 = Key(bucket)
-    k.key = 'images/'+image_file_name
-    k2.key = 'audios/'+audio_file_name
+    k.key = 'images/' + image_file_name
+    k2.key = 'audios/' + audio_file_name
     k.set_contents_from_file(BytesIO(image_file), policy='public-read')
     k2.set_contents_from_file(BytesIO(audio_file), policy='public-read')
     audio = Audio()
     audio.nom_audio = song_name
     audio.type_audio = song_type
     audio.tags_audio = song_tags
-    audio.val_recurso = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/'+audio_file_name
-    audio.val_imagen ='https://s3-us-west-2.amazonaws.com/sonidoslibres/images/'+image_file_name
+    audio.val_recurso = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/' + audio_file_name
+    audio.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
     audio.fec_entrada_audio = datetime.datetime.now()
     audio.save()
     messages.success(request, '¡El audio fue agregado exitosamente!')
-    return HttpResponseRedirect('/song/'+str(audio.id))
+    return HttpResponseRedirect('/song/' + str(audio.id))
 
 
 def comentario_view(request):
@@ -257,7 +268,6 @@ def comentario_view(request):
     messages.success(request, 'Tu comentario fue registrado.')
 
     return HttpResponseRedirect('/song/' + request.POST.get("songId"))
-
 
 
 class ComentariosView(ListView):
@@ -275,4 +285,3 @@ class ComentariosView(ListView):
 
         context['comentarios'] = self.comentarios
         return context
-

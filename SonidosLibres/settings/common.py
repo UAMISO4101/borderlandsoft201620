@@ -138,3 +138,7 @@ AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
 AWS_ACCESS_SECRET_KEY = os.environ['AWS_ACCESS_SECRET_KEY']
 MEDIA_URL = "https://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
 MEDIA_ROOT = ''
+
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
+

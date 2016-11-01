@@ -112,7 +112,7 @@ STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles')) # os.path.join(PROJECT_R
 # Ruta que apunta los archivos en el front
 STATIC_URL = '/static/'
 
-# Carpeta donde se encuentran los archivos estáticos
+# Carpeta donde se encuentran los archivos estaticos
 STATICFILES_DIRS = (
     str(PROJECT_ROOT.joinpath('static')),
 )

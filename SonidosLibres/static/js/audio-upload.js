@@ -21,7 +21,7 @@ $(document).ready(function () {
             },
             upload_song_img: {
                 required: true,
-                extension: "png|jpg",
+                extension: "png",
             },
             upload_song_name: {
                 required: true,

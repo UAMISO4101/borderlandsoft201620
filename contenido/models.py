@@ -44,6 +44,8 @@ class Audio(models.Model):
     artistas = models.ManyToManyField(Artista, related_name="artistas")
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
     albums = models.ManyToManyField(Album, related_name="albums", blank=True)
+    type_audio = models.CharField(max_length=1000, verbose_name='Audio', help_text='Tipo del audio', blank=True)
+    tags_audio = models.CharField(max_length=1000, verbose_name='Audio', help_text='Etiquetas del audio', blank=True)
 
     def __str__(self):
         return self.nom_audio

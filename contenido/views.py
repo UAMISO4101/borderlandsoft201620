@@ -1,15 +1,19 @@
 from django.db.models import Prefetch
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.template import RequestContext
 from django.views.generic import *
 from django.db.models import Q
-from django.shortcuts import render_to_response
 from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from io import BytesIO
+import uuid
+import datetime
+from django.conf import settings
 
 
 # Create your views here.
@@ -190,4 +194,28 @@ def donation_view(request):
 
 
 def upload_song_view(request):
-    return HttpResponseRedirect('/')
+    song_name = request.POST.get('upload_song_name')
+    song_type = request.POST.get('upload_song_type')
+    song_tags = request.POST.get('upload_song_tags')
+    audio_file = request.FILES['upload_song_file_file'].read()
+    image_file = request.FILES['upload_song_img_file'].read()
+    audio_file_name = uuid.uuid4().urn[9:]+'.mp3'
+    image_file_name = uuid.uuid4().urn[9:]+'.png'
+    conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
+    bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+    k = Key(bucket)
+    k2 = Key(bucket)
+    k.key = 'images/'+image_file_name
+    k2.key = 'audios/'+audio_file_name
+    k.set_contents_from_file(BytesIO(image_file), policy='public-read')
+    k2.set_contents_from_file(BytesIO(audio_file), policy='public-read')
+    audio = Audio()
+    audio.nom_audio = song_name
+    audio.type_audio = song_type
+    audio.tags_audio = song_tags
+    audio.val_recurso = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/'+audio_file_name
+    audio.val_imagen ='https://s3-us-west-2.amazonaws.com/sonidoslibres/images/'+image_file_name
+    audio.fec_entrada_audio = datetime.datetime.now()
+    audio.save()
+    messages.success(request, '¡El audio fue agregado exitosamente!')
+    return HttpResponseRedirect('/song/'+str(audio.id))

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Python Social Auth Context Processors
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -112,7 +117,7 @@ STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles')) # os.path.join(PROJECT_R
 # Ruta que apunta los archivos en el front
 STATIC_URL = '/static/'
 
-# Carpeta donde se encuentran los archivos estaticos
+# Carpeta donde se encuentran los archivos estáticos
 STATICFILES_DIRS = (
     str(PROJECT_ROOT.joinpath('static')),
 )
@@ -141,4 +146,28 @@ MEDIA_ROOT = ''
 
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
+
+
+
+AUTHENTICATION_BACKENDS = (
+    # Facebook
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+SOCIAL_AUTH_FACEBOOK_KEY=os.environ['FACEBOOK_KEY']
+SOCIAL_AUTH_FACEBOOK_SECRET=os.environ['FACEBOOK_SECRET']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
+
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 

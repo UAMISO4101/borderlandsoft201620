@@ -44,4 +44,7 @@ urlpatterns = [
     url(r'^unlike/', views.unlike_view, name='unlike'),
     url(r'^upload/song/', views.upload_song_view, name='upload-song'),
     url(r'^comment-add/', login_required(views.comentario_view), name="comment_add"),
+    # Python Social Auth URLs
+    url('', include('django.contrib.auth.urls', namespace='auth')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ]+static(common.MEDIA_URL, document_root=common.MEDIA_ROOT)

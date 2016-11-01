@@ -31,3 +31,5 @@ six==1.10.0
 sqlparse==0.2.2
 virtualenv==15.0.3
 whitenoise==3.2.2
+djangorestframework==3.5.1
+python-social-auth==0.2.21

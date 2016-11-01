@@ -23,10 +23,9 @@ $(document).ready(function () {
             $(element).parent().removeClass('has-error');
         },
         submitHandler: function (form) {
-            document.getElementById('donation_form').submit()
+            form.submit()
             return false;
         }
     });
 
 });
-

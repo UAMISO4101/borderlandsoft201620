@@ -7,35 +7,33 @@
                 <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
             </div>
             <div class="modal-body">
-                <form novalidate>
+                <form id="audio_upload_form" action="{% url 'upload-song'%}" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
                     <div class="form-group input-group">
                         <label class="input-group-btn">
                             <span class="btn btn-sonidoslibres btn-2 btn-file">
-                                Seleccionar audio&hellip; <input type="file" style="display: none;">
+                                Seleccionar audio&hellip; <input type="file" name="upload_song_file_file" style="display: none;">
                             </span>
                         </label>
-                        <input type="text" class="form-control" readonly>
+                        <input type="text" class="form-control" name="upload_song_file">
                     </div>
                     <div class="media">
                         <div class="media-left">
-                            {% if 0 == 1 %}
-                                <img class="detail-img si200" src="">
-                            {% else %}
-                                <div class="detail-img song-img si200 text-center">
-                                    <i class="fa fa-music"></i>
-                                </div>
-                            {% endif %}
-                            <label class="btn btn-block btn-default">
-                                Agregar imágen&hellip; <input type="file" style="display: none;">
-                            </label>
+                            <div class="form-group input-group">
+                                    <img id="upload_img_file" class="detail-img si200" src="http://hypnotherapista.com/wp/wp-content/plugins/ldd-directory-lite/public/images/noimage.png">
+                                <label class="btn btn-block btn-sonidoslibres btn-2 btn-file">
+                                    Agregar imágen&hellip; <input type="file" name="upload_song_img_file" style="display: none;" onchange="document.getElementById('upload_img_file').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+                                <input type="text" class="form-control" name="upload_song_img">
+                             </div>
                         </div>
                         <div class="media-body">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nombre">
+                                <input type="text" class="form-control" placeholder="Nombre" name="upload_song_name">
                             </div>
                             <div class="form-group">
-                                <select class="form-control">
+                                <select class="form-control" name="upload_song_type">
                                     <option>Seleccione un tipo...</option>
                                     <option>Videojuegos</option>
                                     <option>Banda sonora</option>
@@ -44,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Etiquetas (Separadas por comas)"></textarea>
+                                <textarea class="form-control" placeholder="Etiquetas (Separadas por comas)" name="upload_song_tags"></textarea>
                             </div>
                         </div>
                     </div>
@@ -52,7 +50,7 @@
             </div>
             <div class="modal-footer bg-2">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" form="donation_form" class="btn btn-sonidoslibres btn-2">Agregar</button>
+                <button type="submit" form="audio_upload_form" class="btn btn-sonidoslibres btn-2">Agregar</button>
             </div>
         </div>
     </div>

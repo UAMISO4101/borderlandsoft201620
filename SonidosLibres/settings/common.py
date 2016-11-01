@@ -112,7 +112,7 @@ STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles')) # os.path.join(PROJECT_R
 # Ruta que apunta los archivos en el front
 STATIC_URL = '/static/'
 
-# Carpeta donde se encuentran los archivos estáticos
+# Carpeta donde se encuentran los archivos estaticos
 STATICFILES_DIRS = (
     str(PROJECT_ROOT.joinpath('static')),
 )
@@ -133,7 +133,8 @@ REST_FRAMEWORK = {
     ),
 }
 
-
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
+AWS_ACCESS_SECRET_KEY = os.environ['AWS_ACCESS_SECRET_KEY']
 MEDIA_URL = "https://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
 MEDIA_ROOT = ''

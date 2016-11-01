@@ -43,6 +43,21 @@ class AudiosView(ListView):
         context['audios'] = self.audios
         return context
 
+class FollowersView(ListView):
+    template_name = 'SonidosLibres/user.html'
+    context_object_name = 'lista_audios'
+    usuario = User
+
+    def get_queryset(self):
+        return get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+
+    def get_context_data(self, **kwargs):
+        context = super(FollowersView, self).get_context_data(**kwargs)
+        self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
+        self.followers = self.artista.seguidores.all()
+        context['artist'] = self.artista
+        context['followers'] = self.followers
+        return context
 
 class AlbumsView(ListView):
     template_name = 'SonidosLibres/album.html'
@@ -64,6 +79,7 @@ class AlbumsView(ListView):
         context['album'] = self.album
         context['audios'] = self.audios
         return context
+
 
 
 class BuscadorView(View):
@@ -182,6 +198,16 @@ def unlike_view(request):
         message = "ERROR"
     return HttpResponse(message)
 
+@csrf_exempt
+def follow_view(request):
+    if request.is_ajax():
+        artist_id = request.POST.get("artista_id")
+        artista = Artista.objects.get(pk=artist_id)
+        artista.seguidores.add(User.objects.get(id=request.user.id))
+        message = "SUCCESS"
+    else:
+        message = "NO OK"
+    return HttpResponse(message)
 
 def donation_view(request):
     value = request.POST.get("value")
@@ -191,7 +217,6 @@ def donation_view(request):
     donation.save()
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))
-
 
 def upload_song_view(request):
     song_name = request.POST.get('upload_song_name')
@@ -219,3 +244,33 @@ def upload_song_view(request):
     audio.save()
     messages.success(request, '¡El audio fue agregado exitosamente!')
     return HttpResponseRedirect('/song/'+str(audio.id))
+
+
+def comentario_view(request):
+    texto_comentario = request.POST.get("texto_comentario")
+    audio_comentario = Audio.objects.get(pk=request.POST.get("songId"))
+
+    comentario = Comentario(val_comentario=texto_comentario, audio=audio_comentario)
+    comentario.save()
+    messages.success(request, 'Tu comentario fue registrado.')
+
+    return HttpResponseRedirect('/song/' + request.POST.get("songId"))
+
+
+
+class ComentariosView(ListView):
+    template_name = 'SonidosLibres/audio.html'
+    context_object_name = 'comentarios'
+    audio = Audio
+
+    def get_queryset(self):
+        self.audio = get_object_or_404(Audio, id=int(self.kwargs['song_id']))
+        return self.audio
+
+    def get_context_data(self, **kwargs):
+        context = super(ComentariosView, self).get_context_data(**kwargs)
+        self.comentarios = Comentario.objects.filter(audio__id=self.audio.pk).prefetch_related('')
+
+        context['comentarios'] = self.comentarios
+        return context
+

@@ -224,6 +224,20 @@ def follow_view(request):
         message = "NO OK"
     return HttpResponse(message)
 
+@csrf_exempt
+def is_follower_view(request):
+    if request.is_ajax():
+        if request.user.is_authenticated():
+            current_user = request.user.id
+            user_id = request.POST.get("user_id")
+            artista = Artista.objects.get(user=current_user)
+            if artista.seguidores.objects.filter(user__pk=user_id).count()>0:
+                message=True
+                return HttpResponse(message)
+
+    message = False
+    return HttpResponse(message)
+
 
 def donation_view(request):
     value = request.POST.get("value")

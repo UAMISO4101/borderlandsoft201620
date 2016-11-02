@@ -219,7 +219,8 @@
     "val_imagen": "/static/img/examples/Lindsey-Stirling.jpg",
     "user": [
       "lindsey"
-    ]
+    ],
+    "seguidores":[5,4]
   }
 },
 {
@@ -232,7 +233,8 @@
     "val_imagen": "/static/img/examples/peter-hollens.jpg",
     "user": [
       "hollens"
-    ]
+    ],
+    "seguidores":[1]
   }
 },
 {
@@ -245,7 +247,8 @@
     "val_imagen": "/static/img/examples/seneca.jpg",
     "user": [
       "admin"
-    ]
+    ],
+    "seguidores":[2]
   }
 },
 {
@@ -258,7 +261,18 @@
     "val_imagen": "/static/img/examples/lzzylespaul.jpg",
     "user": [
       "lzzyhale"
-    ]
+    ],
+    "seguidores":[1]
+  }
+},
+{
+  "model": "contenido.ratings",
+  "pk": 1,
+  "fields": {
+    "val_rating": 3,
+    "fec_creacion_rating": "2016-10-24",
+    "autor": ["hollens"],
+    "audio": 5
   }
 }
 ]

@@ -338,8 +338,9 @@ def upload_album_view(request):
 def comentario_view(request):
     texto_comentario = request.POST.get("texto_comentario")
     audio_comentario = Audio.objects.get(pk=request.POST.get("songId"))
+    autor_comentario = User.objects.get(pk=request.POST.get("userId"))
 
-    comentario = Comentario(val_comentario=texto_comentario, audio=audio_comentario)
+    comentario = Comentario(val_comentario=texto_comentario, audio=audio_comentario, autor=autor_comentario)
     comentario.save()
     messages.success(request, 'Tu comentario fue registrado.')
 

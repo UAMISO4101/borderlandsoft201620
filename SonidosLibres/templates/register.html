@@ -38,6 +38,11 @@
 
 {% block pagescripts %}
     <script src="{% static "js/register.js" %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var backVars = {
+            fbAppId: {{ SOCIAL_AUTH_FACEBOOK_KEY }}
+        };
+    </script>
     <script src="{% static "js/backend-facebook.js" %}" type="text/javascript"></script>
 {% endblock %}
 

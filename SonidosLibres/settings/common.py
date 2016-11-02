@@ -74,6 +74,7 @@ TEMPLATES = [
                 # Python Social Auth Context Processors
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
+                'SonidosLibres.templatetags.extras.admin_media'
             ],
         },
     },

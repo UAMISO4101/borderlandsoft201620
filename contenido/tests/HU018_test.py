@@ -46,3 +46,7 @@ class HU018Test(TestCase):
     def ingresar_album_sin_nombre(self):
         self.ingresar_album('', 'C:\img.png')
         self.assertIn("form-group has-error", self._util.get_class_attr("formGroupNombreAlbum"))
+
+    def ingresar_imagen_otra_extension(self):
+        self.ingresar_album('Los 3 sprints bailables', 'C:\img.txt')
+        self.assertIn("form-group input-group has-error", self._util.get_class_attr("formGroupAlbumImg"))

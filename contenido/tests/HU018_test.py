@@ -52,3 +52,7 @@ class HU018Test(TestCase):
     def ingresar_imagen_otra_extension(self):
         self.ingresar_album('Los 3 sprints bailables', 'C:\img.txt')
         self.assertIn("form-group input-group has-error", self._util.get_class_attr("formGroupAlbumImg"))
+
+    def ingresar_album_formulario_completo(self):
+        self.ingresar_album('Los 3 sprints bailables', 'C:\img.png')
+        self.assertIn("/album/", self.browser.current_url)

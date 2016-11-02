@@ -308,6 +308,33 @@ def upload_song_view(request):
     return HttpResponseRedirect('/song/' + str(audio.id))
 
 
+def upload_album_view(request):
+    # Data from template
+    album_name = request.POST.get('upload_album_name')
+    album_year = request.POST.get('upload_album_year')
+    image_file = request.FILES['upload_album_img_file'].read()
+    artista = Artista.objects.get(user=request.user)
+    image_file_name = uuid.uuid4().urn[9:] + '.png'
+
+    # S3
+    conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
+    bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+    k = Key(bucket)
+    k.key = 'images/' + image_file_name
+    k.set_contents_from_file(BytesIO(image_file), policy='public-read')
+
+    # Model
+    album = Album()
+    album.nom_album = album_name
+    album.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
+    album.fec_creacion_album = datetime.datetime(int(album_year), 1, 1, 0, 0)
+    album.artista = artista
+    album.save()
+
+    messages.success(request, '¡El album fue agregado exitosamente!')
+    return HttpResponseRedirect('/album/' + str(album.id))
+
+
 def comentario_view(request):
     texto_comentario = request.POST.get("texto_comentario")
     audio_comentario = Audio.objects.get(pk=request.POST.get("songId"))

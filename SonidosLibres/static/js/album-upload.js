@@ -1,33 +1,20 @@
-/**
- * Created by LuisSebastian on 10/25/16.
- */
-
-
-/**
- * Created by LuisSebastian on 10/8/16.
- */
-
 $(document).ready(function () {
      $.validator.messages.required = '';
      $.validator.messages.number = '';
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg !== value;
+        return arg != value;
      }, "");
-    $('#audio_upload_form').validate({
+    $('#album_upload_form').validate({
         rules: {
-            upload_song_file: {
-                required: true,
-                extension: "mp3"
-            },
-            upload_song_img: {
+            upload_album_img: {
                 required: true,
                 extension: "png|jpg"
             },
-            upload_song_name: {
+            upload_album_name: {
                 required: true
             },
-            upload_song_type: {
-                valueNotEquals: "Seleccione un tipo..."
+            upload_album_year: {
+                valueNotEquals: "Año"
             }
         }, highlight: function(element) {
             $(element).parent().addClass('has-error');
@@ -36,9 +23,8 @@ $(document).ready(function () {
         }, errorPlacement: function(error, element) {
         },
         submitHandler: function () {
-            document.getElementById('audio_upload_form').submit();
+            document.getElementById('album_upload_form').submit();
             return false;
         }
     });
-
 });

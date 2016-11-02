@@ -111,7 +111,7 @@ class BuscadorView(View):
         filtro = request.GET.get('q', '')
         active_tab = "tab1"
 
-        recientes = Audio.objects.all().order_by('-fec_entrada_audio')[:5].prefetch_related(
+        recientes = Audio.objects.all().order_by('-fec_entrada_audio')[:20].prefetch_related(
             Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).all()
 
         recientes_list = []

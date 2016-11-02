@@ -40,7 +40,7 @@
                         <div class="col-sm-8">
                             <div class="song-metadata pull-right">
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Seguidores"><i class="fa fa-users"></i> {{artist.seguidores.all|length }}</div>
-                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Estás siguiendo"><i class="fa fa-eye"></i> 112</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Estás siguiendo"><i class="fa fa-eye"></i> {{artistas_que_sigo|length}}</div>
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Ubicación"><i class="fa fa-globe"></i> {{artist.nom_ciudad}}, {{artist.nom_pais}}</div>
                                 <div class="hidden" data-toggle="tooltip" data-placement="bottom" title="Convocatorias ganadas"><i class="fa fa-trophy"></i> 1</div>
                             </div>
@@ -93,8 +93,8 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6 box">
-                                    {% for audio in audios %}
-                                        {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist audioid=audio.id%}
+                                    {% for audio_item in audios_list %}
+                                        {% include "partials/audio-detail.html" with audio_name=audio_item.audio.nom_audio audio_image=audio_item.audio.val_imagen artist=audio_item.artistas audioid=audio_item.audio.id%}
                                     {% endfor %}
                                 </div>
                             </div>

@@ -1,38 +1,30 @@
-/**
- * Created by William on 12/10/2016.
- */
-
-
 $(document).ready(function () {
      $.validator.messages.required = '';
      $.validator.messages.number = '';
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
         return arg != value;
      }, "");
-    $('#login_form').validate({
+    $('#album_upload_form').validate({
         rules: {
-            username: {
+            upload_album_img: {
                 required: true,
+                extension: "png|jpg"
             },
-            password: {
-                required: true,
-                minlength: 9,
+            upload_album_name: {
+                required: true
             },
-        }, messages: {
-            username: "Por favor ingrese su usuario",
-            password: {
-                required:"Por favor ingrese su contrase&ntilde;a",
-                minlength:"La longitud m&iacute;nima es de 9 caracteres",
-            },
+            upload_album_year: {
+                valueNotEquals: "Año"
+            }
         }, highlight: function(element) {
             $(element).parent().addClass('has-error');
         }, unhighlight: function(element) {
             $(element).parent().removeClass('has-error');
+        }, errorPlacement: function(error, element) {
         },
-        submitHandler: function (form) {
-            form.submit()
+        submitHandler: function () {
+            document.getElementById('album_upload_form').submit();
             return false;
         }
     });
-
 });

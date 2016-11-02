@@ -11,24 +11,24 @@ $(document).ready(function () {
      $.validator.messages.required = '';
      $.validator.messages.number = '';
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg != value;
+        return arg !== value;
      }, "");
     $('#audio_upload_form').validate({
         rules: {
             upload_song_file: {
                 required: true,
-                extension: "mp3",
+                extension: "mp3"
             },
             upload_song_img: {
                 required: true,
-                extension: "png",
+                extension: "png|jpg"
             },
             upload_song_name: {
-                required: true,
+                required: true
             },
             upload_song_type: {
-                valueNotEquals: "Seleccione un tipo...",
-            },
+                valueNotEquals: "Seleccione un tipo..."
+            }
         }, highlight: function(element) {
             $(element).parent().addClass('has-error');
         }, unhighlight: function(element) {
@@ -36,7 +36,7 @@ $(document).ready(function () {
         }, errorPlacement: function(error, element) {
         },
         submitHandler: function () {
-            document.getElementById('audio_upload_form').submit()
+            document.getElementById('audio_upload_form').submit();
             return false;
         }
     });

@@ -75,10 +75,11 @@
                                         <td class="cell-song"><a href="/song/{{audio.id}}">{{audio.nom_audio}}</a></td>
                                         <td class="cell-user">
                                             {% for artista in audio.artistas.all %}
-                                                {{ artista }}
-                                                {%if forloop.counter != 1%}
+                                                 {%if forloop.counter != 1%}
                                                     ,
                                                 {% endif %}
+                                                {{ artista }}
+
                                             {% endfor %}
                                         </td>
                                         <td class="td-remove">

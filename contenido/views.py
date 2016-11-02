@@ -41,14 +41,28 @@ class AudiosView(ListView):
         context = super(AudiosView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
-        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk)
+        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).prefetch_related('artistas').all()
         if not self.artista.user  is None :
             self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
             context['artistas_que_sigo'] = self.artistas_que_sigo
 
+        self.audios_list = []
+        for audio in self.audios:
+            audio_item = {}
+            audio_item["audio"] = audio
+            nombres = ""
+            for artista in audio.artistas.all():
+                if len(nombres) > 0:
+                    nombres = nombres + ", "
+                nombres = nombres + artista.nom_artistico
+
+            audio_item["artistas"] = nombres
+            self.audios_list.append(audio_item)
+
         context['artist'] = self.artista
         context['albums'] = self.albums
         context['audios'] = self.audios
+        context['audios_list']=self.audios_list
         return context
 
 
@@ -292,6 +306,33 @@ def upload_song_view(request):
     audio.save()
     messages.success(request, '¡El audio fue agregado exitosamente!')
     return HttpResponseRedirect('/song/' + str(audio.id))
+
+
+def upload_album_view(request):
+    # Data from template
+    album_name = request.POST.get('upload_album_name')
+    album_year = request.POST.get('upload_album_year')
+    image_file = request.FILES['upload_album_img_file'].read()
+    artista = Artista.objects.get(user=request.user)
+    image_file_name = uuid.uuid4().urn[9:] + '.png'
+
+    # S3
+    conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
+    bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+    k = Key(bucket)
+    k.key = 'images/' + image_file_name
+    k.set_contents_from_file(BytesIO(image_file), policy='public-read')
+
+    # Model
+    album = Album()
+    album.nom_album = album_name
+    album.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
+    album.fec_creacion_album = datetime.datetime(int(album_year), 1, 1, 0, 0)
+    album.artista = artista
+    album.save()
+
+    messages.success(request, '¡El album fue agregado exitosamente!')
+    return HttpResponseRedirect('/album/' + str(album.id))
 
 
 def comentario_view(request):

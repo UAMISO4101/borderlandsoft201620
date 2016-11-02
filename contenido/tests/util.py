@@ -1,11 +1,17 @@
+# - *- coding: utf-8 - *-
+
 class Util:
     def __init__(self, site):
         self._site = site
 
     def set_text(self, key, string):
-        nombre = self._site.browser.find_element_by_id(key)
-        nombre.clear()
-        nombre.send_keys(string)
+        obj = self._site.browser.find_element_by_id(key)
+        obj.clear()
+        obj.send_keys(string)
+
+    def get_class_attr(self, key):
+        obj = self._site.browser.find_element_by_id(key)
+        return obj.get_attribute('class')
 
     def set_click(self, key):
         link = self._site.browser.find_element_by_id(key)

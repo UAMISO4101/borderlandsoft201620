@@ -1,3 +1,5 @@
+# - *- coding: utf-8 - *-
+
 from unittest import TestCase
 from selenium import webdriver
 from contenido.tests.util import Util

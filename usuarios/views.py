@@ -1,3 +1,4 @@
+from contenido.models import Artista
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.template.context_processors import csrf
@@ -30,6 +31,8 @@ class RegistroUsuario(CreateView):
                  new_user = authenticate(username=form.cleaned_data['username'],
                                          password=form.cleaned_data['password1'],
                                          )
+                 artista = Artista(nom_artistico=form.cleaned_data['username'])
+                 artista.save()
                  login(request, new_user)
                  return HttpResponseRedirect(reverse('homepage'))
             else:
@@ -40,6 +43,3 @@ class RegistroUsuario(CreateView):
                 token['form'] = form
 
                 return render(request, 'register.html', {'form': form})
-
-
-

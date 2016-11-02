@@ -225,13 +225,30 @@ def follow_view(request):
     return HttpResponse(message)
 
 @csrf_exempt
+def unfollow_view(request):
+    if request.is_ajax():
+        artist_id = request.POST.get("artista_id")
+        artista = Artista.objects.get(pk=artist_id)
+        try:
+            artista.seguidores.remove(User.objects.get(id=request.user.id))
+            message = "SUCCESS"
+            return HttpResponse(message)
+        except:
+            message = "NO OK"
+            return HttpResponse(message)
+    else:
+        message = "NO OK"
+    return HttpResponse(message)
+
+
+@csrf_exempt
 def is_follower_view(request):
     if request.is_ajax():
         if request.user.is_authenticated():
             current_user = request.user.id
             user_id = request.POST.get("user_id")
             artista = Artista.objects.get(user=current_user)
-            if artista.seguidores.objects.filter(user__pk=user_id).count()>0:
+            if artista.seguidores.filter(user__pk=user_id).count()>0:
                 message=True
                 return HttpResponse(message)
 

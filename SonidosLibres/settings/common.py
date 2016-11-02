@@ -18,7 +18,7 @@ PROJECT_PACKAGE = Path(__file__).resolve().parent.parent
 
 # The full path to the repository root.
 BASE_DIR = PROJECT_PACKAGE.parent
-PROJECT_ROOT = PROJECT_PACKAGE # os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = PROJECT_PACKAGE  # os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -112,7 +112,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 # Nombre de la carpeta que crea
-STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles')) # os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles'))  # os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Ruta que apunta los archivos en el front
 STATIC_URL = '/static/'
@@ -128,8 +128,8 @@ DATABASES = {
     'default': {}
 }
 
-LOGIN_REDIRECT_URL= reverse_lazy('homepage')
-LOGOUT_REDIRECT_URL= reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('homepage')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -148,7 +148,6 @@ EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
 
-
 AUTHENTICATION_BACKENDS = (
     # Facebook
     'social.backends.facebook.FacebookAppOAuth2',
@@ -158,8 +157,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-SOCIAL_AUTH_FACEBOOK_KEY=os.environ['FACEBOOK_KEY']
-SOCIAL_AUTH_FACEBOOK_SECRET=os.environ['FACEBOOK_SECRET']
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ['FACEBOOK_KEY']
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['FACEBOOK_SECRET']
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -170,4 +169,3 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
 
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-

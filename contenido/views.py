@@ -41,14 +41,28 @@ class AudiosView(ListView):
         context = super(AudiosView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
-        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk)
+        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).prefetch_related('artistas').all()
         if not self.artista.user  is None :
             self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
             context['artistas_que_sigo'] = self.artistas_que_sigo
 
+        self.audios_list = []
+        for audio in self.audios:
+            audio_item = {}
+            audio_item["audio"] = audio
+            nombres = ""
+            for artista in audio.artistas.all():
+                if len(nombres) > 0:
+                    nombres = nombres + ", "
+                nombres = nombres + artista.nom_artistico
+
+            audio_item["artistas"] = nombres
+            self.audios_list.append(audio_item)
+
         context['artist'] = self.artista
         context['albums'] = self.albums
         context['audios'] = self.audios
+        context['audios_list']=self.audios_list
         return context
 
 

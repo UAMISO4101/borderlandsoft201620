@@ -93,8 +93,8 @@
                             <div class="row">
                                 <br>
                                 <div class="col-sm-6 box">
-                                    {% for audio in audios %}
-                                        {% include "partials/audio-detail.html" with audio_name=audio.nom_audio audio_image=audio.val_imagen artist=artist audioid=audio.id%}
+                                    {% for audio_item in audios_list %}
+                                        {% include "partials/audio-detail.html" with audio_name=audio_item.audio.nom_audio audio_image=audio_item.audio.val_imagen artist=audio_item.artistas audioid=audio_item.audio.id%}
                                     {% endfor %}
                                 </div>
                             </div>

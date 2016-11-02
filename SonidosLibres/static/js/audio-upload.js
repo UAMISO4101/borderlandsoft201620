@@ -11,7 +11,7 @@ $(document).ready(function () {
      $.validator.messages.required = '';
      $.validator.messages.number = '';
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg != value;
+        return arg !== value;
      }, "");
     $('#audio_upload_form').validate({
         rules: {

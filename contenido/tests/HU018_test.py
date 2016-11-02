@@ -30,3 +30,19 @@ class HU018Test(TestCase):
         self.browser.implicitly_wait(2)
         self._util.set_click('btnCloseAlbumModal')
         self.assertIn("modal fade", self._util.get_class_attr("newAlbum"))
+
+    def ingresar_album(self, name, file):
+        script = "document.getElementById('inputFileAlbumImg').style.display = "
+        self.abrir_modal_agregar_album()
+        self.browser.implicitly_wait(2)
+        self.browser.execute_script(script + "'block';")
+        self._util.set_text('inputFileAlbumImg', file)
+        self.browser.execute_script(script + "'none';")
+        self._util.set_text('txtNombreAlbum', name)
+        self.browser.find_element_by_xpath("//select[@name='upload_album_year']/option[text()='2016']").click()
+        self._util.set_click('btnSaveAlbum')
+        self.browser.implicitly_wait(2)
+
+    def ingresar_album_sin_nombre(self):
+        self.ingresar_album('', 'C:\img.png')
+        self.assertIn("form-group has-error", self._util.get_class_attr("formGroupNombreAlbum"))

@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^api/', include(urlpatterns)),
     url(r'^unlike/', views.unlike_view, name='unlike'),
     url(r'^upload/song/', views.upload_song_view, name='upload-song'),
+    url(r'^upload/album/', views.upload_album_view, name='upload-album'),
     url(r'^comment-add/', login_required(views.comentario_view), name="comment_add"),
     # Python Social Auth URLs
     url('', include('django.contrib.auth.urls', namespace='auth')),

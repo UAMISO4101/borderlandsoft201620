@@ -24,3 +24,9 @@ class HU018Test(TestCase):
         self._util.set_click('addNewAlbumBtn')
         self.browser.implicitly_wait(2)
         self.assertIn(self._util.get_class_attr("newAlbum"), "modal fade in")
+
+    def abrir_y_cerrar_modal_agregar_album(self):
+        self.abrir_modal_agregar_album()
+        self.browser.implicitly_wait(2)
+        self._util.set_click('btnCloseAlbumModal')
+        self.assertIn("modal fade", self._util.get_class_attr("newAlbum"))

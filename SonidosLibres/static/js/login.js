@@ -14,8 +14,15 @@ $(document).ready(function () {
             username: {
                 required: true,
             },
-            password:{
-                required:true,
+            password: {
+                required: true,
+                minlength: 9,
+            },
+        }, messages: {
+            username: "Por favor ingrese su usuario",
+            password: {
+                required:"Por favor ingrese su contrase&ntilde;a",
+                minlength:"La longitud m&iacute;nima es de 9 caracteres",
             },
         }, highlight: function(element) {
             $(element).parent().addClass('has-error');

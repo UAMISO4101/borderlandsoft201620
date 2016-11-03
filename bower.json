@@ -22,7 +22,9 @@
     "bootstrap-rating-input": "^0.4.0",
     "normalize-css": "^4.2.0",
     "jquery2": "jquery#2.2.4",
-    "jquery-validation": "^1.15.1"
+    "jquery-validation": "^1.15.1",
+    "jquery-ui": "^1.12.1",
+    "datetimepicker": "^2.3.7"
   },
   "resolutions": {
     "font-awesome": "^4.6.3"

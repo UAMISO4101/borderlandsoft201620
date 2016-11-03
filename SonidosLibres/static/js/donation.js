@@ -32,8 +32,9 @@ $(document).ready(function () {
             $(element).parent().addClass('has-error');
         }, unhighlight: function(element) {
             $(element).parent().removeClass('has-error');
+        }, errorPlacement: function(error, element) {
         },
-        submitHandler: function (form) {
+        submitHandler: function () {
             document.getElementById('donation_form').submit()
             return false;
         }

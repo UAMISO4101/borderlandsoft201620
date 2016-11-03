@@ -1,5 +1,4 @@
 """SonidosLibres URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
 Examples:
@@ -18,6 +17,10 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from contenido import views
 from django.contrib.auth.views import login, logout_then_login
+from django.conf.urls.static import static
+from .router import urlpatterns
+from .settings import common
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^$', views.BuscadorView.as_view(), name="homepage"),
@@ -36,4 +39,13 @@ urlpatterns = [
     url(r'^donation/', views.donation_view, name="donation"),
     url(r'^song/(?P<song_id>[0-9]+)/$', views.SongView.as_view(), name='song'),
     url(r'^like/', views.like_view, name='like'),
-]
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(urlpatterns)),
+    url(r'^unlike/', views.unlike_view, name='unlike'),
+    url(r'^upload/song/', views.upload_song_view, name='upload-song'),
+    url(r'^upload/album/', views.upload_album_view, name='upload-album'),
+    url(r'^comment-add/', login_required(views.comentario_view), name="comment_add"),
+    # Python Social Auth URLs
+    url('', include('django.contrib.auth.urls', namespace='auth')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
+]+static(common.MEDIA_URL, document_root=common.MEDIA_ROOT)

@@ -10,7 +10,7 @@
         {% endif %}
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><a href="{% url 'song' audioid %}">{{ audio_name }}</a></h4>
+        <span class="media-heading artist-detail-title"><a href="{% url 'song' audioid %}">{{ audio_name }}</a></span>
         {{ artist }}
     </div>
 </div>

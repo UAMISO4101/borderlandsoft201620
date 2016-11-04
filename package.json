@@ -1,7 +1,7 @@
 {
   "name": "sonidoslibres",
   "version": "1.0.0",
-  "description": "",
+  "description": "[ ![Codeship Status for UAMISO4101/borderlandsoft201620](https://codeship.com/projects/a4929710-8204-0134-53cf-2ebb60898159/status?branch=development)](https://codeship.com/projects/182369)",
   "main": "index.js",
   "engines": {
     "node": "4.6.0"
@@ -26,5 +26,6 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-sass": "^1.2.1",
     "load-grunt-tasks": "^3.5.2"
-  }
+  },
+  "devDependencies": {}
 }

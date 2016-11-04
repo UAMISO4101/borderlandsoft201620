@@ -1,18 +1,24 @@
 {% load static %}
 <div class="media">
     <div class="media-left">
-        {% if 1 == 1 %}
+        {% if artist_image.strip == "" or  artist_image == null %}
             <div class="detail-img artist-img si50 text-center">
                 <i class="fa fa-user"></i>
             </div>
         {% else %}
-            <img class="detail-img si50" src="{% static "img/examples/daft-punk.jpg" %}"  >
+            <img class="detail-img si50" src="{{ artist_image }}"  >
         {% endif %}
     </div>
     <div class="media-body">
-        <span class="media-heading artist-detail-title"><a href="/user/1">Daft Punk</a></span>
+        <span class="media-heading artist-detail-title">
+            {% if artist_id %}
+                <a href="{% url 'user' artist_id %}">{{ artist_name }}</a>
+            {% else %}
+                <a href="#">{{user_name}}</a>
+            {% endif %}
+        </span>
         {% if not is_comment %}
-            35 obras
+
         {% else %}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum est id eros sagittis, eu volutpat elit consequat.
             Phasellus ut odio ac lorem molestie blandit. Aliquam volutpat felis ex, consequat convallis leo molestie ac. Suspendisse

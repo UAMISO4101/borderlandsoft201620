@@ -2,16 +2,17 @@
 
 
 {% block content %}
-    <div class="main-pic {% block pic %}register-pic{% endblock %}">
+{#    <div class="main-pic {% block pic %}register-pic{% endblock %}">#}
         <div class="container auth-form">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5 col-md-4 box box-transparent">
                     <h3>{% block title %}{% endblock %}</h3>
                     <form novalidate>
-                        <a class="btn btn-block btn-social btn-facebook btn-tall">
+                        <a class="btn btn-block btn-social btn-facebook btn-tall" onclick="login();" >
                             <span class="fa fa-facebook"></span>
                             {% block facebook %}{% endblock %}
                         </a>
+
                         <div class="text-divider">
                             <div class="text-center">
                                 <span>o</span>
@@ -23,5 +24,5 @@
                 </div>
             </div>
         </div>
-    </div>
+{#    </div>#}
 {% endblock %}

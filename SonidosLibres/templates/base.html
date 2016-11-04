@@ -19,96 +19,99 @@
 </head>
 <body>
 
-{#Navbar#}
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/" target="_self"><span class="title-part1">Sonidos</span><span class="title-part2">Libres</span></a>
-        </div>
+<div class="cc {% block bodyClass %}{% endblock %}">
+    {#Navbar#}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" target="_self"><span class="title-part1">Sonidos</span><span class="title-part2">Libres</span></a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
-            <form class="navbar-form navbar-left" action="/" method="GET">
-                <div class="input-group search-box">
-                    <input type="text" class="form-control form-bootstrap" placeholder="Busca cualquier obra o artista" name="q" value="{{ filtro|escape }}">
-                    <span class="input-group-btn">
+                <form class="navbar-form navbar-left" action="/" method="GET">
+                    <div class="input-group search-box">
+                        <input type="text" class="form-control form-bootstrap" placeholder="Busca cualquier obra o artista" name="q" value="{{ filtro|escape }}">
+                        <span class="input-group-btn">
                         <button type="submit" class="btn btn-sonidoslibres"><i class="fa fa-search"></i></button>
                     </span>
+                    </div>
+                </form>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="addObjectMenu">
+                                <i class="fa fa-upload nav-icon"></i> Agregar <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#newAudio" data-toggle="modal"><i class="fa fa-music nav-icon"></i> Audio</a></li>
+                                <li><a href="#newAlbum" data-toggle="modal" id="addNewAlbumBtn"><i class="fa fa-circle-thin nav-icon"></i> Album</a></li>
+                                {#                            <li><a href="#"><i class="fa fa-list nav-icon"></i> Lista de Reproducción</a></li>#}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {#<img class="circle img-small" src="{% static "img/examples/zuckerberg.jpg" %}" alt="">#}
+                                {{ user.get_username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+{#                                <li><a href="/user/1">Ver mi Perfil</a></li>#}
+{#                                <li><a href="#">Editar Información</a></li>#}
+{#                                <li role="separator" class="divider"></li>#}
+                                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="/usuarios/register">Registrarse</a></li>
+                        <li><a href="/accounts/login/">Iniciar Sesión</a></li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="alerts">
+        {#Alerta general#}
+        {% for message in messages %}
+            <div class="alert alert-dismissible main-alert alert-{{ message.tags }}" role="alert">
+                <div class="icon-alert"><i class="fa"></i></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="text-alert">
+                    <strong>¡Listo!</strong> {{ message }}
                 </div>
-            </form>
+            </div>
+        {% endfor %}
+    </div>
 
+    {#Body#}
+    <div class="body {% block paddingTopBody %}{% endblock %}">
+        {% block content %}{% endblock %}
+    </div>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-upload nav-icon"></i>
-                            Agregar <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#newAudio" data-toggle="modal"><i class="fa fa-music nav-icon"></i> Audio</a></li>
-                            <li><a href="#newAlbum" data-toggle="modal"><i class="fa fa-circle-thin nav-icon"></i> Album</a></li>
-{#                            <li><a href="#"><i class="fa fa-list nav-icon"></i> Lista de Reproducción</a></li>#}
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img class="circle img-small" src="{% static "img/examples/zuckerberg.jpg" %}" alt="">
-                            {{ user.get_username }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/user/1">Ver mi Perfil</a></li>
-                            <li><a href="#">Editar Información</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li><a href="/usuarios/register">Registrarse</a></li>
-                    <li><a href="/accounts/login/">Iniciar Sesión</a></li>
-                {% endif %}
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-<div class="alerts">
-    {#Alerta general#}
-    {% for message in messages %}
-        <div class="alert alert-dismissible main-alert alert-{{ message.tags }}" role="alert">
-            <div class="icon-alert"><i class="fa"></i></div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="text-alert">
-                <strong>¡Listo!</strong> {{ message }}
+    {#Footer#}
+    <footer>
+        <div>
+            <div class="container">
+                <div class="pull-left">
+                    <img src="{% static "img/uniandes-white.png" %}" width="150px" alt="">
+                </div>
+                <div class="pull-right margin-top-10">
+                    <small>BorderlandSoft &copy; 2016</small>
+                </div>
             </div>
         </div>
-    {% endfor %}
+    </footer>
 </div>
-
-
-<div class="body {% block paddingTopBody %}{% endblock %}">
-    {% block content %}{% endblock %}
-</div>
-
-{#Footer#}
-<footer>
-    <div class="container">
-        <div class="pull-left">
-            <img src="{% static "img/uniandes-white.png" %}" width="150px" alt="">
-        </div>
-        <div class="pull-right margin-top-10">
-            <small>BorderlandSoft &copy; 2016</small>
-        </div>
-    </div>
-</footer>
 
 {#Includes#}
 {% include "modals/audio-form.html" with id="newAudio" title="Nuevo audio" %}
@@ -118,7 +121,10 @@
 <script src="{% block jquery %}{% static "js/lib/jquery/dist/jquery.js" %}{% endblock %}" type="text/javascript"></script>
 <script src="{% static "js/lib/bootstrap/dist/js/bootstrap.min.js" %}" type="text/javascript"></script>
 <script src="{% static "js/lib/jquery-validation/dist/jquery.validate.min.js" %}" type="text/javascript"></script>
+<script src="{% static "js/lib/jquery-validation/dist/additional-methods.min.js" %}" type="text/javascript"></script>
 <script src="{% static "js/common/form.js" %}" type="text/javascript"></script>
+<script src="{% static "js/audio-upload.js" %}" type="text/javascript"></script>
+<script src="{% static "js/album-upload.js" %}" type="text/javascript"></script>
 {% block pagescripts %}{% endblock %}
 
 </body>

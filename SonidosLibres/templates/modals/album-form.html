@@ -7,37 +7,37 @@
                 <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
             </div>
             <div class="modal-body">
-                <form novalidate>
-                    <div class="form-group input-group">
-                        <label class="input-group-btn">
-                            <span class="btn btn-sonidoslibres btn-4 btn-file">
-                                Seleccionar audio&hellip; <input type="file" style="display: none;">
-                            </span>
-                        </label>
-                        <input type="text" class="form-control" readonly>
-                    </div>
+                <form id="album_upload_form" action="{% url 'upload-album'%}" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
                     <div class="media">
                         <div class="media-left">
-
-                            {% if 1 == 1 %}
-                                <div class="detail-img album-img album-normal text-center">
-                                    <i class="fa fa-music"></i>
-                                    <i class="fa fa fa-circle-thin"></i>
-                                </div>
-                            {% else %}
-                                <img class="detail-img album-img album-normal" src=""  >
-                            {% endif %}
-
-                            <label class="btn btn-block btn-default">
-                                Agregar imágen&hellip; <input type="file" style="display: none;">
-                            </label>
+                            {#                            {% if 1 == 1 %}#}
+                            {#                                <div class="detail-img album-img album-normal text-center">#}
+                            {#                                    <i class="fa fa-music"></i>#}
+                            {#                                    <i class="fa fa fa-circle-thin"></i>#}
+                            {#                                </div>#}
+                            {#                            {% else %}#}
+                            {#                                <img class="detail-img album-img album-normal" src=""  >#}
+                            {#                            {% endif %}#}
+                            {##}
+                            {#                            <label class="btn btn-block btn-default">#}
+                            {#                                Agregar imágen&hellip; <input type="file" id="albumImgInputFile" style="display: none;">#}
+                            {#                            </label>#}
+                            <div class="form-group input-group" id="formGroupAlbumImg">
+                                <img id="upload_img_file_album" class="detail-img si200" src="http://hypnotherapista.com/wp/wp-content/plugins/ldd-directory-lite/public/images/noimage.png">
+                                <label class="btn btn-block btn-sonidoslibres btn-4 btn-file">
+                                    Agregar imágen&hellip; <input type="file" id="inputFileAlbumImg" name="upload_album_img_file" style="display: none;" onchange="document.getElementById('upload_img_file_album').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+                                <input type="text" class="form-control" id="txtAlbumImgPath" name="upload_album_img">
+                            </div>
                         </div>
+
                         <div class="media-body">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nombre">
+                            <div class="form-group" id="formGroupNombreAlbum">
+                                <input type="text" class="form-control" placeholder="Nombre" id="txtNombreAlbum" name="upload_album_name">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="year_dd">
+                                <select class="form-control" name="upload_album_year">
                                     <option>Año</option>
                                     {% for i in "x"|rjust:"17" %}
                                         <option>{{ forloop.counter|add:1999 }}</option>
@@ -49,8 +49,8 @@
                 </form>
             </div>
             <div class="modal-footer bg-2">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" form="donation_form" class="btn btn-sonidoslibres btn-4">Agregar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCloseAlbumModal">Cerrar</button>
+                <button type="submit" form="album_upload_form" class="btn btn-sonidoslibres btn-4" id="btnSaveAlbum">Agregar</button>
             </div>
         </div>
     </div>

@@ -1,3 +1,5 @@
+# - *- coding: utf-8 - *-
+
 """
 Django settings for SonidosLibres project.
 
@@ -11,13 +13,14 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 from pathlib import Path
 from django.core.urlresolvers import reverse_lazy
+import os
 
 # Utilities
 PROJECT_PACKAGE = Path(__file__).resolve().parent.parent
 
 # The full path to the repository root.
 BASE_DIR = PROJECT_PACKAGE.parent
-PROJECT_ROOT = PROJECT_PACKAGE # os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = PROJECT_PACKAGE  # os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -42,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +72,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Python Social Auth Context Processors
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
+                'SonidosLibres.templatetags.extras.admin_media'
             ],
         },
     },
@@ -105,7 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 # Nombre de la carpeta que crea
-STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles')) # os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = str(PROJECT_ROOT.joinpath('staticfiles'))  # os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Ruta que apunta los archivos en el front
 STATIC_URL = '/static/'
@@ -121,5 +131,44 @@ DATABASES = {
     'default': {}
 }
 
-LOGIN_REDIRECT_URL= reverse_lazy('homepage')
-LOGOUT_REDIRECT_URL= reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('homepage')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+}
+
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
+AWS_ACCESS_SECRET_KEY = os.environ['AWS_ACCESS_SECRET_KEY']
+MEDIA_URL = "https://%s.s3.amazonaws.com/"# % AWS_STORAGE_BUCKET_NAME
+MEDIA_ROOT = ''
+
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
+
+
+AUTHENTICATION_BACKENDS = (
+    # Facebook
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ['FACEBOOK_KEY']
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['FACEBOOK_SECRET']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
+
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False

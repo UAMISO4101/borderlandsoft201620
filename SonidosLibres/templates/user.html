@@ -35,13 +35,20 @@
                         <div class="col-sm-4 ">
                             <div class="btn-group pull-left" role="group" aria-label="...">
                                 <button type="button" class="btn btn-sonidoslibres btn-3 hidden" data-toggle="tooltip" data-placement="bottom" title="Dar autoría a obra"><i class="fa fa-copyright fa-lg"></i></button>
-{#                                <button type="button" class="btn btn-sonidoslibres btn-3 active" data-toggle="tooltip" data-placement="bottom" title="Dejar de Seguir"><i class="fa fa-heart fa-lg"></i></button>#}
+                                <button type="button" id="followButton"
+                                        {% if user_follow %}
+                                            class="btn btn-sonidoslibres btn-3 active disabled" title="Estas siguiendo"
+                                        {% else %}
+                                            class="btn btn-sonidoslibres btn-3 inactive" title="Seguir" onclick="follow_artist({{ artist.id }})"
+                                        {% endif %}
+                                            data-toggle="tooltip" data-placement="bottom"><i class="fa fa-heart fa-lg"></i>
+                                </button>
                                 <button type="button" id="donationButton" data-target="#donationModal" class="btn btn-sonidoslibres btn-3" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Donar"><i class="fa fa-money fa-lg"></i></button>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="song-metadata pull-right">
-                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Seguidores"><i class="fa fa-users"></i> {{artist.seguidores.all|length }}</div>
+                                <div class="" data-toggle="tooltip" data-placement="bottom" title="Seguidores"><i class="fa fa-users"></i><span id="artist_followers_val_counter"> {{artist.seguidores.all|length }}</span></div>
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Estás siguiendo"><i class="fa fa-eye"></i> {{artistas_que_sigo|length}}</div>
                                 <div class="" data-toggle="tooltip" data-placement="bottom" title="Ubicación"><i class="fa fa-globe"></i> {{artist.nom_ciudad}}, {{artist.nom_pais}}</div>
                                 <div class="hidden" data-toggle="tooltip" data-placement="bottom" title="Convocatorias ganadas"><i class="fa fa-trophy"></i> 1</div>

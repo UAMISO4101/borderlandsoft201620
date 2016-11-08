@@ -200,7 +200,6 @@ function like_song(song_id){
     },
     success: function(data){
       $('#likeButton').removeClass('inactive').addClass('active');
-      // $('#likeButton').tooltip('hide').attr('data-original-title', "Ya no me Gusta").tooltip('fixTitle');
       $('#likeButton').attr('data-original-title', "Ya no me Gusta");
       $("#likeButton").attr("onclick","unlike_song("+song_id+")");
       $('#song_likes_val_counter').empty();

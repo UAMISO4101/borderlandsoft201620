@@ -245,6 +245,9 @@ def follow_view(request):
         artista.save()
         total_followers = artista.seguidores.count()
         message = total_followers
+        send_mail('[SonidosLibres] Notificación de contenido',
+                  '!Enhorabuena ' + artista.nom_artistico + '! Un nuevo usuario te esta siguiendo.',
+                  'Notifications SL <notification@sonidoslibres.com>', [artista.email])
     else:
         message = "ERROR"
     return HttpResponse(message)

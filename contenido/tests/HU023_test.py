@@ -6,7 +6,7 @@ from contenido.models import Artista
 # Create your tests here.
 
 
-class FollowTest(TestCase):
+class SendNotificationFollowTest(TestCase):
     def setUp(self):
         # Every test needs access to the request factory.
         artista = Artista()
@@ -15,7 +15,7 @@ class FollowTest(TestCase):
         artista.nom_ciudad = 'Ciudad'
         artista.save()
 
-    def follow_test(self):
+    def follow_notification_test(self):
         artista = Artista.objects.get(pk=1)
         total_follow_before = artista.seguidores.count()
         c = Client()

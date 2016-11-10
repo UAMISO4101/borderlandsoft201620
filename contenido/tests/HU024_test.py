@@ -14,7 +14,6 @@ class SendNotificationLikeTest(TestCase):
         audio.val_recurso = "http://la...."
         audio.fec_entrada_audio = "2016-10-08"
         audio.save()
-        audio.save()
 
     def like_notification_test(self):
         audio = Audio.objects.get(pk=1)

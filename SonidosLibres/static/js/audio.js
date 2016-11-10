@@ -27,8 +27,7 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
     $("[data-hover='tooltip']").tooltip();
     $('.rating-input').empty();
-    /*var
-*/
+
     getRatingsByAudio();
     getAudios();
     getComentarios();
@@ -36,7 +35,9 @@ $(function () {
 
 });
 
-
+/**
+ * Obtiene la última calificación de un audio por usuario
+ */
 function getUltimaCalificacion(){
         var numStarts = 0;
         var songId = $('#songId').val();
@@ -62,6 +63,9 @@ function getUltimaCalificacion(){
         });
  }
 
+/**
+ * Obtiene los Ratings por audio
+ */
 function getRatingsByAudio(){
         var songId = backVars.songId; // $("#songId").val();
         $.ajax({
@@ -87,12 +91,18 @@ function getRatingsByAudio(){
                     $('#classPromedio').empty();
                     $('#classPromedio').append(average);
                 }
+                else{
+                    $('#classPromedio').empty();
+                }
                 $('#smallCalificaciones').empty();
                 $('#smallCalificaciones').append(txtCalificacion);
             }
         });
     }
 
+/**
+ * Obtener audios de un artista
+ */
 function getAudios() {
     var songId = backVars.songId; // $("#songId").val();
     $.ajax({
@@ -120,6 +130,10 @@ function getAudios() {
     });
 }
 
+/**
+ * Obtiene los artistas relacionados con un audio
+ * @param artista
+ */
 function getArtistas(artista) {
     $.ajax({
         type:"GET",
@@ -178,7 +192,6 @@ function getAlbums(album) {
 }
 
 function like_song(song_id){
-
   $.ajax({
     type:"POST",
     url:"/like/",
@@ -187,7 +200,6 @@ function like_song(song_id){
     },
     success: function(data){
       $('#likeButton').removeClass('inactive').addClass('active');
-      // $('#likeButton').tooltip('hide').attr('data-original-title', "Ya no me Gusta").tooltip('fixTitle');
       $('#likeButton').attr('data-original-title', "Ya no me Gusta");
       $("#likeButton").attr("onclick","unlike_song("+song_id+")");
       $('#song_likes_val_counter').empty();
@@ -223,6 +235,9 @@ function unlike_song(song_id){
   });
 }
 
+/**
+ * Agregar un comentario a un sonido por usuario
+ */
 function agregarComentario(){
     var songId = $('#songId').val();
     var userId = $('#userId').val();
@@ -260,9 +275,14 @@ function calificar() {
     var calificacion = $('.rating').val();
     var songId = $('#songId').val();
     var userId = $('#userId').val();
-    //$('.rating').val(calificacion);
 
-    getRatingsByAudioAutor(songId, userId);
+    var calificacionAnterior = getRatingsByAudioAutor(songId, userId);
+    if(calificacionAnterior != undefined && calificacion === calificacionAnterior.toString()){
+        $('.rating-input').empty();
+        getRatingsByAudio();
+        getUltimaCalificacion();
+        return;
+    }
 
     item = {}
     item ["val_rating"] = calificacion;
@@ -290,13 +310,16 @@ function calificar() {
         }
     });
 
-
+    /**
+     * elimina la calificación de un audio por usuario
+     * @param idRating
+     */
     function eliminarCalificacion(idRating) {
         $.ajax({
             type: "DELETE",
             url: '/api/rate-delete/' + idRating,
             dataType: "json",
-            data: JSON.stringify(item),
+            //data: JSON.stringify(item),
             contentType: "application/json; charset=utf-8",
             "beforeSend": function (xhr, settings) {
                 $.ajaxSettings.beforeSend(xhr, settings);
@@ -310,17 +333,27 @@ function calificar() {
         });
     }
 
+    /**
+     * Obtiene las calificaciones de un audio por usuario
+     * @param audioId
+     * @param autorId
+     * @param calificacion
+     */
     function getRatingsByAudioAutor(audioId, autorId) {
+        var calificacionAnterior;
         $.ajax({
             type: "GET",
             contentType: "application/json; charset=utf8",
             url: "/api/ratebyuseraudio/" + audioId + "/" + autorId + "/?format=json",
             success: function (response) {
                 for (var i = 0; i <= response.length - 1; i++) {
-                    eliminarCalificacion(response[i].id)
+                    eliminarCalificacion(response[i].id);
+                    calificacionAnterior = response[i].val_rating;
                 }
-            }
+            },
+            async: false,
         });
+        return calificacionAnterior;
     }
 }
 

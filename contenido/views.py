@@ -17,7 +17,6 @@ import uuid
 import datetime
 from django.conf import settings
 from django.core.mail import send_mail
-from django.core.mail import EmailMultiAlternatives
 
 
 # Create your views here.
@@ -42,7 +41,7 @@ class AudiosView(ListView):
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
         self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).prefetch_related('artistas').all()
-        if not self.artista.user  is None :
+        if not self.artista.user is None:
             self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
             context['artistas_que_sigo'] = self.artistas_que_sigo
 
@@ -62,7 +61,25 @@ class AudiosView(ListView):
         context['artist'] = self.artista
         context['albums'] = self.albums
         context['audios'] = self.audios
-        context['audios_list']=self.audios_list
+        context['audios_list'] = self.audios_list
+        if self.request.user.is_authenticated():
+            user_id = self.request.user.id
+        else:
+            user_id = 0
+        try:
+            Artista.objects.get(id=int(self.artista.id), seguidores__id=user_id)
+            user_follow = True
+        except Artista.DoesNotExist:
+            user_follow = False
+        try:
+            user_p = User.objects.get(id=int(self.artista.user_id))
+            artista_p = Artista.objects.get(user=user_id)
+            Artista.objects.get(id=int(artista_p.id), seguidores__id=user_p.id)
+            is_following_me = True
+        except Artista.DoesNotExist:
+            is_following_me = False
+        context['user_follow'] = user_follow
+        context['is_following_me'] = is_following_me
         return context
 
 
@@ -230,13 +247,19 @@ def unlike_view(request):
 @csrf_exempt
 def follow_view(request):
     if request.is_ajax():
-        artist_id = request.POST.get("artista_id")
+        artist_id = request.POST.get("artist_id")
         artista = Artista.objects.get(pk=artist_id)
         artista.seguidores.add(User.objects.get(id=request.user.id))
-        message = "SUCCESS"
+        artista.save()
+        total_followers = artista.seguidores.count()
+        message = total_followers
+        send_mail('[SonidosLibres] Notificación de contenido',
+                  '!Enhorabuena ' + artista.nom_artistico + '! Un nuevo usuario te esta siguiendo.',
+                  'Notifications SL <notification@sonidoslibres.com>', [artista.email])
     else:
-        message = "NO OK"
+        message = "ERROR"
     return HttpResponse(message)
+
 
 @csrf_exempt
 def unfollow_view(request):
@@ -262,8 +285,8 @@ def is_follower_view(request):
             current_user = request.user.id
             user_id = request.POST.get("user_id")
             artista = Artista.objects.get(user=current_user)
-            if artista.seguidores.filter(user__pk=user_id).count()>0:
-                message=True
+            if artista.seguidores.filter(user__pk=user_id).count() > 0:
+                message = True
                 return HttpResponse(message)
 
     message = False
@@ -375,10 +398,10 @@ def update_user_social_data(request, *args, **kwargs):
 
         url = 'https://graph.facebook.com/{0}/' \
               '?fields=email,gender,name' \
-              '&access_token={1}'.format(fbuid, access_token,)
+              '&access_token={1}'.format(fbuid, access_token, )
 
         photo_url = "http://graph.facebook.com/%s/picture?type=large" \
-            % kwargs['response']['id']
+                    % kwargs['response']['id']
         request = urllib2.Request(url)
         response = urllib2.urlopen(request).read()
         email = json.loads(response).get('email')

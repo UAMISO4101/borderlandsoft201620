@@ -23,7 +23,9 @@
                         <div class="col-sm-12">
                             <div class="pull-left">
                                 <div><span class="song-title pull-left">{{ artist }}</span>
-{#                                    <small class="bg-sonidoslibres bg-3 bg-artist pull-left">Te está siguiendo</small>#}
+                                    {% if is_following_me %}
+                                        <small class="bg-sonidoslibres bg-3 bg-artist pull-left">Te está siguiendo</small>
+                                    {% endif %}
                                 </div>
                                 <div class="clearfix"></div>
                                 <div><span>{{artist.user.first_name}} {{artist.user.last_name}}</span></div>

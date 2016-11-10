@@ -71,7 +71,15 @@ class AudiosView(ListView):
             user_follow = True
         except Artista.DoesNotExist:
             user_follow = False
+        try:
+            user_p = User.objects.get(id=int(self.artista.user_id))
+            artista_p = Artista.objects.get(user=user_id)
+            Artista.objects.get(id=int(artista_p.id), seguidores__id=user_p.id)
+            is_following_me = True
+        except Artista.DoesNotExist:
+            is_following_me = False
         context['user_follow'] = user_follow
+        context['is_following_me'] = is_following_me
         return context
 
 

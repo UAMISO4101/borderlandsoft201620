@@ -169,7 +169,7 @@ function getUltimaCalificacion(){
                     numStarts = response[i].val_rating;
                     break;
                 }
-                for(var i=1;i<=5;i++)
+                for(i=1;i<=5;i++)
                 {
                     if(i<=numStarts)
                         $(".rating-input").append("<i class='fa fa-star' data-value='"+ i +"'></i>")
@@ -237,7 +237,7 @@ function getAudios() {
             }
 
             if(listAlbums !== null && listAlbums !== undefined && listAlbums !== "") {
-                for (var i = 0; i <= listAlbums.length - 1; i++) {
+                for (i = 0; i <= listAlbums.length - 1; i++) {
                     getAlbums(listAlbums[i]);
                 }
             }
@@ -353,6 +353,31 @@ function calificar() {
     }
 
 
+    /**
+     * elimina la calificación de un audio por usuario
+     * @param idRating
+     */
+    function eliminarCalificacion(idRating) {
+        $.ajax({
+            type: "DELETE",
+            url: "/api/rate-delete/" + idRating,
+            dataType: "json",
+            //data: JSON.stringify(item),
+            contentType: "application/json; charset=utf-8",
+            "beforeSend": function (xhr, settings) {
+                $.ajaxSettings.beforeSend(xhr, settings);
+            },
+            success: function (msg) {
+                console.log(calificacion);
+            },
+            error: function (err) {
+                console.log(err.responseText);
+            }
+        });
+    }
+
+
+
     var calificacion = $(".rating").val();
     var songId = $("#songId").val();
     var userId = $("#userId").val();
@@ -392,28 +417,6 @@ function calificar() {
         }
     });
 
-    /**
-     * elimina la calificación de un audio por usuario
-     * @param idRating
-     */
-    function eliminarCalificacion(idRating) {
-        $.ajax({
-            type: "DELETE",
-            url: "/api/rate-delete/" + idRating,
-            dataType: "json",
-            //data: JSON.stringify(item),
-            contentType: "application/json; charset=utf-8",
-            "beforeSend": function (xhr, settings) {
-                $.ajaxSettings.beforeSend(xhr, settings);
-            },
-            success: function (msg) {
-                console.log(calificacion);
-            },
-            error: function (err) {
-                console.log(err.responseText);
-            }
-        });
-    }
 }
 
 

@@ -23,6 +23,131 @@ $.ajaxSetup({
     }
 });
 
+
+    function getComentarios() {
+        var songId = backVars.songId; // $("#songId").val();
+
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf8",
+            url: "/api/comments-list/" + songId + "/?format=json",
+            success: function (response) {
+                var conteoComentarios = response.length;
+                var divComments = '';
+                for (var i = 0; i <= response.length - 1; i++) {
+                    var comentario = response[i];
+
+                    divComments = divComments + '<div class="media">' +
+                        '<div class="media-left">';
+
+                    if (comentario.autor == null || comentario.autor == "" ||
+                        comentario.autor.profile.val_imagen == null || comentario.autor.profile.val_imagen == "") {
+                        divComments = divComments + '<div class="detail-img artist-img si50 text-center">' +
+                            '<i class="fa fa-user"></i>' +
+                            '</div>';
+                    }
+                    else {
+                        divComments = divComments + '<img class="detail-img si50" src="' + comentario.autor.profile.val_imagen + '">';
+                    }
+                    divComments = divComments + '</div>' +
+                        '<div class="media-body">' +
+                        '<span class="media-heading artist-detail-title"> ';
+                    if (comentario.autor == null || comentario.autor == "" ||
+                        comentario.autor.username == null || comentario.autor.username == "") {
+
+                        divComments = divComments + '<a href="#">Desconocido</a>';
+
+                    } else {
+                        divComments = divComments + '<a href="#">' + comentario.autor.username + '</a>';
+                    }
+
+                    var fechaComenAnt = comentario.fec_creacion_comen;
+                    var fechaComen = fechaComenAnt.replace('January', 'Enero').replace('February', 'Febrero')
+                        .replace('March', 'Marzo').replace('April','Abril').replace('May','Mayo').replace('June','Junio')
+                        .replace('July','Julio').replace('August','Agosto').replace('September','Septiembre')
+                        .replace('October','Octubre').replace('November','Noviembre').replace('December','Diciembre');
+
+                    divComments = divComments + '</span>';
+                    divComments = divComments + comentario.val_comentario;
+                    divComments = divComments + '<div class="date-comment"><small> ' + fechaComen + '</small></div>' ;
+                    divComments = divComments +
+                        '</div>' +
+                        '</div>';
+
+                }
+
+                $('#divComments').html(divComments);
+                $('#spanNumComentarios').html(conteoComentarios);
+            }
+        });
+    }
+
+
+/**
+ * Se obtiene la lista de albums
+ * @param album
+ */
+function getAlbums(album) {
+    console.log(album);
+    var divAlbums = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">'+
+        '<div class="box album-box">'+
+        '<a href="/album/'+ album.id + '">';
+    if(album.val_imagen == null || album.val_imagen == undefined || album.val_imagen.trim() == "") {
+        divAlbums = divAlbums + '<div class="detail-img album-img album-big text-center">' +
+            '<i class="fa fa-music"></i>' +
+            '<i class="fa fa fa-circle-thin"></i>' +
+            '</div>';
+    }
+    else{
+        divAlbums = divAlbums + '<img class="detail-img album-img album-big" src="' + album.val_imagen + '"  >';
+    }
+    divAlbums = divAlbums + '<div class="details-box">'+
+        '<span>'+album.nom_album+'</span>'+
+        '<br>'+
+        '<div class="text-right"><small>'+new Date(album.fec_creacion_album).getFullYear()+'</small></div>'+
+        '</div>'+
+        '</a>'+
+        '</div>'+
+        '</div>';
+
+    $('#divAlbums').append(divAlbums);
+
+}
+
+/**
+ * Obtiene los artistas relacionados con un audio
+ * @param artista
+ */
+function getArtistas(artista) {
+    $.ajax({
+        type:"GET",
+        contentType:"application/json; charset=utf8",
+        url:"/api/audiosbyartista/"+artista.id+"/?format=json",
+        success: function (response) {
+            var conteoObras = response.length;
+            var divArtistas = '<div class="media">' +
+                '<div class="media-left">';
+            if(artista.val_imagen == null || artista.val_imagen == "") {
+                divArtistas = divArtistas + '<div class="detail-img artist-img si50 text-center">' +
+                    '<i class="fa fa-user"></i>' +
+                    '</div>';
+            }
+            else {
+                divArtistas = divArtistas + '<img class="detail-img si50" src="'+artista.val_imagen+'">';
+            }
+            divArtistas = divArtistas +  '</div>' +
+                '<div class="media-body">' +
+                '<span class="media-heading artist-detail-title"><a href="/user/'+ artista.id + '">'+ artista.nom_artistico +'</a></span>' +
+                conteoObras + ' obras' +
+                '</div>' +
+                '</div>';
+
+
+            $('#divArtistas').append(divArtistas);
+        }
+    });
+}
+
 /**
  * Obtiene la última calificación de un audio por usuario
  */
@@ -116,71 +241,6 @@ function getAudios() {
         }
 
     });
-}
-
-/**
- * Obtiene los artistas relacionados con un audio
- * @param artista
- */
-function getArtistas(artista) {
-    $.ajax({
-        type:"GET",
-        contentType:"application/json; charset=utf8",
-        url:"/api/audiosbyartista/"+artista.id+"/?format=json",
-        success: function (response) {
-            var conteoObras = response.length;
-            var divArtistas = '<div class="media">' +
-                '<div class="media-left">';
-            if(artista.val_imagen == null || artista.val_imagen == "") {
-                divArtistas = divArtistas + '<div class="detail-img artist-img si50 text-center">' +
-                    '<i class="fa fa-user"></i>' +
-                    '</div>';
-            }
-            else {
-                divArtistas = divArtistas + '<img class="detail-img si50" src="'+artista.val_imagen+'">';
-            }
-            divArtistas = divArtistas +  '</div>' +
-                '<div class="media-body">' +
-                '<span class="media-heading artist-detail-title"><a href="/user/'+ artista.id + '">'+ artista.nom_artistico +'</a></span>' +
-                conteoObras + ' obras' +
-                '</div>' +
-                '</div>';
-
-
-            $('#divArtistas').append(divArtistas);
-        }
-    });
-}
-
-/**
- * Se obtiene la lista de albums
- * @param album
- */
-function getAlbums(album) {
-    console.log(album);
-    var divAlbums = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">'+
-        '<div class="box album-box">'+
-        '<a href="/album/'+ album.id + '">';
-    if(album.val_imagen == null || album.val_imagen == undefined || album.val_imagen.trim() == "") {
-        divAlbums = divAlbums + '<div class="detail-img album-img album-big text-center">' +
-            '<i class="fa fa-music"></i>' +
-            '<i class="fa fa fa-circle-thin"></i>' +
-            '</div>';
-    }
-    else{
-        divAlbums = divAlbums + '<img class="detail-img album-img album-big" src="' + album.val_imagen + '"  >';
-    }
-    divAlbums = divAlbums + '<div class="details-box">'+
-        '<span>'+album.nom_album+'</span>'+
-        '<br>'+
-        '<div class="text-right"><small>'+new Date(album.fec_creacion_album).getFullYear()+'</small></div>'+
-        '</div>'+
-        '</a>'+
-        '</div>'+
-        '</div>';
-
-    $('#divAlbums').append(divAlbums);
-
 }
 
 function like_song(song_id){
@@ -279,6 +339,7 @@ function calificar() {
     item = {}
     item ["val_rating"] = calificacion;
     item ["audio"] = songId;
+    item ["fec_creacion_rating"] = new Date();
 
     if (userId != null && userId != undefined && userId != 'None') {
         item ["autor"] = userId;
@@ -348,64 +409,6 @@ function calificar() {
         return calificacionAnterior;
     }
 }
-
-    function getComentarios() {
-        var songId = backVars.songId; // $("#songId").val();
-
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf8",
-            url: "/api/comments-list/" + songId + "/?format=json",
-            success: function (response) {
-                var conteoComentarios = response.length;
-                var divComments = '';
-                for (var i = 0; i <= response.length - 1; i++) {
-                    var comentario = response[i];
-
-                    divComments = divComments + '<div class="media">' +
-                        '<div class="media-left">';
-
-                    if (comentario.autor == null || comentario.autor == "" ||
-                        comentario.autor.profile.val_imagen == null || comentario.autor.profile.val_imagen == "") {
-                        divComments = divComments + '<div class="detail-img artist-img si50 text-center">' +
-                            '<i class="fa fa-user"></i>' +
-                            '</div>';
-                    }
-                    else {
-                        divComments = divComments + '<img class="detail-img si50" src="' + comentario.autor.profile.val_imagen + '">';
-                    }
-                    divComments = divComments + '</div>' +
-                        '<div class="media-body">' +
-                        '<span class="media-heading artist-detail-title"> ';
-                    if (comentario.autor == null || comentario.autor == "" ||
-                        comentario.autor.username == null || comentario.autor.username == "") {
-
-                        divComments = divComments + '<a href="#">Desconocido</a>';
-
-                    } else {
-                        divComments = divComments + '<a href="#">' + comentario.autor.username + '</a>';
-                    }
-
-                    var fechaComenAnt = comentario.fec_creacion_comen;
-                    var fechaComen = fechaComenAnt.replace('January', 'Enero').replace('February', 'Febrero')
-                        .replace('March', 'Marzo').replace('April','Abril').replace('May','Mayo').replace('June','Junio')
-                        .replace('July','Julio').replace('August','Agosto').replace('September','Septiembre')
-                        .replace('October','Octubre').replace('November','Noviembre').replace('December','Diciembre');
-
-                    divComments = divComments + '</span>';
-                    divComments = divComments + comentario.val_comentario;
-                    divComments = divComments + '<div class="date-comment"><small> ' + fechaComen + '</small></div>' ;
-                    divComments = divComments +
-                        '</div>' +
-                        '</div>';
-
-                }
-
-                $('#divComments').html(divComments);
-                $('#spanNumComentarios').html(conteoComentarios);
-            }
-        });
-    }
 
 
     $(function () {

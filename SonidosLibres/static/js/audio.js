@@ -23,18 +23,6 @@ $.ajaxSetup({
     }
 });
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-    $("[data-hover='tooltip']").tooltip();
-    $('.rating-input').empty();
-
-    getRatingsByAudio();
-    getAudios();
-    getComentarios();
-    getUltimaCalificacion();
-
-});
-
 /**
  * Obtiene la última calificación de un audio por usuario
  */
@@ -51,7 +39,7 @@ function getUltimaCalificacion(){
                     numStarts = response[i].val_rating;
                     break;
                 }
-                for(i=1;i<=5;i++)
+                for(var i=1;i<=5;i++)
                 {
                     if(i<=numStarts)
                         $('.rating-input').append('<i class="fa fa-star" data-value="'+ i +'"></i>')
@@ -82,7 +70,7 @@ function getRatingsByAudio(){
                 else
                     txtCalificacion = response.length + " calificaciones";
 
-                for(i=0;i<response.length;i++) {
+                for(var i=0;i<response.length;i++) {
                     sumatoria =  sumatoria + response[i].val_rating;
                 }
 
@@ -119,7 +107,7 @@ function getAudios() {
             }
 
             if(listAlbums != null && listAlbums != undefined && listAlbums != "") {
-                for (i = 0; i <= listAlbums.length - 1; i++) {
+                for (var i = 0; i <= listAlbums.length - 1; i++) {
                     getAlbums(listAlbums[i]);
                 }
             }
@@ -164,6 +152,10 @@ function getArtistas(artista) {
     });
 }
 
+/**
+ * Se obtiene la lista de albums
+ * @param album
+ */
 function getAlbums(album) {
     console.log(album);
     var divAlbums = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">'+
@@ -415,3 +407,34 @@ function calificar() {
         });
     }
 
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $("[data-hover='tooltip']").tooltip();
+        $('.rating-input').empty();
+        getRatingsByAudio();
+        getAudios();
+        getComentarios();
+        getUltimaCalificacion();
+    });
+
+
+
+    $(document).ready(function(){
+      $("#calificar").on('click', function(e){
+        var $el = $(this);
+        if($el.data('clicked')){
+          // Previously clicked, stop actions
+          e.preventDefault();
+          e.stopPropagation();
+        }else{
+          calificar();
+          // Mark to ignore next click
+          $el.data('clicked', true);
+          // Unmark after 1 second
+          window.setTimeout(function(){
+            $el.removeData('clicked');
+          }, 300)
+        }
+      });
+    });

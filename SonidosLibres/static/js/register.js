@@ -3,12 +3,12 @@
  */
 
 $(document).ready(function () {
-     $.validator.messages.required = '';
-     $.validator.messages.number = '';
+     $.validator.messages.required = "";
+     $.validator.messages.number = "";
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg != value;
+        return arg !== value;
      }, "");
-    $('#registro_form').validate({
+    $("#registro_form").validate({
         rules: {
             username: {
                 required: true,

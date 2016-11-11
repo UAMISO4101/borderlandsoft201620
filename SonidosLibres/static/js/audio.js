@@ -329,6 +329,30 @@ function agregarComentario(){
  * Consume api rate, para calificar un artista
  */
 function calificar() {
+    /**
+     * Obtiene las calificaciones de un audio por usuario
+     * @param audioId
+     * @param autorId
+     * @param calificacion
+     */
+    function getRatingsByAudioAutor(audioId, autorId) {
+        var calificacionAnterior;
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf8",
+            url: "/api/ratebyuseraudio/" + audioId + "/" + autorId + "/?format=json",
+            success: function (response) {
+                for (var i = 0; i <= response.length - 1; i++) {
+                    eliminarCalificacion(response[i].id);
+                    calificacionAnterior = response[i].val_rating;
+                }
+            },
+            async: false,
+        });
+        return calificacionAnterior;
+    }
+
+
     var calificacion = $(".rating").val();
     var songId = $("#songId").val();
     var userId = $("#userId").val();
@@ -389,29 +413,6 @@ function calificar() {
                 console.log(err.responseText);
             }
         });
-    }
-
-    /**
-     * Obtiene las calificaciones de un audio por usuario
-     * @param audioId
-     * @param autorId
-     * @param calificacion
-     */
-    function getRatingsByAudioAutor(audioId, autorId) {
-        var calificacionAnterior;
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf8",
-            url: "/api/ratebyuseraudio/" + audioId + "/" + autorId + "/?format=json",
-            success: function (response) {
-                for (var i = 0; i <= response.length - 1; i++) {
-                    eliminarCalificacion(response[i].id);
-                    calificacionAnterior = response[i].val_rating;
-                }
-            },
-            async: false,
-        });
-        return calificacionAnterior;
     }
 }
 

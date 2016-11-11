@@ -93,7 +93,6 @@ $.ajaxSetup({
  * @param album
  */
 function getAlbums(album) {
-    console.log(album);
     var divAlbums = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2'>"+
         "<div class='box album-box'>"+
         "<a href='/album/"+ album.id + "'>";
@@ -330,6 +329,29 @@ function agregarComentario(){
  */
 function calificar() {
     /**
+     * elimina la calificación de un audio por usuario
+     * @param idRating
+     */
+    function eliminarCalificacion(idRating) {
+        $.ajax({
+            type: "DELETE",
+            url: "/api/rate-delete/" + idRating,
+            dataType: "json",
+            //data: JSON.stringify(item),
+            contentType: "application/json; charset=utf-8",
+            "beforeSend": function (xhr, settings) {
+                $.ajaxSettings.beforeSend(xhr, settings);
+            },
+            success: function (msg) {
+                console.log(msg);
+            },
+            error: function (err) {
+                console.log(err.responseText);
+            }
+        });
+    }
+
+    /**
      * Obtiene las calificaciones de un audio por usuario
      * @param audioId
      * @param autorId
@@ -351,32 +373,6 @@ function calificar() {
         });
         return calificacionAnterior;
     }
-
-
-    /**
-     * elimina la calificación de un audio por usuario
-     * @param idRating
-     */
-    function eliminarCalificacion(idRating) {
-        $.ajax({
-            type: "DELETE",
-            url: "/api/rate-delete/" + idRating,
-            dataType: "json",
-            //data: JSON.stringify(item),
-            contentType: "application/json; charset=utf-8",
-            "beforeSend": function (xhr, settings) {
-                $.ajaxSettings.beforeSend(xhr, settings);
-            },
-            success: function (msg) {
-                console.log(calificacion);
-            },
-            error: function (err) {
-                console.log(err.responseText);
-            }
-        });
-    }
-
-
 
     var calificacion = $(".rating").val();
     var songId = $("#songId").val();

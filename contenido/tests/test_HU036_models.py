@@ -27,8 +27,8 @@ class CalificacionTest(TestCase):
         self.audio.artistas.add(self.artista)
 
 
-    # Prueba utilizada para el registro de ratings mediante acceso a datos directo
-    def test_rating_registro(self):
+    # Prueba utilizada la eliminación de ratings mediante acceso a datos directo
+    def test_rating_delete(self):
         instance = Ratings.objects.create(val_rating=5, autor=self.usuario_regular,
                                              audio=self.audio)
         self.assertEqual(instance.__str__(), 5)

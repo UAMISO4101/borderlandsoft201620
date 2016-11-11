@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^upload/song/', views.upload_song_view, name='upload-song'),
     url(r'^upload/album/', views.upload_album_view, name='upload-album'),
     url(r'^comment-add/', login_required(views.comentario_view), name="comment_add"),
+    url(r'^follow/', views.follow_view, name='follow'),
     # Python Social Auth URLs
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('', include('social.apps.django_app.urls', namespace='social')),

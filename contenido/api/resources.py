@@ -95,4 +95,5 @@ class ComentariosByAudioViewSet(generics.ListAPIView):
     serializer_class = ComentarioSerializer
 
     def get_queryset(self):
-        return Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen')
+        comentarios = Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen').select_related('autor').all()
+        return comentarios

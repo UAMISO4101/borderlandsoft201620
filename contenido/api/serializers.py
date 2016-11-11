@@ -1,11 +1,19 @@
 from rest_framework import serializers
-from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings
+from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings, Profile
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
 from rest_framework import status
+from pytz import timezone
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('__all__')
 
 
 class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
     class Meta:
         model = User
         fields = ('__all__')
@@ -42,9 +50,12 @@ class PermissionsSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 class ComentarioSerializer(serializers.ModelSerializer):
+    autor = UserSerializer(many=False, read_only=True)
+    fec_creacion_comen = serializers.DateTimeField(format="%B %d de %Y, %H:%M %p %Z")
+
     class Meta:
         model = Comentario
-        fields = ('__all__')
+        fields = ('id','val_comentario','fec_creacion_comen','ind_publicado','autor')
 
     def create(self, validated_data):
         comentario = Comentario.objects.create(**validated_data)

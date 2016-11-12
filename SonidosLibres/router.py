@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from rest_framework.routers import SimpleRouter
 from contenido.api.resources import ArtistaViewSet, AudioViewSet, AudiosViewSet, ArtistasViewSet, UsersViewSet, AlbumsViewSet, DonacionesViewSet, PermissionsViewSet, AudiosByArtistaViewSet, \
     ComentarioViewSet, RatingsViewSet, ComentariosByAudioViewSet, RatingByUserAudioViewSet,RatingByAudioViewSet

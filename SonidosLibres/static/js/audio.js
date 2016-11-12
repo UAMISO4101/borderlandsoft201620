@@ -168,12 +168,12 @@ function getUltimaCalificacion(){
                     numStarts = response[i].val_rating;
                     break;
                 }
-                for(i=1;i<=5;i++)
+                for(var j=1;j<=5;j++)
                 {
-                    if(i<=numStarts)
-                        $(".rating-input").append("<i class='fa fa-star' data-value='"+ i +"'></i>")
+                    if(j<=numStarts)
+                        $(".rating-input").append("<i class='fa fa-star' data-value='"+ j +"'></i>")
                     else
-                        $(".rating-input").append("<i class='fa fa-star-o' data-value='"+ i +"'></i>")
+                        $(".rating-input").append("<i class='fa fa-star-o' data-value='"+ j +"'></i>")
                 }
                 $(".rating").val(numStarts);
             }
@@ -199,7 +199,8 @@ function getRatingsByAudio(){
                 else
                     txtCalificacion = response.length + " calificaciones";
 
-                for(var i=0;i<response.length;i++) {
+                var i=0;
+                for(i=0;i<response.length;i++) {
                     sumatoria =  sumatoria + response[i].val_rating;
                 }
 
@@ -236,8 +237,8 @@ function getAudios() {
             }
 
             if(listAlbums !== null && listAlbums !== undefined && listAlbums !== "") {
-                for (i = 0; i <= listAlbums.length - 1; i++) {
-                    getAlbums(listAlbums[i]);
+                for (var j = 0; j <= listAlbums.length - 1; j++) {
+                    getAlbums(listAlbums[j]);
                 }
             }
             $("#spanNumArtistas").append(listArtistas.length);

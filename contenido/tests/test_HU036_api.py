@@ -1,8 +1,5 @@
 from django.test import TestCase
-from datetime import datetime
 from django.urls import reverse
-from contenido.api.serializers import AudioSerializer
-
 
 from contenido.models import Audio
 from contenido.models import Ratings

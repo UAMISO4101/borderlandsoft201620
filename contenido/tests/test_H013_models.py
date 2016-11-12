@@ -1,7 +1,5 @@
 from django.test import TestCase
-from datetime import datetime
 
-from contenido.models import Comentario
 from contenido.models import Audio
 from contenido.models import Comentario
 from contenido.models import Artista

@@ -452,3 +452,8 @@ function calificar() {
         }
       });
     });
+
+
+$("#deleteSong").click(function () {
+   alert("Obra eliminada");
+});

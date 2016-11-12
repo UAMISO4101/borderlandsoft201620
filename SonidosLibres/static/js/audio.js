@@ -264,11 +264,11 @@ function like_song(songId){
       $("#likeButton").attr("data-original-title", "Ya no me Gusta");
       $("#likeButton").attr("onclick","unlike_song("+songId+")");
       $("#song_likes_val_counter").empty();
-      $("#song_likes_val_counter").append(data)
+      $("#song_likes_val_counter").append(data);
 
     },
     error: function () {
-      alert("Se produjo un error inesperado :(")
+      alert("Se produjo un error inesperado :(");
     }
   });
 }
@@ -303,7 +303,7 @@ function agregarComentario(){
     var songId = $("#songId").val();
     var userId = $("#userId").val();
 
-    var item = {}
+    var item = {};
     item ["val_comentario"] = $("#texto_comentario").val();
     item ["ind_publicado"] = "True";
     item ["audio"] = songId;
@@ -324,7 +324,9 @@ function agregarComentario(){
             mostrarComentarios();
         },
         error: function (err)
-        { alert(err.responseText);}
+        {
+            console.log(err.responseText);
+        }
     });
 }
 
@@ -348,7 +350,7 @@ function calificar() {
                 $.ajaxSettings.beforeSend(xhr, settings);
             },
             success: function (msg) {
-                console.log(msg);
+                console.log("Se elimina calificación");
             },
             error: function (err) {
                 console.log(err.responseText);
@@ -411,7 +413,6 @@ function calificar() {
         },
         success: function (msg) {
             getRatingsByAudio();
-            console.log(calificacion);
         },
         error: function (err) {
             console.log(err.responseText);

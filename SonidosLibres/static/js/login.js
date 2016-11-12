@@ -30,7 +30,7 @@ $(document).ready(function () {
             $(element).parent().removeClass("has-error");
         },
         submitHandler: function (form) {
-            form.submit()
+            form.submit();
             return false;
         }
     });

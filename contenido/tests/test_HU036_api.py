@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 
-
 from contenido.models import Audio
 from contenido.models import Ratings
 from contenido.models import Artista
@@ -36,7 +35,7 @@ class RatingsAPITest(TestCase):
 
 
     # Prueba utilizada para el registro de ratings mediante el API REST
-    def test_rating_registro(self):
+    def test_rating_delete(self):
         self.client.login(username='dh.mahecha', password='Ab1234')
         url = reverse('rating-create')
         data = {'val_rating': 5,'autor':self.usuario_regular.id, 'audio':self.audio.id}
@@ -44,3 +43,8 @@ class RatingsAPITest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Ratings.objects.count(), 1)
         self.assertEqual(Ratings.objects.get().val_rating, 5)
+
+        idRating = Ratings.objects.get().id.__str__()
+        self.client.delete('/api/rate-delete/' + idRating, data={'format': 'json'})
+        self.assertEqual(Ratings.objects.count(), 0)
+

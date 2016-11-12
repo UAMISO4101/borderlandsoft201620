@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.template.context_processors import csrf
 from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 

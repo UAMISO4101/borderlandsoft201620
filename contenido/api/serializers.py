@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings, Profile
 from django.contrib.auth.models import Permission
-from rest_framework.response import Response
-from rest_framework import status
-from pytz import timezone
 
 
 class ProfileSerializer(serializers.ModelSerializer):

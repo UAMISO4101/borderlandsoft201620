@@ -15,6 +15,10 @@
   &.bg-4{
     background: $color-main4;
   }
+
+  &.bg-5{
+    background: $color-main5;
+  }
 }
 
 .modal-footer{
@@ -31,4 +35,9 @@
   &.bg-4{
     border-top: 1px solid transparentize($color-main4, 0.5);
   }
+
+  &.bg-5{
+    border-top: 1px solid transparentize($color-main5, 0.5);
+  }
+
 }

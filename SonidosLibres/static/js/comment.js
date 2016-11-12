@@ -19,7 +19,7 @@ $(document).ready(function () {
             $(element).parent().removeClass("has-error");
         },
         submitHandler: function (form) {
-            document.getElementById("comment_form").submit()
+            document.getElementById("comment_form").submit();
             //agregarComentario();
             return false;
         }

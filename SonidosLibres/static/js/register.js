@@ -51,9 +51,9 @@ $(document).ready(function () {
                 equalTo: "La confirmaci&oacute;n no es v&aacute;lida"
             },
         }, highlight: function(element) {
-            $(element).parent().addClass('has-error');
+            $(element).parent().addClass("has-error");
         }, unhighlight: function(element) {
-            $(element).parent().removeClass('has-error');
+            $(element).parent().removeClass("has-error");
         },
         submitHandler: function (form) {
             form.submit();

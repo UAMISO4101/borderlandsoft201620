@@ -170,10 +170,12 @@ function getUltimaCalificacion(){
                 }
                 for(var j=1;j<=5;j++)
                 {
-                    if(j<=numStarts)
-                        $(".rating-input").append("<i class='fa fa-star' data-value='"+ j +"'></i>")
-                    else
-                        $(".rating-input").append("<i class='fa fa-star-o' data-value='"+ j +"'></i>")
+                    if(j<=numStarts) {
+                        $(".rating-input").append("<i class='fa fa-star' data-value='" + j + "'></i>");
+                    }
+                    else {
+                        $(".rating-input").append("<i class='fa fa-star-o' data-value='" + j + "'></i>");
+                    }
                 }
                 $(".rating").val(numStarts);
             }
@@ -194,10 +196,12 @@ function getRatingsByAudio(){
                 var average = 0;
                 var sumatoria = 0;
 
-                if(response.length === 1)
+                if(response.length === 1) {
                     txtCalificacion = response.length + " calificación";
-                else
+                }
+                else {
                     txtCalificacion = response.length + " calificaciones";
+                }
 
                 var i=0;
                 for(i=0;i<response.length;i++) {
@@ -248,17 +252,17 @@ function getAudios() {
     });
 }
 
-function like_song(song_id){
+function like_song(songId){
   $.ajax({
     type:"POST",
     url:"/like/",
     data: {
-      "song_id": song_id
+      "song_id": songId
     },
     success: function(data){
       $("#likeButton").removeClass("inactive").addClass("active");
       $("#likeButton").attr("data-original-title", "Ya no me Gusta");
-      $("#likeButton").attr("onclick","unlike_song("+song_id+")");
+      $("#likeButton").attr("onclick","unlike_song("+songId+")");
       $("#song_likes_val_counter").empty();
       $("#song_likes_val_counter").append(data)
 
@@ -270,20 +274,20 @@ function like_song(song_id){
 }
 
 
-function unlike_song(song_id){
+function unlike_song(songId){
   $.ajax({
     type:"POST",
     url:"/unlike/",
     data: {
-      "song_id": song_id
+      "song_id": songId
     },
     success: function(data){
       $("#likeButton").removeClass("active").addClass("inactive");
       // $("#likeButton").tooltip("hide").attr("data-original-title", "Me Gusta").tooltip("fixTitle");
       $("#likeButton").attr("data-original-title", "Ya no me Gusta");
-      $("#likeButton").attr("onclick","like_song("+song_id+")");
+      $("#likeButton").attr("onclick","like_song("+songId+")");
       $("#song_likes_val_counter").empty();
-      $("#song_likes_val_counter").text(data)
+      $("#song_likes_val_counter").text(data);
 
     },
     error: function () {
@@ -299,7 +303,7 @@ function agregarComentario(){
     var songId = $("#songId").val();
     var userId = $("#userId").val();
 
-    item = {}
+    var item = {}
     item ["val_comentario"] = $("#texto_comentario").val();
     item ["ind_publicado"] = "True";
     item ["audio"] = songId;
@@ -387,7 +391,7 @@ function calificar() {
         return;
     }
 
-    item = {}
+    var item = {}
     item ["val_rating"] = calificacion;
     item ["audio"] = songId;
     item ["fec_creacion_rating"] = new Date();
@@ -443,7 +447,7 @@ function calificar() {
           // Unmark after 1 second
           window.setTimeout(function(){
             $el.removeData("clicked");
-          }, 300)
+          }, 300);
         }
       });
     });

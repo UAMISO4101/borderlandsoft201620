@@ -35,7 +35,7 @@ $(document).ready(function () {
         }, errorPlacement: function(error, element) {
         },
         submitHandler: function () {
-            document.getElementById("donation_form").submit()
+            document.getElementById("donation_form").submit();
             return false;
         }
     });

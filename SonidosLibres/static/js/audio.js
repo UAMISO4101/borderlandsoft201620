@@ -422,6 +422,32 @@ function calificar() {
 }
 
 
+/**
+ * Agregar un comentario a un sonido por usuario
+ */
+function cambiarEstadoAudio(){
+    var songId = $("#songId").val();
+
+    var item = {};
+    item ["ind_estado"] = "False";
+
+    $.ajax({
+        type: "PUT",
+        url: "/api/audioestado-update/" + songId,
+        dataType: "json",
+        data:  JSON.stringify(item),
+        contentType: "application/json; charset=utf-8",
+        success: function (msg)
+        {
+           console.log("listo")
+        },
+        error: function (err)
+        {
+            console.log(err.responseText);
+        }
+    });
+}
+
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
         $("[data-hover='tooltip']").tooltip();
@@ -454,6 +480,8 @@ function calificar() {
     });
 
 
-$("#deleteSong").click(function () {
-   alert("Obra eliminada");
-});
+    $("#deleteSong").click(function () {
+        cambiarEstadoAudio();
+        $(location).attr('href',"/");
+        $(".container").load('/');
+    });

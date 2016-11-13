@@ -34,7 +34,7 @@ class AudioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Audio
-        fields = ('id','nom_audio','val_imagen','val_recurso','fec_entrada_audio', 'likes', 'albums', 'artistas')
+        fields = ('id','nom_audio','val_imagen','val_recurso','fec_entrada_audio', 'likes', 'albums', 'artistas', 'ind_estado')
 
 class DonacionesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -67,3 +67,9 @@ class RatingsSerializer(serializers.ModelSerializer):
         rating = Ratings.objects.create(**validated_data)
         return rating
 
+
+
+class AudioIndEstadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Audio
+        fields = ('id', 'ind_estado')

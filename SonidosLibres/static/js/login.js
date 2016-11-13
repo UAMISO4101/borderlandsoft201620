@@ -4,12 +4,12 @@
 
 
 $(document).ready(function () {
-     $.validator.messages.required = '';
-     $.validator.messages.number = '';
+     $.validator.messages.required = "";
+     $.validator.messages.number = "";
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg != value;
+        return arg !== value;
      }, "");
-    $('#login_form').validate({
+    $("#login_form").validate({
         rules: {
             username: {
                 required: true,
@@ -25,12 +25,12 @@ $(document).ready(function () {
                 minlength:"La longitud m&iacute;nima es de 9 caracteres",
             },
         }, highlight: function(element) {
-            $(element).parent().addClass('has-error');
+            $(element).parent().addClass("has-error");
         }, unhighlight: function(element) {
-            $(element).parent().removeClass('has-error');
+            $(element).parent().removeClass("has-error");
         },
         submitHandler: function (form) {
-            form.submit()
+            form.submit();
             return false;
         }
     });

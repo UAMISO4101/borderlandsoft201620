@@ -25,7 +25,7 @@ class ArtistaView(ListView):
     context_object_name = 'lista_artistas'
 
     def get_queryset(self):
-        return Audio.objects.all()
+        return Audio.objects.all().filter(ind_estado=True)
 
 
 class AudiosView(ListView):
@@ -40,7 +40,7 @@ class AudiosView(ListView):
         context = super(AudiosView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
-        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).prefetch_related('artistas').all()
+        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).filter(ind_estado=True).prefetch_related('artistas').all()
         if not self.artista.user is None:
             self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
             context['artistas_que_sigo'] = self.artistas_que_sigo
@@ -112,7 +112,7 @@ class AlbumsView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AlbumsView, self).get_context_data(**kwargs)
         self.artistas = Artista.objects.all()
-        self.audios = Audio.objects.filter(albums=self.album.pk).prefetch_related('artistas')
+        self.audios = Audio.objects.filter(albums=self.album.pk).filter(ind_estado=True).prefetch_related('artistas')
 
         # self.artistas = Artista.objects.filter(audios_in = self.audios)
         # objects.prefetch_related('')
@@ -128,7 +128,7 @@ class BuscadorView(View):
         filtro = request.GET.get('q', '')
         active_tab = "tab1"
 
-        recientes = Audio.objects.all().order_by('-fec_entrada_audio')[:20].prefetch_related(
+        recientes = Audio.objects.all().filter(ind_estado=True).order_by('-fec_entrada_audio')[:20].prefetch_related(
             Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).all()
 
         recientes_list = []
@@ -149,7 +149,7 @@ class BuscadorView(View):
                 Q(nom_audio__icontains=filtro)  # |
                 # Q(artista__nom_artistico__icontains=query)
             )
-            audios = Audio.objects.prefetch_related(
+            audios = Audio.objects.filter(ind_estado=True).prefetch_related(
                 Prefetch('artistas', queryset=Artista.objects.only("nom_artistico").all())).filter(
                 qset).distinct().all()
 
@@ -193,7 +193,7 @@ class SongView(ListView):
         return get_object_or_404(Audio, id=int(self.kwargs['song_id']))
 
     def get_context_data(self, **kwargs):
-        audio = Audio.objects.get(id=int(self.kwargs['song_id']))
+        audio = Audio.objects.filter(ind_estado=True).get(id=int(self.kwargs['song_id']))
         total_likes = audio.likes.count()
         context = super(SongView, self).get_context_data(**kwargs)
         context['total_likes'] = total_likes
@@ -203,7 +203,7 @@ class SongView(ListView):
         else:
             user_id = 0
         try:
-            Audio.objects.get(id=int(self.kwargs['song_id']), likes__id=user_id)
+            Audio.objects.filter(ind_estado=True).get(id=int(self.kwargs['song_id']), likes__id=user_id)
             user_like = True
         except Audio.DoesNotExist:
             user_like = False
@@ -215,7 +215,7 @@ class SongView(ListView):
 def like_view(request):
     if request.is_ajax():
         song_id = request.POST.get("song_id")
-        audio = Audio.objects.get(pk=song_id)
+        audio = Audio.objects.filter(ind_estado=True).get(pk=song_id)
         audio.likes.add(User.objects.get(id=request.user.id))
         audio.save()
         total_likes = audio.likes.count()
@@ -234,7 +234,7 @@ def like_view(request):
 def unlike_view(request):
     if request.is_ajax():
         song_id = request.POST.get("song_id")
-        audio = Audio.objects.get(pk=song_id)
+        audio = Audio.objects.filter(ind_estado=True).get(pk=song_id)
         audio.likes.remove(User.objects.get(id=request.user.id))
         audio.save()
         total_likes = audio.likes.count()
@@ -360,7 +360,7 @@ def upload_album_view(request):
 
 def comentario_view(request):
     texto_comentario = request.POST.get("texto_comentario")
-    audio_comentario = Audio.objects.get(pk=request.POST.get("songId"))
+    audio_comentario = Audio.objects.filter(ind_estado=True).get(pk=request.POST.get("songId"))
     autor_comentario = User.objects.get(pk=request.POST.get("userId"))
 
     comentario = Comentario(val_comentario=texto_comentario, audio=audio_comentario, autor=autor_comentario)

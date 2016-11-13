@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from contenido.models import Audio, Ratings, Artista, Album
+from contenido.models import Audio, Artista, Album
 from django.contrib.auth.models import User
 
 MODELS = [Audio, Artista, User, Album]

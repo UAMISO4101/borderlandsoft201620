@@ -1,7 +1,7 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from rest_framework.routers import SimpleRouter
 from contenido.api.resources import ArtistaViewSet, AudioViewSet, AudiosViewSet, ArtistasViewSet, UsersViewSet, AlbumsViewSet, DonacionesViewSet, PermissionsViewSet, AudiosByArtistaViewSet, \
-    ComentarioViewSet, RatingsViewSet, ComentariosByAudioViewSet, RatingByUserAudioViewSet,RatingByAudioViewSet
+    ComentarioViewSet, RatingsViewSet, ComentariosByAudioViewSet, RatingByUserAudioViewSet,RatingByAudioViewSet, AudioUpdateEstadoViewSet
 from django.contrib.auth.decorators import login_required
 
 router = SimpleRouter()
@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'rate/', login_required(RatingsViewSet.as_view({'post': 'create'})), name="rating-create"),
     url(r'^rate-delete/(?P<pk>\d+)', login_required(RatingsViewSet.as_view({'delete': 'delete'})), name="rating-delete"),
     url(r'ratebyuseraudio/(?P<audio_id>[0-9]+)/(?P<autor_id>[0-9]+)/$', RatingByUserAudioViewSet.as_view()),
+    url(r'^audioestado-update/(?P<pk>\d+)', login_required(AudioUpdateEstadoViewSet.as_view({'put': 'update'})), name="audios_estado_update"),
 ]
 urlpatterns += router.urls

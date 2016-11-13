@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics
-from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer
+from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer, AudioIndEstadoSerializer
 from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
@@ -17,13 +17,13 @@ class AudioViewSet(generics.ListAPIView):
     serializer_class = AudioSerializer
 
     def get_queryset(self):
-        return Audio.objects.filter(pk=int(self.kwargs['id']))
+        return Audio.objects.filter(pk=int(self.kwargs['id'])).filter(ind_estado=True)
 
 class AudiosByArtistaViewSet(generics.ListAPIView):
     serializer_class = AudioSerializer
 
     def get_queryset(self):
-        return Audio.objects.filter(artistas__pk=self.kwargs['artista_id'])
+        return Audio.objects.filter(artistas__pk=self.kwargs['artista_id']).filter(ind_estado=True)
 
 
 class RatingByUserAudioViewSet(generics.ListAPIView):
@@ -39,7 +39,7 @@ class RatingByAudioViewSet(generics.ListAPIView):
         return Ratings.objects.filter(audio_id=self.kwargs['audio_id'])
 
 class AudiosViewSet(viewsets.ModelViewSet):
-    queryset = Audio.objects.all()
+    queryset = Audio.objects.all().filter(ind_estado=True)
     serializer_class = AudioSerializer
 
 class ArtistasViewSet(viewsets.ModelViewSet):
@@ -97,3 +97,15 @@ class ComentariosByAudioViewSet(generics.ListAPIView):
     def get_queryset(self):
         comentarios = Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen').select_related('autor').all()
         return comentarios
+
+#Actualización del estado de un audio
+class AudioUpdateEstadoViewSet(viewsets.ModelViewSet):
+    queryset = Audio.objects.all()
+    serializer_class = AudioIndEstadoSerializer
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.queryset.get(pk=kwargs.get('pk'))
+        serializer = self.serializer_class(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)

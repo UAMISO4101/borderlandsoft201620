@@ -128,11 +128,11 @@
                         <br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <h5>Seguidores ({{artist.seguidores.all|length}})</h5>
+                                <h4>Seguidores <small>({{artist.seguidores.all|length}})</small></h4>
                                 <div class="box col-xs-12">
                                     {% if artist.seguidores.all %}
                                         {% for seguidor in artist.seguidores.all %}
-                                                {% include "partials/artist-detail.html" with is_comment=False user_name=seguidor.username artist_name=seguidor.artista artist_image=seguidor.artista.val_imagen artist_id=seguidor.artista.id%}
+                                            {% include "partials/artist-detail.html" with is_comment=False user_name=seguidor.username artist_name=seguidor.artista artist_image=seguidor.artista.val_imagen artist_id=seguidor.artista.id%}
                                         {% endfor %}
                                     {% else %}
                                         <span>Aún nadie te esta siguiendo</span>
@@ -140,11 +140,11 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <h5>Siguiendo a ({{artistas_que_sigo|length}})</h5>
+                                <h4>Siguiendo a <small>({{artistas_que_sigo|length}})</small></h4>
                                 <div class="box col-xs-12">
                                     {% if artistas_que_sigo %}
                                         {% for sigoA in artistas_que_sigo %}
-                                                {% include "partials/artist-detail.html" with is_comment=False user_name=sigoA.user.username artist_name=sigoA artist_image=sigoA.val_imagen artist_id=sigoA.id%}
+                                            {% include "partials/artist-detail.html" with is_comment=False user_name=sigoA.user.username artist_name=sigoA artist_image=sigoA.val_imagen artist_id=sigoA.id%}
                                         {% endfor %}
                                     {% else %}
                                         <span>Aún no estás siguiendo nadie ¿Qué esperas a ver a tus artistas favoritos?</span>
@@ -157,7 +157,36 @@
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tab6">...</div>
-                    <div role="tabpanel" class="tab-pane" id="tab7">...</div>
+                    <div role="tabpanel" class="tab-pane" id="tab7">
+                        <br>
+                        <h4>Donaciones Recibidas <small>$120.000</small></h4>
+                        <table class="table table-hover table-donations">
+                            <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Valor</th>
+                                <th>Fecha</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="cell-song"><a href="/user/2">Peter Hollens</a></td>
+                                <td class="cell-user">$100.000</td>
+                                <td>05 nov. 2016 14:23</td>
+                            </tr>
+                            <tr>
+                                <td class="cell-song"><a href="/user/1">Lindsey Stirling</a></td>
+                                <td class="cell-user">$20.000</td>
+                                <td>27 oct. 2016 02:57</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <br>
+                        <hr>
+                        <h4>Donaciones Hechas <small>$0</small></h4>
+                        Aún no ha realizado donaciones
+                    </div>
                 </div>
 
 

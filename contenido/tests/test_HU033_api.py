@@ -1,17 +1,14 @@
 from django.test import TestCase
-from django.urls import reverse
-
 
 from contenido.models import Audio
 from contenido.models import Ratings
 from contenido.models import Artista
 from django.contrib.auth.models import User
-from rest_framework import status
 from rest_framework.test import APIClient
 
 MODELS = [Ratings, Audio, Artista, User]
 
-class RatingsAPITest(TestCase):
+class AudioUpdateEstadoAPITest(TestCase):
     def setUp(self):
         # Se elimina el contenido de las tablas del modelo
         for model in MODELS:
@@ -35,12 +32,11 @@ class RatingsAPITest(TestCase):
         self.client = APIClient()
 
 
-    # Prueba utilizada para el registro de ratings mediante el API REST
-    def test_rating_registro(self):
+    # Prueba utilizada para la actualización del estado de un audio
+    def test_rating_delete(self):
         self.client.login(username='dh.mahecha', password='Ab1234')
-        url = reverse('rating-create')
-        data = {'val_rating': 5,'autor':self.usuario_regular.id, 'audio':self.audio.id}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Ratings.objects.count(), 1)
-        self.assertEqual(Ratings.objects.get().val_rating, 5)
+        self.client.put('/api/audioestado-update/1', data={'ind_estado' : False})
+        self.assertEqual(Audio.objects.count(), 1)
+        self.assertEqual(Audio.objects.get().ind_estado, False)
+
+

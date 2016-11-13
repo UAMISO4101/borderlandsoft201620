@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings, Profile
 from django.contrib.auth.models import Permission
-from rest_framework.response import Response
-from rest_framework import status
-from pytz import timezone
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -37,7 +34,7 @@ class AudioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Audio
-        fields = ('id','nom_audio','val_imagen','val_recurso','fec_entrada_audio', 'likes', 'albums', 'artistas')
+        fields = ('id','nom_audio','val_imagen','val_recurso','fec_entrada_audio', 'likes', 'albums', 'artistas', 'ind_estado')
 
 class DonacionesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -70,3 +67,9 @@ class RatingsSerializer(serializers.ModelSerializer):
         rating = Ratings.objects.create(**validated_data)
         return rating
 
+
+#Serializador del estado de un audio
+class AudioIndEstadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Audio
+        fields = ('id', 'ind_estado')

@@ -31,7 +31,7 @@ class Artista(models.Model):
     nom_ciudad = models.CharField(max_length=50)
     val_imagen = models.CharField(max_length=1000, verbose_name='Imágen', help_text='URL de la imagen del artista',
                                   blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     seguidores = models.ManyToManyField(User, related_name='seguidores', blank=True)
     email = models.CharField(max_length=50, blank=True)

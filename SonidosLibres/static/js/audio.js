@@ -423,7 +423,7 @@ function calificar() {
 
 
 /**
- * Agregar un comentario a un sonido por usuario
+ * Cambia el estado de un audio a False
  */
 function cambiarEstadoAudio(){
     var songId = $("#songId").val();
@@ -479,9 +479,11 @@ function cambiarEstadoAudio(){
       });
     });
 
-
-    $("#deleteSong").click(function () {
+/**
+ * Función que controla el evento click del botón borrar audio
+  */
+$("#deleteSong").click(function () {
         cambiarEstadoAudio();
         $(location).attr('href',"/");
-        $(".container").load('/');
+        $(".container").load("/");
     });

@@ -13,7 +13,7 @@ $(document).ready(function () {
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
         return arg !== value;
      }, "");
-    $('#audio_upload_form').validate({
+    $("#audio_upload_form").validate({
         rules: {
             upload_song_file: {
                 required: true,
@@ -36,7 +36,7 @@ $(document).ready(function () {
         }, errorPlacement: function(error, element) {
         },
         submitHandler: function () {
-            document.getElementById('audio_upload_form').submit();
+            document.getElementById("audio_upload_form").submit();
             return false;
         }
     });

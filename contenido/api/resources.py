@@ -98,7 +98,7 @@ class ComentariosByAudioViewSet(generics.ListAPIView):
         comentarios = Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen').select_related('autor').all()
         return comentarios
 
-
+#Actualización del estado de un audio
 class AudioUpdateEstadoViewSet(viewsets.ModelViewSet):
     queryset = Audio.objects.all()
     serializer_class = AudioIndEstadoSerializer

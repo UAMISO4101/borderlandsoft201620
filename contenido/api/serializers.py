@@ -68,7 +68,7 @@ class RatingsSerializer(serializers.ModelSerializer):
         return rating
 
 
-
+#Serializador del estado de un audio
 class AudioIndEstadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Audio

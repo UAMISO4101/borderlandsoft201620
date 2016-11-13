@@ -1,0 +1,43 @@
+{% load static %}
+<div class="modal fade" id="{{ id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-2">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+            </div>
+            <div class="modal-body">
+                {% if user.is_authenticated %}
+                <form id="edit_perfil_form" action="{% url 'editar_informacion' user.id  %}" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="form-group input-group">
+                                    {% if user.profile.val_imagen %}
+                                        <img id="upload_user_file" class="detail-img si200" src="{{ user.profile.val_imagen }}"/>
+                                    {% else %}
+                                        <img id="upload_user_file" class="detail-img si200" src="http://hypnotherapista.com/wp/wp-content/plugins/ldd-directory-lite/public/images/noimage.png">
+                                    {% endif %}
+                                <label class="btn btn-block btn-sonidoslibres btn-2 btn-file">
+                                    Agregar imágen de usuario... <input type="file" name="upload_user_img_file" style="display: none;" onchange="document.getElementById('upload_user_file').src = window.URL.createObjectURL(this.files[0]); document.getElementById('upload_user_img').value = window.URL.createObjectURL(this.files[0])">
+                                </label>
+                                <input type="text" class="form-control" name="upload_user_img" id="upload_user_img" readonly=True>
+                             </div>
+                        </div>
+                        <div class="media-body">
+                            {{ form.as_p }}
+                            {{ formProfile.as_p }}
+                            {{ formArtista.as_p }}
+                        </div>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+            <div class="modal-footer bg-2">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" form="edit_perfil_form" class="btn btn-sonidoslibres btn-2">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>

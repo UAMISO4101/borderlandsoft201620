@@ -387,6 +387,7 @@ class ComentariosView(ListView):
         return context
 
 
+
 def update_user_social_data(request, *args, **kwargs):
     user = kwargs['user']
     if not kwargs['is_new']:
@@ -407,3 +408,6 @@ def update_user_social_data(request, *args, **kwargs):
         email = json.loads(response).get('email')
         name = json.loads(response).get('name')
         gender = json.loads(response).get('gender')
+
+
+

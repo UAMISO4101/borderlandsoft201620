@@ -45,6 +45,21 @@
                                 <textarea class="form-control" placeholder="Etiquetas (Separadas por comas)" name="upload_song_tags"></textarea>
                             </div>
                         </div>
+                        {% if user.is_authenticated and not user.artista %}
+                            <hr/>
+                            <div class="form-group">
+                                <span><strong>Registro como artísta</strong></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="upload_nombre_artistico" placeholder="Nombre artístico" name="upload_nombre_artistico">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="upload_pais_origen" placeholder="Pais origen" name="upload_pais_origen">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="upload_ciudad_origen" placeholder="Ciudad origen" name="upload_ciudad_origen">
+                            </div>
+                        {% endif %}
                     </div>
                 </form>
             </div>

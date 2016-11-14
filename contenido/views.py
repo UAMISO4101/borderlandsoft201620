@@ -304,6 +304,18 @@ def donation_view(request):
 
 
 def upload_song_view(request):
+    usuario = request.user
+    artista_nombre = request.POST.get('upload_nombre_artistico')
+    artista_pais = request.POST.get('upload_pais_origen')
+    artista_ciudad = request.POST.get('upload_ciudad_origen')
+
+    if not usuario.artista:
+        artista = Artista.objects.create(nom_artistico=artista_nombre, nom_pais=artista_pais,
+                                         nom_ciudad=artista_ciudad, user=request.user)
+    else:
+        artista = usuario.artista
+
+
     song_name = request.POST.get('upload_song_name')
     song_type = request.POST.get('upload_song_type')
     song_tags = request.POST.get('upload_song_tags')
@@ -326,6 +338,9 @@ def upload_song_view(request):
     audio.val_recurso = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/' + audio_file_name
     audio.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
     audio.fec_entrada_audio = datetime.datetime.now()
+    audio.save()
+
+    audio.artistas.add(Artista.objects.get(id=artista.id))
     audio.save()
     messages.success(request, '¡El audio fue agregado exitosamente!')
     return HttpResponseRedirect('/song/' + str(audio.id))

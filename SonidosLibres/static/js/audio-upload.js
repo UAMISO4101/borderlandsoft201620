@@ -28,7 +28,19 @@ $(document).ready(function () {
             },
             upload_song_type: {
                 valueNotEquals: "Seleccione un tipo..."
-            }
+            },
+            upload_nombre_artistico: {
+                required: true,
+                maxlength: 200,
+            },
+            upload_pais_origen: {
+                required: true,
+                maxlength: 50,
+            },
+            upload_ciudad_origen: {
+                required: true,
+                maxlength: 50,
+            },
         }, highlight: function(element) {
             $(element).parent().addClass("has-error");
         }, unhighlight: function(element) {

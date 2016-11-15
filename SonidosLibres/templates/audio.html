@@ -61,11 +61,11 @@
                                             data-toggle="tooltip" data-placement="bottom" value="">
                                         <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
                                     </button>
+
+                                    <button type="button" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
+                                    <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
                                 {% endif %}
-                                <button type="button" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
-                                {% if user.is_authenticated %}
-                                <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
-                                {% endif %}
+
                                 <button type="button" id="addToListButton" data-target="#addToListModal" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a lista de reproducción"><i class="fa fa-list fa-lg"></i></button>
                                 <button type="button" id="reportButton" data-target="#reportModal" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Reportar"><i class="fa fa-ban fa-lg"></i></button>
                             </div>

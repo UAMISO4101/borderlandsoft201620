@@ -52,7 +52,7 @@ class ComentarioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comentario
-        fields = ('id','val_comentario','fec_creacion_comen','ind_publicado','autor')
+        fields = ('id','val_comentario','fec_creacion_comen','ind_publicado','autor', 'audio')
 
     def create(self, validated_data):
         comentario = Comentario.objects.create(**validated_data)

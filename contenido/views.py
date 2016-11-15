@@ -309,11 +309,11 @@ def upload_song_view(request):
     artista_pais = request.POST.get('upload_pais_origen')
     artista_ciudad = request.POST.get('upload_ciudad_origen')
 
-    if not usuario.artista:
+    try:
+        artista = usuario.artista
+    except Artista.DoesNotExist:
         artista = Artista.objects.create(nom_artistico=artista_nombre, nom_pais=artista_pais,
                                          nom_ciudad=artista_ciudad, user=request.user)
-    else:
-        artista = usuario.artista
 
 
     song_name = request.POST.get('upload_song_name')

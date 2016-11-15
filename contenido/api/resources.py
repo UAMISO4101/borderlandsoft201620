@@ -70,6 +70,9 @@ class ComentarioViewSet(viewsets.ModelViewSet):
         serializer = ComentarioSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            comentario = Comentario(**serializer.validated_data )
+            comentario.autor_id = request.user.id
+            comentario.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

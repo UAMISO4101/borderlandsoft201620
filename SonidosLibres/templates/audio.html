@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-left">
-                                <span class="song-title">{{ song.nom_audio }}</span><small class="bg-sonidoslibres bg-2"> Videojuegos</small>
+                                <span class="song-title">{{ song.nom_audio }}</span><small class="bg-sonidoslibres bg-2"> SOY EL TIPO DE AUDIO</small>
                             </div>
                             <div class="pull-right" id="calificar">
                                 {#<input type="number" class="rating" />#}
@@ -30,12 +30,12 @@
                             </div>
                             <div class="clearfix">
                             </div>
-{#                            <a href="#" class="tag tag-small in-chart">#}
-{#                                <span class="tag-wrap">Rock</span>#}
-{#                            </a>#}
-{#                            <a href="#" class="tag tag-small in-chart">#}
-{#                                <span class="tag-wrap">Vallenato</span>#}
-{#                            </a>#}
+                            <a href="#" class="tag tag-small in-chart">
+                                <span class="tag-wrap">Música Navidad</span>
+                            </a>
+                            <a href="#" class="tag tag-small in-chart">
+                                <span class="tag-wrap">FAVOR HACER BINDING DE ETIQUETAS</span>
+                            </a>
 
                         </div>
 
@@ -62,7 +62,7 @@
                                         <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
+                                    <a href="{{ song.val_recurso }}" target="_blank" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></a>
                                     <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
                                 {% endif %}
 

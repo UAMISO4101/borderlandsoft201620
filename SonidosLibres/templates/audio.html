@@ -28,7 +28,8 @@
                                 <input type="number" title="" class="rating" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-trash-o" />
                                 <small class="text-right" id="smallCalificaciones"></small>
                             </div>
-                            <div class="clearfix"></div>
+                            <div class="clearfix">
+                            </div>
 {#                            <a href="#" class="tag tag-small in-chart">#}
 {#                                <span class="tag-wrap">Rock</span>#}
 {#                            </a>#}
@@ -60,22 +61,27 @@
                                             data-toggle="tooltip" data-placement="bottom" value="">
                                         <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-lg"></i>
                                     </button>
+
+                                    <button type="button" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
+                                    <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
                                 {% endif %}
-                                <button type="button" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="tooltip" data-placement="bottom" title="Descargar"><i class="fa fa-download fa-lg"></i></button>
-                                {% if user.is_authenticated %}
-                                <button type="button" id="commentButton" data-target="#commentModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar comentario"><i class="fa fa-comment fa-lg"></i></button>
-                                {% endif %}
+
                                 <button type="button" id="addToListButton" data-target="#addToListModal" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a lista de reproducción"><i class="fa fa-list fa-lg"></i></button>
                                 <button type="button" id="reportButton" data-target="#reportModal" class="btn btn-sonidoslibres btn-2 hidden" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Reportar"><i class="fa fa-ban fa-lg"></i></button>
                             </div>
                             {#                            Acciones propietario#}
-                            <div class="btn-group btn-group-user pull-left">
-                                <button type="button" id="addToAlbumButton" data-target="#addToAlbumModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a album"><i class="fa fa-circle-thin fa-lg"></i></button>
-                                <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil fa-lg"></i></button>
-                                <button type="button" data-target="#confirmationModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Eliminar"><i class="fa fa-trash fa-lg"></i></button>
-                                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a..."></div>
-                            </div>
-
+                        {% if user.is_authenticated %}
+                            {% for artista in song.artistas.all %}
+                                {% if artista.user.id == user.id %}
+                                    <div class="btn-group btn-group-user pull-left" >
+                                        <button type="button" id="addToAlbumButton" data-target="#addToAlbumModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a album"><i class="fa fa-circle-thin fa-lg"></i></button>
+                                        <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil fa-lg"></i></button>
+                                        <button type="button" data-target="#confirmationModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Eliminar"><i class="fa fa-trash fa-lg"></i></button>
+                                        <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a..."></div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                         </div>
                         <div class="col-md-6 col-lg-5">
                             <div class="song-metadata pull-right">

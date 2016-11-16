@@ -31,7 +31,7 @@ class Artista(models.Model):
     nom_ciudad = models.CharField(max_length=50)
     val_imagen = models.CharField(max_length=1000, verbose_name='Imágen', help_text='URL de la imagen del artista',
                                   blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     seguidores = models.ManyToManyField(User, related_name='seguidores', blank=True)
     email = models.CharField(max_length=50, blank=True)
@@ -68,6 +68,7 @@ class Audio(models.Model):
     albums = models.ManyToManyField(Album, related_name="albums", blank=True)
     type_audio = models.CharField(max_length=1000, verbose_name='Audio', help_text='Tipo del audio', blank=True)
     tags_audio = models.CharField(max_length=1000, verbose_name='Audio', help_text='Etiquetas del audio', blank=True)
+    ind_estado = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nom_audio
@@ -107,6 +108,8 @@ class Ratings(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together = ('autor', 'audio',)
 
     def __str__(self):  # __unicode__ on Python 2
         return self.val_rating

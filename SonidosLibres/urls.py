@@ -16,6 +16,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 from contenido import views
+from usuarios import views as view_user
 from django.contrib.auth.views import login, logout_then_login
 from django.conf.urls.static import static
 from .router import urlpatterns
@@ -46,6 +47,7 @@ urlpatterns = [
     url(r'^upload/album/', views.upload_album_view, name='upload-album'),
     url(r'^comment-add/', login_required(views.comentario_view), name="comment_add"),
     url(r'^follow/', views.follow_view, name='follow'),
+    url(r'^edit/user/(?P<pk>[0-9]+)/$', view_user.ProfileModificacion.as_view(), name="editar_informacion"),
     # Python Social Auth URLs
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('', include('social.apps.django_app.urls', namespace='social')),

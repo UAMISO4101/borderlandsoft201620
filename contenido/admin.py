@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import *
 
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_diplay = ('val_imagen','user')
+
 # Register your models here.
 class ArtistaAdmin(admin.ModelAdmin):
     list_display = ('nom_artistico', 'nom_pais', 'nom_ciudad')
@@ -26,4 +29,5 @@ admin.site.register(Artista, ArtistaAdmin)
 admin.site.register(Audio, AudioAdmin)
 admin.site.register(Album, AlbumAdmin)
 admin.site.register(Donaciones, DonacionesAdmin)
+admin.site.register(Profile, ProfileAdmin)
 

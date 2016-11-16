@@ -296,39 +296,6 @@ function unlike_song(songId){
   });
 }
 
-/**
- * Agregar un comentario a un sonido por usuario
- */
-function agregarComentario(){
-    var songId = $("#songId").val();
-    var userId = $("#userId").val();
-
-    var item = {};
-    item ["val_comentario"] = $("#texto_comentario").val();
-    item ["ind_publicado"] = "True";
-    item ["audio"] = songId;
-
-    if(userId !== null && userId !== undefined && userId !== "None"){
-        item ["autor"] = userId;
-    }
-
-    $.ajax({
-        type: "POST",
-        async: false,
-        url: "/api/comment/",
-        dataType: "json",
-        data:  JSON.stringify(item),
-        contentType: "application/json; charset=utf-8",
-        success: function (msg)
-        {
-            mostrarComentarios();
-        },
-        error: function (err)
-        {
-            console.log(err.responseText);
-        }
-    });
-}
 
 
 /**
@@ -422,6 +389,32 @@ function calificar() {
 }
 
 
+/**
+ * Cambia el estado de un audio a False
+ */
+function cambiarEstadoAudio(){
+    var songId = $("#songId").val();
+
+    var item = {};
+    item ["ind_estado"] = "False";
+
+    $.ajax({
+        type: "PUT",
+        url: "/api/audioestado-update/" + songId,
+        dataType: "json",
+        data:  JSON.stringify(item),
+        contentType: "application/json; charset=utf-8",
+        success: function (msg)
+        {
+           console.log("listo")
+        },
+        error: function (err)
+        {
+            console.log(err.responseText);
+        }
+    });
+}
+
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
         $("[data-hover='tooltip']").tooltip();
@@ -453,7 +446,11 @@ function calificar() {
       });
     });
 
-
+/**
+ * Función que controla el evento click del botón borrar audio
+  */
 $("#deleteSong").click(function () {
-   alert("Obra eliminada");
-});
+        cambiarEstadoAudio();
+        $(location).attr('href',"/");
+        $(".container").load("/");
+    });

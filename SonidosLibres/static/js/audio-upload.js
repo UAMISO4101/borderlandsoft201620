@@ -13,7 +13,7 @@ $(document).ready(function () {
      $.validator.addMethod("valueNotEquals", function(value, element, arg){
         return arg !== value;
      }, "");
-    $('#audio_upload_form').validate({
+    $("#audio_upload_form").validate({
         rules: {
             upload_song_file: {
                 required: true,
@@ -28,7 +28,19 @@ $(document).ready(function () {
             },
             upload_song_type: {
                 valueNotEquals: "Seleccione un tipo..."
-            }
+            },
+            upload_nombre_artistico: {
+                required: true,
+                maxlength: 200,
+            },
+            upload_pais_origen: {
+                required: true,
+                maxlength: 50,
+            },
+            upload_ciudad_origen: {
+                required: true,
+                maxlength: 50,
+            },
         }, highlight: function(element) {
             $(element).parent().addClass("has-error");
         }, unhighlight: function(element) {
@@ -36,7 +48,7 @@ $(document).ready(function () {
         }, errorPlacement: function(error, element) {
         },
         submitHandler: function () {
-            document.getElementById('audio_upload_form').submit();
+            document.getElementById("audio_upload_form").submit();
             return false;
         }
     });

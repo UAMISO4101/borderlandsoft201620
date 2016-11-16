@@ -40,10 +40,11 @@ function agregarComentario(){
     item ["ind_publicado"] = "True";
     item ["audio"] = songId;
     item ["fec_creacion_comen"] = new Date();
+    //item ["autor"] = userId;
 
     if(userId !== null && userId !== undefined && userId !== "None"){
         var autor = {}
-        autor ["id"] = userId
+        autor ["id"] = userId;
         item ["autor"] = autor;
     }
 
@@ -58,10 +59,11 @@ function agregarComentario(){
         {
             $("#texto_comentario").val('');
             $("#commentModal").modal('hide');
-            getComentarios();
+            $('a[href="#tab3"]').click();
         },
         error: function (err)
         {
+            console.log(err);
             alert("Se produjo un error inesperado :(");
         }
     });

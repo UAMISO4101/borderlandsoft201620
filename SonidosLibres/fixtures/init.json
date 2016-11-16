@@ -110,6 +110,56 @@
   }
 },
 {
+  "model": "contenido.profile",
+  "pk": 1,
+  "fields": {
+    "val_imagen": "",
+    "user": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 2,
+  "fields": {
+    "val_imagen": "",
+    "user": [
+      "lindsey"
+    ]
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 3,
+  "fields": {
+    "val_imagen": "",
+    "user": [
+      "hollens"
+    ]
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 4,
+  "fields": {
+    "val_imagen": "",
+    "user": [
+      "daftpunk"
+    ]
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 5,
+  "fields": {
+    "val_imagen": "",
+    "user": [
+      "lzzyhale"
+    ]
+  }
+},
+{
   "model": "sessions.session",
   "pk": "dygo0vjwmqr71570zqy4bw8vdds9bh5j",
   "fields": {

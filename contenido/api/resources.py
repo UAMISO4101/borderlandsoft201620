@@ -4,6 +4,7 @@ from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -67,12 +68,13 @@ class ComentarioViewSet(viewsets.ModelViewSet):
     serializer_class = ComentarioSerializer
 
     def create(self, request, format=None):
-        serializer = ComentarioSerializer(data=request.data)
+        serializer = ComentarioSerializer(data=request.data, partial=True)
+
         if serializer.is_valid():
-            serializer.save()
             comentario = Comentario(**serializer.validated_data )
             comentario.autor_id = request.user.id
             comentario.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -313,7 +313,7 @@ def upload_song_view(request):
         artista = usuario.artista
     except Artista.DoesNotExist:
         artista = Artista.objects.create(nom_artistico=artista_nombre, nom_pais=artista_pais,
-                                         nom_ciudad=artista_ciudad, user=request.user)
+                                         nom_ciudad=artista_ciudad, user=request.user, val_imagen=request.user.profile.val_imagen)
 
 
     song_name = request.POST.get('upload_song_name')

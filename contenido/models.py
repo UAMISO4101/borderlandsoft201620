@@ -78,10 +78,11 @@ class Donaciones(models.Model):
     """
     Describe una donación
     """
-    valor = models.CharField(max_length=200)
+    valor = models.IntegerField(default=0)
     tarjeta_credito = models.CharField(max_length=200)
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
-
+    fec_donacion = models.DateTimeField(auto_now_add=True, help_text='Fecha de donación')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Comentario(models.Model):
     """

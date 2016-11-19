@@ -159,8 +159,16 @@
                     <div role="tabpanel" class="tab-pane" id="tab6">...</div>
                     <div role="tabpanel" class="tab-pane" id="tab7">
                         <br>
-                        <h4>Donaciones Recibidas <small>$120.000</small></h4>
+                        <h4>Donaciones Recibidas <small>$
+                        {%if total_donaciones != None %}
+                            {{ total_donaciones }}
+                        {% else %}
+                            0
+                        {% endif %}
+                        </small>
+                        </h4>
                         <table class="table table-hover table-donations">
+                        {% if donaciones %}
                             <thead>
                             <tr>
                                 <th>Usuario</th>
@@ -169,23 +177,62 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="cell-song"><a href="/user/2">Peter Hollens</a></td>
-                                <td class="cell-user">$100.000</td>
-                                <td>05 nov. 2016 14:23</td>
-                            </tr>
-                            <tr>
-                                <td class="cell-song"><a href="/user/1">Lindsey Stirling</a></td>
-                                <td class="cell-user">$20.000</td>
-                                <td>27 oct. 2016 02:57</td>
-                            </tr>
+                                {% for donacion in donaciones %}
+                                    <tr>
+                                        <td class="cell-song">
+                                            {% if donacion.user.artista %}
+                                                <a href="/user/{{ donacion.user.artista.id }}">{{ donacion.user.artista}}</a>
+                                            {% else %}
+                                                {{ donacion.user.first_name }} {{ donacion.user.last_name }}
+                                            {% endif %}
 
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td class="cell-user">{{ donacion.valor }}</td>
+                                        <td>{{ donacion.fec_donacion }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                   Aún no ha recibido donaciones
+                        </tbody>
+                            {% endif %}
+                         </table>
                         <br>
                         <hr>
-                        <h4>Donaciones Hechas <small>$0</small></h4>
-                        Aún no ha realizado donaciones
+
+                        <h4>Donaciones realizadas <small>$
+                        {%if total_donaciones_hechas != None %}
+                            {{ total_donaciones_hechas }}
+                        {% else %}
+                            0
+                        {% endif %}
+                        </small>
+                        </h4>
+                        <table class="table table-hover table-donations">
+                        {% if donacionesHechas %}
+                            <thead>
+                            <tr>
+                                <th>Artista</th>
+                                <th>Valor</th>
+                                <th>Fecha</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for donacionHecha in donacionesHechas %}
+                                    <tr>
+                                        <td class="cell-song">
+                                            <a href="/user/{{ donacionHecha.artista.id }}">{{ donacionHecha.artista}}</a>
+                                        </td>
+                                        <td class="cell-user">{{ donacionHecha.valor }}</td>
+                                        <td>{{ donacionHecha.fec_donacion }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                   Aún no ha recibido donaciones
+                        </tbody>
+                            {% endif %}
+                         </table>
+
+
                     </div>
                 </div>
 

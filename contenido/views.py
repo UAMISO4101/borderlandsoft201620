@@ -1,6 +1,6 @@
 # - *- coding: utf-8 - *-
 
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Sum
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.views.generic import *
@@ -41,9 +41,14 @@ class AudiosView(ListView):
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
         self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).filter(ind_estado=True).prefetch_related('artistas').all()
+        self.donaciones = Donaciones.objects.filter(artista=self.artista)
+        self.donacionesHechas = Donaciones.objects.filter(user=self.artista.user)
+
+
         if not self.artista.user is None:
             self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
             context['artistas_que_sigo'] = self.artistas_que_sigo
+
 
         self.audios_list = []
         for audio in self.audios:
@@ -58,10 +63,17 @@ class AudiosView(ListView):
             audio_item["artistas"] = nombres
             self.audios_list.append(audio_item)
 
+        self.total_donaciones = Donaciones.objects.filter(artista=self.artista).aggregate(Sum('valor')).get('valor__sum',0)
+        self.total_donaciones_hechas = Donaciones.objects.filter(user=self.artista.user).aggregate(Sum('valor')).get('valor__sum', 0)
+
+        context['total_donaciones'] = self.total_donaciones
+        context['total_donaciones_hechas'] = self.total_donaciones_hechas
         context['artist'] = self.artista
         context['albums'] = self.albums
         context['audios'] = self.audios
         context['audios_list'] = self.audios_list
+        context['donaciones'] = self.donaciones
+        context['donacionesHechas'] = self.donacionesHechas
         if self.request.user.is_authenticated():
             user_id = self.request.user.id
         else:
@@ -297,7 +309,8 @@ def donation_view(request):
     value = request.POST.get("value")
     credit_card = request.POST.get("credit_card")
     artista_a_donar = Artista.objects.get(pk=request.POST.get("artist_to_donation"))
-    donation = Donaciones(valor=value, tarjeta_credito=credit_card, artista=artista_a_donar)
+    user_donation = User.objects.get(pk=request.POST.get("user_donation"))
+    donation = Donaciones(valor=value, tarjeta_credito=credit_card, artista=artista_a_donar, user=user_donation)
     donation.save()
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))

@@ -312,6 +312,9 @@ def donation_view(request):
     user_donation = User.objects.get(pk=request.POST.get("user_donation"))
     donation = Donaciones(valor=value, tarjeta_credito=credit_card, artista=artista_a_donar, user=user_donation)
     donation.save()
+    send_mail('[SonidosLibres] Notificación de donación',
+              '!Enhorabuena ' + artista_a_donar.nom_artistico + '! Recibiste una donación de $' + value,
+              'Notifications SL <notification@sonidoslibres.com>', [artista_a_donar.email])
     messages.success(request, 'Tu donación fue recibida. ¡Gracias!')
     return HttpResponseRedirect('/user/' + request.POST.get("artist_to_donation"))
 

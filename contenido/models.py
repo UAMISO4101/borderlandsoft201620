@@ -117,7 +117,7 @@ class Ratings(models.Model):
 
 
 
-class Denuncias(models.Model):
+class Denuncia(models.Model):
     """
     Describe un video reportado
     """
@@ -128,7 +128,7 @@ class Denuncias(models.Model):
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE)
 
     def __str__(self):  # __unicode__ on Python 2
-        return self.val_comentario
+        return self.val_denuncia
 
     class Meta:
         ordering = ('val_denuncia',)

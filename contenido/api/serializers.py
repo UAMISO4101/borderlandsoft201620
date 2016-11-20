@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings, Profile
+from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings, Profile, Denuncia
 from django.contrib.auth.models import Permission
 
 
@@ -74,3 +74,14 @@ class AudioIndEstadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Audio
         fields = ('id', 'ind_estado')
+
+
+
+class DenunciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Denuncia
+        fields = ('id', 'val_denuncia', 'ind_tipo_denuncia', 'fec_creacion_denuncia', 'autor', 'audio')
+
+    def create(self, validated_data):
+        denuncia = Denuncia.objects.create(**validated_data)
+        return denuncia

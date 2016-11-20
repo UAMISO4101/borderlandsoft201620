@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-
+from datetime import datetime
 
 from contenido.models import Audio
 from contenido.models import Comentario
@@ -37,7 +37,7 @@ class ComentarioAPITest(TestCase):
     def test_comentario_registro(self):
         self.client.login(username='William78', password='william1234')
         url = reverse('comment-create')
-        data = {'val_comentario': 'DabApps','ind_publicado':True,'autor':self.usuario_regular.id, 'audio':self.audio.id}
+        data = {'val_comentario': 'DabApps','ind_publicado':True,'autor':self.usuario_regular.id, 'audio':self.audio.id, 'fec_creacion_comen':datetime.now()}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Comentario.objects.count(), 1)
@@ -48,7 +48,7 @@ class ComentarioAPITest(TestCase):
         self.client.login(username='William78', password='william1234')
         url = reverse('comment-create')
         data = {'val_comentario': 'DabApps', 'ind_publicado': True, 'autor': self.usuario_regular.id,
-                'audio': self.audio.id}
+                'audio': self.audio.id, 'fec_creacion_comen':datetime.now()}
         response = self.client.post(url, data, format='json')
 
         url =  reverse('coments_list', kwargs={'song_id':4})

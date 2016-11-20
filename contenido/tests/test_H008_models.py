@@ -1,5 +1,4 @@
 from django.test import TestCase
-from datetime import datetime
 from contenido.models import Audio
 from contenido.models import Comentario
 from contenido.models import Artista
@@ -29,14 +28,14 @@ class ComentarioTest(TestCase):
 
     # Prueba utilizada para el registro de comentarios mediante acceso a datos directo
     def test_comentario_registro(self):
-        instance = Comentario.objects.create(val_comentario='Una estupenda cancion', autor=self.usuario_regular, audio=self.audio, fec_creacion_comen=datetime.datetime.now())
+        instance = Comentario.objects.create(val_comentario='Una estupenda cancion', autor=self.usuario_regular, audio=self.audio)
         self.assertEqual(instance.__str__(), "Una estupenda cancion")
 
 
     # Prueba utilizada para la consulta de comentarios
     def test_comentario_consultar(self):
-        Comentario.objects.create(val_comentario='Una estupenda cancion 1',autor=self.usuario_regular,audio=self.audio, fec_creacion_comen=datetime.datetime.now())
-        Comentario.objects.create(val_comentario='Una estupenda cancion 2',autor=self.usuario_regular,audio=self.audio, fec_creacion_comen=datetime.datetime.now())
+        Comentario.objects.create(val_comentario='Una estupenda cancion 1',autor=self.usuario_regular,audio=self.audio)
+        Comentario.objects.create(val_comentario='Una estupenda cancion 2',autor=self.usuario_regular,audio=self.audio)
 
         comentarios = Comentario.objects.all()
 

@@ -1,6 +1,7 @@
 from rest_framework import viewsets, generics
-from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer, AudioIndEstadoSerializer
-from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings
+from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer, AudioIndEstadoSerializer, \
+    DenunciaSerializer
+from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings, Denuncia
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
 from rest_framework import status
@@ -114,3 +115,16 @@ class AudioUpdateEstadoViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+
+class DenunciaViewSet(viewsets.ModelViewSet):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
+
+    def create(self, request, format=None):
+        serializer = DenunciaSerializer(data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -114,3 +114,21 @@ class Ratings(models.Model):
 
     def __str__(self):  # __unicode__ on Python 2
         return self.val_rating
+
+
+
+class Denuncia(models.Model):
+    """
+    Describe un video reportado
+    """
+    val_denuncia = models.TextField(max_length=1000, help_text='denuncia')
+    ind_tipo_denuncia = models.CharField(max_length=1000, verbose_name='Tipo denuncia', help_text='Tipo de denuncia')
+    fec_creacion_denuncia = models.DateTimeField(auto_now_add=True, help_text='Fecha de creación de la denuncia')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    audio = models.ForeignKey(Audio, on_delete=models.CASCADE)
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.val_denuncia
+
+    class Meta:
+        ordering = ('val_denuncia',)

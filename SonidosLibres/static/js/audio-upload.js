@@ -41,13 +41,13 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 50,
             },
-        }, highlight: function(element) {
+        }, highlight(element) {
             $(element).parent().addClass("has-error");
-        }, unhighlight: function(element) {
+        }, unhighlight(element) {
             $(element).parent().removeClass("has-error");
-        }, errorPlacement: function(error, element) {
+        }, errorPlacement(error, element) {
         },
-        submitHandler: function () {
+        submitHandler() {
             document.getElementById("audio_upload_form").submit();
             return false;
         }

@@ -3,11 +3,8 @@
  */
 
 $(document).ready(function () {
-     $.validator.messages.required = '';
-     $.validator.messages.number = '';
-     $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg !== value;
-     }, "");
+     $.validator.messages.required = "";
+     $.validator.messages.number = "";
     $('#edit_perfil_form').validate({
         rules: {
             first_name: {
@@ -29,13 +26,12 @@ $(document).ready(function () {
             last_name: "Por favor ingrese sus apellidos",
             email: "Por favor ingrese un correo v&aacute;lido",
         }, highlight: function(element) {
-            $(element).parent().addClass('has-error');
+            $(element).parent().addClass("has-error");
         }, unhighlight: function(element) {
-            $(element).parent().removeClass('has-error');
-        }, errorPlacement: function(error, element) {
-        },
-        submitHandler: function () {
-            document.getElementById('edit_perfil_form').submit();
+            $(element).parent().removeClass("has-error");
+        }, submitHandler: function (form) {
+            //document.getElementById("edit_perfil_form").submit();
+            form.submit();
             return false;
         }
     });
@@ -46,8 +42,8 @@ $(document).ready(function () {
         $.get(url, function(results){
            var form = $("#edit_perfil_form", results);
            //update the dom with the received results
-            $('#edit_perfil_form').replaceWith(form);
-            $("#editPerfil").modal('show');
+            $("#edit_perfil_form").replaceWith(form);
+            $("#editPerfil").modal("show");
          }, "html");
          return false; // prevent the click propagation
    });

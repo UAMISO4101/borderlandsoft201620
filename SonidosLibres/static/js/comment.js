@@ -13,13 +13,12 @@ $(document).ready(function () {
             texto_comentario: {
                 required: true,
             },
-        }, highlight: function(element) {
+        }, highlight(element) {
             $(element).parent().addClass("has-error");
-        }, unhighlight: function(element) {
+        }, unhighlight(element) {
             $(element).parent().removeClass("has-error");
         },
-        submitHandler: function (form) {
-            //document.getElementById("comment_form").submit();
+        submitHandler(form) {
             agregarComentario();
             return false;
         }
@@ -40,10 +39,9 @@ function agregarComentario(){
     item ["ind_publicado"] = "True";
     item ["audio"] = songId;
     item ["fec_creacion_comen"] = new Date();
-    //item ["autor"] = userId;
 
-    if(userId !== null && userId !== undefined && userId !== "None"){
-        var autor = {}
+    if(userId !== null && userId !== "None"){
+        var autor = {};
         autor ["id"] = userId;
         item ["autor"] = autor;
     }
@@ -57,13 +55,12 @@ function agregarComentario(){
         contentType: "application/json; charset=utf-8",
         success: function (msg)
         {
-            $("#texto_comentario").val('');
-            $("#commentModal").modal('hide');
+            $("#texto_comentario").val("");
+            $("#commentModal").modal("hide");
             $('a[href="#tab3"]').click();
         },
         error: function (err)
         {
-            console.log(err);
             alert("Se produjo un error inesperado :(");
         }
     });

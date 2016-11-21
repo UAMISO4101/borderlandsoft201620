@@ -96,10 +96,7 @@ class ProfileModificacion(UpdateView):
             artista = self.third_model.objects.get(id=usuario.artista.id)
             form_artista = self.third_form_class(request.POST, instance=artista)
             existe_artista = True
-            if form_artista.is_valid():
-                guardar_form_artista = True
-            else:
-                guardar_form_artista = False
+            guardar_form_artista = form_artista.is_valid()
         except Artista.DoesNotExist:
             existe_artista = False
             guardar_form_artista = True

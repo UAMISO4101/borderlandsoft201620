@@ -84,6 +84,7 @@ class Donaciones(models.Model):
     fec_donacion = models.DateTimeField(auto_now_add=True, help_text='Fecha de donación')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
 class Comentario(models.Model):
     """
     Describe un comentario
@@ -99,6 +100,7 @@ class Comentario(models.Model):
 
     class Meta:
         ordering = ('val_comentario',)
+
 
 class Ratings(models.Model):
     """
@@ -116,7 +118,6 @@ class Ratings(models.Model):
         return self.val_rating
 
 
-
 class Denuncia(models.Model):
     """
     Describe un video reportado
@@ -132,3 +133,22 @@ class Denuncia(models.Model):
 
     class Meta:
         ordering = ('val_denuncia',)
+
+
+class Convocatoria(models.Model):
+    '''
+    describe una convocatoria
+    '''
+    nombre = models.CharField(max_length=100)
+    apertura = models.DateField()
+    cierre = models.DateField()
+    descripcion = models.TextField()
+
+
+class ConvocatoriaEntry(models.Model):
+    """
+    describe una entrada en una convocatoria
+    """
+    convocatoria = models.ForeignKey(Convocatoria, on_delete=models.CASCADE)
+    cancion = models.ForeignKey(Audio, on_delete=models.CASCADE)
+    descripcion = models.TextField()

@@ -8,4 +8,4 @@
 [![CircleCI](https://circleci.com/gh/UAMISO4101/borderlandsoft201620/tree/development.svg?style=shield&circle-token=db73411a2843bc4e9da2a8a560d4722eb11afd8f)](https://circleci.com/gh/UAMISO4101/borderlandsoft201620/tree/development)
 
 ## Codacy
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/68824f29e4524cfc8949823d1d3e3bcd)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=UAMISO4101/borderlandsoft201620&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f79d09d01db041ddb65aca5727a066f0)](https://www.codacy.com/app/ls-talero21Organization/borderlandsoft201620_2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=UAMISO4101/borderlandsoft201620&amp;utm_campaign=Badge_Grade)

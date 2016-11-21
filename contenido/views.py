@@ -223,13 +223,6 @@ class SongView(ListView):
         return context
 
 
-def delete_album_view(request):
-    album_id = request.POST.get('album_id')
-    album = Album.objects.get(album_id)
-    album.delete()
-    return HttpResponse("ok")        
-
-
 @csrf_exempt
 def like_view(request):
     if request.is_ajax():
@@ -391,6 +384,17 @@ def upload_album_view(request):
 
     messages.success(request, '¡El album fue agregado exitosamente!')
     return HttpResponseRedirect('/album/' + str(album.id))
+
+
+def edit_album_view(request):
+    pass
+
+
+def delete_album_view(request):
+    album_id = request.POST.get('album_id')
+    album = Album.objects.get(album_id)
+    album.delete()
+    return HttpResponse("ok")
 
 
 def comentario_view(request):

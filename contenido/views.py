@@ -138,6 +138,8 @@ class ConvocationView(ListView):
     context_object_name = 'convocatorias'
     model = Convocatoria
 
+    def get_queryset(self):
+        return Convocatoria.objects.all()
 
 class BuscadorView(View):
     # template_name = 'homepage.html'

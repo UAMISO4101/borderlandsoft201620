@@ -134,6 +134,11 @@ class AlbumsView(ListView):
         return context
 
 
+class ConvocationView(ListView):
+    context_object_name = 'convocatorias'
+    model = Convocatoria
+
+
 class BuscadorView(View):
     # template_name = 'homepage.html'
     def get(self, request, *args, **kwargs):

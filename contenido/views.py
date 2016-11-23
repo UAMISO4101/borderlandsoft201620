@@ -158,7 +158,6 @@ def edit_album_view(request):
         k = Key(bucket)
         k.key = 'images/' + image_file_name
         k.set_contents_from_file(BytesIO(image_file), policy='public-read'
-
         album.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
 
     album.save()

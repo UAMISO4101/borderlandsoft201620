@@ -17,6 +17,8 @@ import uuid
 import datetime
 from django.conf import settings
 from django.core.mail import send_mail
+from django.utils.datastructures import MultiValueDictKeyError
+import json
 
 
 # Create your views here.
@@ -40,15 +42,14 @@ class AudiosView(ListView):
         context = super(AudiosView, self).get_context_data(**kwargs)
         self.artista = get_object_or_404(Artista, id=int(self.kwargs['user_id']))
         self.albums = Album.objects.filter(artista__pk=self.artista.pk)
-        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).filter(ind_estado=True).prefetch_related('artistas').all()
+        self.audios = Audio.objects.filter(artistas__pk=self.artista.pk).filter(ind_estado=True).prefetch_related(
+            'artistas').all()
         self.donaciones = Donaciones.objects.filter(artista=self.artista)
         self.donacionesHechas = Donaciones.objects.filter(user=self.artista.user)
-
 
         if not self.artista.user is None:
             self.artistas_que_sigo = Artista.objects.filter(seguidores=self.artista.user.id)
             context['artistas_que_sigo'] = self.artistas_que_sigo
-
 
         self.audios_list = []
         for audio in self.audios:
@@ -63,8 +64,10 @@ class AudiosView(ListView):
             audio_item["artistas"] = nombres
             self.audios_list.append(audio_item)
 
-        self.total_donaciones = Donaciones.objects.filter(artista=self.artista).aggregate(Sum('valor')).get('valor__sum',0)
-        self.total_donaciones_hechas = Donaciones.objects.filter(user=self.artista.user).aggregate(Sum('valor')).get('valor__sum', 0)
+        self.total_donaciones = Donaciones.objects.filter(artista=self.artista).aggregate(Sum('valor')).get(
+            'valor__sum', 0)
+        self.total_donaciones_hechas = Donaciones.objects.filter(user=self.artista.user).aggregate(Sum('valor')).get(
+            'valor__sum', 0)
 
         context['total_donaciones'] = self.total_donaciones
         context['total_donaciones_hechas'] = self.total_donaciones_hechas
@@ -329,8 +332,8 @@ def upload_song_view(request):
         artista = usuario.artista
     except Artista.DoesNotExist:
         artista = Artista.objects.create(nom_artistico=artista_nombre, nom_pais=artista_pais,
-                                         nom_ciudad=artista_ciudad, user=request.user, val_imagen=request.user.profile.val_imagen)
-
+                                         nom_ciudad=artista_ciudad, user=request.user,
+                                         val_imagen=request.user.profile.val_imagen)
 
     song_name = request.POST.get('upload_song_name')
     song_type = request.POST.get('upload_song_type')
@@ -418,7 +421,6 @@ class ComentariosView(ListView):
         return context
 
 
-
 def update_user_social_data(request, *args, **kwargs):
     user = kwargs['user']
     if not kwargs['is_new']:
@@ -441,4 +443,38 @@ def update_user_social_data(request, *args, **kwargs):
         gender = json.loads(response).get('gender')
 
 
+@csrf_exempt
+def edit_song_info_view(request):
+    if request.is_ajax():
+        song_id = request.POST.get('song_id')
+        audio = Audio.objects.filter(ind_estado=True).get(pk=song_id)
+        data = {'name': audio.nom_audio, 'type': audio.type_audio, 'tags': audio.tags_audio, 'image': audio.val_imagen}
+        message = json.dumps(data)
+    else:
+        message = 'ERROR'
+    return HttpResponse(message, content_type="application/json")
 
+
+def edit_song_view(request):
+    song_id = request.POST.get('edit_song_id')
+    audio = Audio.objects.filter(ind_estado=True).get(pk=song_id)
+    song_name = request.POST.get('edit_song_name')
+    song_type = request.POST.get('edit_song_type')
+    song_tags = request.POST.get('edit_song_tags')
+    try:
+        image_file = request.FILES['edit_song_img_file'].read()
+        image_file_name = uuid.uuid4().urn[9:] + '.png'
+        conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
+        bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+        k = Key(bucket)
+        k.key = 'images/' + image_file_name
+        k.set_contents_from_file(BytesIO(image_file), policy='public-read')
+        audio.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
+    except MultiValueDictKeyError:
+        pass
+    audio.nom_audio = song_name
+    audio.type_audio = song_type
+    audio.tags_audio = song_tags
+    audio.save()
+    messages.success(request, '¡El audio fue editado exitosamente!')
+    return HttpResponseRedirect('/song/' + str(audio.id))

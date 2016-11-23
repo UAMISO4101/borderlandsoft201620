@@ -160,7 +160,7 @@ def edit_album_view(request):
         k.set_contents_from_file(BytesIO(image_file), policy='public-read'
         #album.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
 
-    album.save()
+    #album.save()
 
     messages.success(request, '¡El album fue agregado exitosamente!')
     return HttpResponseRedirect('/album/' + str(album.id))

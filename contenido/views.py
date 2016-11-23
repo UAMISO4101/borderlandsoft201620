@@ -223,7 +223,8 @@ class SongView(ListView):
 
         if self.request.user.is_authenticated():
             user_id = self.request.user.id
-            user_albums = Album.objects.filter(artista=user_id)
+            artista = Artista.objects.get(user=user_id)
+            user_albums = Album.objects.filter(artista=artista.id)
             albums = []
 
             # Recorrer lista de albums del usuario

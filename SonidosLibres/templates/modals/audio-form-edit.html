@@ -1,0 +1,49 @@
+{% load static %}
+<div class="modal fade" id="{{ id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-2">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Editar audio</h4>
+            </div>
+            <div class="modal-body">
+                <form id="audio_edit_form" action="{% url 'edit_song'%}" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <input id=edit_song_id type=hidden name=edit_song_id value="">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="form-group input-group">
+                                    <img id="edit_song_image" class="detail-img si200" src="">
+                                <label class="btn btn-block btn-sonidoslibres btn-2 btn-file">
+                                    Agregar imágen&hellip; <input type="file" name="edit_song_img_file" style="display: none;" onchange="document.getElementById('edit_song_image').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+                                <input id="edit_song_image_name" type="text" class="form-control" name="edit_song_image_name" title="">
+                             </div>
+                        </div>
+                        <div class="media-body">
+                            <div class="form-group">
+                                <input id="edit_song_name" type="text" class="form-control" placeholder="Nombre" name="edit_song_name">
+                            </div>
+                            <div class="form-group">
+                                <select id="edit_song_type" class="form-control" name="edit_song_type" title="">
+                                    <option>Seleccione un tipo...</option>
+                                    <option>Videojuegos</option>
+                                    <option>Banda sonora</option>
+                                    <option>Sonidos ambientales</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="edit_song_tags" class="form-control" placeholder="Etiquetas (Separadas por comas)" name="edit_song_tags"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-2">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" form="audio_edit_form" class="btn btn-sonidoslibres btn-2">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

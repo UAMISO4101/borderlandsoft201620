@@ -76,7 +76,7 @@
                                 {% if artista.user.id == user.id %}
                                     <div class="btn-group btn-group-user pull-left" >
                                         <button type="button" id="addToAlbumButton" data-target="#addToAlbumModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Agregar a album"><i class="fa fa-circle-thin fa-lg"></i></button>
-                                        <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil fa-lg"></i></button>
+                                        <button type="button" class="btn btn-sonidoslibres btn-2" data-toggle="tooltip" data-placement="bottom" title="Editar" onclick="info_edit_song({{ song.id }})"><i class="fa fa-pencil fa-lg"></i></button>
                                         <button type="button" data-target="#confirmationModal" class="btn btn-sonidoslibres btn-2" data-toggle="modal" data-hover="tooltip" data-placement="bottom" data-trigger="hover" title="Eliminar"><i class="fa fa-trash fa-lg"></i></button>
                                         <div class="btn-group" role="group" data-toggle="tooltip" data-placement="bottom" title="Agregar a..."></div>
                                     </div>
@@ -161,6 +161,7 @@
     </div>
     {% if user.is_authenticated %}
         {% include "modals/comentario-form.html" with id="commentModal" title="Agregar comentario" label="Por favor registre su comentario" %}
+        {% include "modals/audio-form-edit.html" with id="editInfoAudio" %}
     {% endif %}
     {% include "modals/denuncia-form.html" with id="reportModal" title="Reportar audio" label="Por favor coméntenos porqué está reportando este audio"%}
     {% include "modals/list.html" with id="addToListModal" title="Agregar a lista de Reproducción" prefix="lst" %}

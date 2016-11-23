@@ -37,8 +37,21 @@ class HU039Test(TestCase):
     def verificar_si_puede_editar_otros_albums(self):
         self.login('6')
         self.browser.implicitly_wait(2)
+        exists = False
         try:
             self.browser.find_element_by_id('addToAlbumButton')
         except NoSuchElementException:
-            return True
-        return False
+            exists = True
+        self.assertEquals(exists, True)
+
+    def verificar_si_lista_solo_albums_artista(self):
+        self.abrir_modal_agregar_audio_a_album('5')
+        self.browser.implicitly_wait(2)
+        exists = False
+        try:
+            self.browser.find_element_by_xpath("//td[text()='Lindsey Stirling (Album)']")
+            self.browser.find_element_by_xpath("//td[text()='Shatter Me']")
+            exists = True
+        except NoSuchElementException:
+            exists = False
+        self.assertEquals(exists, True)

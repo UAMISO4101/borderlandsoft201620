@@ -20,143 +20,157 @@
   }
 },
 {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$30000$eVtEFzkyzB0p$BzNWZ9MUASierUMEvar+LPKr2vQ0KpHtJGXV2bMVtN0=",
-    "last_login": "2016-10-24T02:19:28.512Z",
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "a@aa.aa",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2016-10-24T02:03:58.461Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$30000$aDWLDgWnUQvQ$sxLT4IePXKX04bMUtnWivLbsN4NMf7pb9upDb0lOwXw=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "lindsey",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2016-10-24T02:20:02.143Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
+  "model": "contenido.album",
   "pk": 3,
   "fields": {
-    "password": "pbkdf2_sha256$30000$GAxgYl9xSbAN$/kJiZYvSqdEY3hgEfqZ9UTEvonQSf1BNc1f4d4qJgB8=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "hollens",
-    "first_name": "Peter",
-    "last_name": "Hollens",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2016-10-24T02:20:26Z",
-    "groups": [],
-    "user_permissions": []
+    "nom_album": "asdasd",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/a79ec245-0246-4301-9a41-0a10c062ec46.png",
+    "fec_creacion_album": "2000-01-01",
+    "artista": 8
   }
 },
 {
-  "model": "auth.user",
-  "pk": 4,
-  "fields": {
-    "password": "pbkdf2_sha256$30000$QxXXR8KQliOh$i1iOlecOPGNZEdrErAozo+mb3WmQeEcnnngKl37ym+8=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "daftpunk",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2016-10-24T02:20:36.935Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 5,
-  "fields": {
-    "password": "pbkdf2_sha256$30000$zEUrgVtZ7xRa$6hg5tQCfCHAPwV6bZcNomqJv4XjbuOUBDLI8buheUrg=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "lzzyhale",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2016-10-24T05:58:17.246Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "contenido.profile",
+  "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
-    "val_imagen": "",
-    "user": [
-      "admin"
-    ]
+    "app_label": "contenido",
+    "model": "denuncia"
   }
 },
 {
-  "model": "contenido.profile",
+  "model": "contenttypes.contenttype",
   "pk": 2,
   "fields": {
-    "val_imagen": "",
-    "user": [
-      "lindsey"
-    ]
+    "app_label": "contenido",
+    "model": "audio"
   }
 },
 {
-  "model": "contenido.profile",
+  "model": "contenttypes.contenttype",
   "pk": 3,
   "fields": {
-    "val_imagen": "",
-    "user": [
-      "hollens"
-    ]
+    "app_label": "contenido",
+    "model": "album"
   }
 },
 {
-  "model": "contenido.profile",
+  "model": "contenttypes.contenttype",
   "pk": 4,
   "fields": {
-    "val_imagen": "",
-    "user": [
-      "daftpunk"
-    ]
+    "app_label": "contenido",
+    "model": "artista"
   }
 },
 {
-  "model": "contenido.profile",
+  "model": "contenttypes.contenttype",
   "pk": 5,
   "fields": {
-    "val_imagen": "",
-    "user": [
-      "lzzyhale"
-    ]
+    "app_label": "contenido",
+    "model": "ratings"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "contenido",
+    "model": "profile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "contenido",
+    "model": "donaciones"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "contenido",
+    "model": "comentario"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "social_auth",
+    "model": "nonce"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "social_auth",
+    "model": "code"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "social_auth",
+    "model": "usersocialauth"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "social_auth",
+    "model": "association"
   }
 },
 {
@@ -168,16 +182,1616 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "mf6jsiio1jhv7226elgnt1qohy86c7bc",
+  "fields": {
+    "session_data": "ODg0NGMyMjliMGE0YmQyYTBhZDgzZmExMjc1Y2U4ZGM1MGY4MDZhZTp7Il9hdXRoX3VzZXJfaWQiOiI2IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmMDU2NjEwMDhkMWQ2NGVjNDA3NmJjNzIwM2YxZDNlNmY2Zjc2MGVlIn0=",
+    "expire_date": "2016-12-06T06:08:45.022Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zrgrnl2q3li3d8hfe9dsmj6lesh2tboo",
+  "fields": {
+    "session_data": "NTgzNDIxYTFkMjAxMTE1MzVjYzZiOTNjMDY5YzkxMTY1ZGI5NjkzZTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEwIiwiX2F1dGhfdXNlcl9oYXNoIjoiNWRjYTE4YTkyNDkzNTI1ODc1ODU3Y2EwZWY4YjIyZjY5YmE5YjVjMSJ9",
+    "expire_date": "2016-12-07T05:52:21.970Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add denuncia",
+    "content_type": [
+      "contenido",
+      "denuncia"
+    ],
+    "codename": "add_denuncia"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change denuncia",
+    "content_type": [
+      "contenido",
+      "denuncia"
+    ],
+    "codename": "change_denuncia"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete denuncia",
+    "content_type": [
+      "contenido",
+      "denuncia"
+    ],
+    "codename": "delete_denuncia"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can add audio",
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "codename": "add_audio"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can change audio",
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "codename": "change_audio"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can delete audio",
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "codename": "delete_audio"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can add album",
+    "content_type": [
+      "contenido",
+      "album"
+    ],
+    "codename": "add_album"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can change album",
+    "content_type": [
+      "contenido",
+      "album"
+    ],
+    "codename": "change_album"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can delete album",
+    "content_type": [
+      "contenido",
+      "album"
+    ],
+    "codename": "delete_album"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can add artista",
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "codename": "add_artista"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can change artista",
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "codename": "change_artista"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can delete artista",
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "codename": "delete_artista"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add ratings",
+    "content_type": [
+      "contenido",
+      "ratings"
+    ],
+    "codename": "add_ratings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change ratings",
+    "content_type": [
+      "contenido",
+      "ratings"
+    ],
+    "codename": "change_ratings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete ratings",
+    "content_type": [
+      "contenido",
+      "ratings"
+    ],
+    "codename": "delete_ratings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can add profile",
+    "content_type": [
+      "contenido",
+      "profile"
+    ],
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can change profile",
+    "content_type": [
+      "contenido",
+      "profile"
+    ],
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can delete profile",
+    "content_type": [
+      "contenido",
+      "profile"
+    ],
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can add donaciones",
+    "content_type": [
+      "contenido",
+      "donaciones"
+    ],
+    "codename": "add_donaciones"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can change donaciones",
+    "content_type": [
+      "contenido",
+      "donaciones"
+    ],
+    "codename": "change_donaciones"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can delete donaciones",
+    "content_type": [
+      "contenido",
+      "donaciones"
+    ],
+    "codename": "delete_donaciones"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can add comentario",
+    "content_type": [
+      "contenido",
+      "comentario"
+    ],
+    "codename": "add_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can change comentario",
+    "content_type": [
+      "contenido",
+      "comentario"
+    ],
+    "codename": "change_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can delete comentario",
+    "content_type": [
+      "contenido",
+      "comentario"
+    ],
+    "codename": "delete_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can add nonce",
+    "content_type": [
+      "social_auth",
+      "nonce"
+    ],
+    "codename": "add_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can change nonce",
+    "content_type": [
+      "social_auth",
+      "nonce"
+    ],
+    "codename": "change_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can delete nonce",
+    "content_type": [
+      "social_auth",
+      "nonce"
+    ],
+    "codename": "delete_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can add code",
+    "content_type": [
+      "social_auth",
+      "code"
+    ],
+    "codename": "add_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can change code",
+    "content_type": [
+      "social_auth",
+      "code"
+    ],
+    "codename": "change_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can delete code",
+    "content_type": [
+      "social_auth",
+      "code"
+    ],
+    "codename": "delete_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add user social auth",
+    "content_type": [
+      "social_auth",
+      "usersocialauth"
+    ],
+    "codename": "add_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change user social auth",
+    "content_type": [
+      "social_auth",
+      "usersocialauth"
+    ],
+    "codename": "change_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete user social auth",
+    "content_type": [
+      "social_auth",
+      "usersocialauth"
+    ],
+    "codename": "delete_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can add association",
+    "content_type": [
+      "social_auth",
+      "association"
+    ],
+    "codename": "add_association"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can change association",
+    "content_type": [
+      "social_auth",
+      "association"
+    ],
+    "codename": "change_association"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can delete association",
+    "content_type": [
+      "social_auth",
+      "association"
+    ],
+    "codename": "delete_association"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$eVtEFzkyzB0p$BzNWZ9MUASierUMEvar+LPKr2vQ0KpHtJGXV2bMVtN0=",
+    "last_login": "2016-10-24T02:19:28Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:03:58Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$c5shYZ67P5XM$+QMDggkWXkwaOA5HN8aIBAQ7xlNeZZ4TgGtAU03PT5k=",
+    "last_login": "2016-11-22T06:45:25Z",
+    "is_superuser": false,
+    "username": "lindsey",
+    "first_name": "Lindsey",
+    "last_name": "Stirling",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:20:02Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$Ty5S50azGXgj$WBHrNzgx3Ka7cgp74Dh7+B6DowdbBDNKccdcmoRBl8c=",
+    "last_login": "2016-11-22T05:57:51Z",
+    "is_superuser": false,
+    "username": "hollens",
+    "first_name": "Peter",
+    "last_name": "Hollens",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:20:26Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$IiwQcfsDa0pX$B2Nz0G3Tidf9AJtk68xZSaIt0b3vyTu9sZjaQw3fTuY=",
+    "last_login": "2016-11-22T05:53:33Z",
+    "is_superuser": false,
+    "username": "daftpunk",
+    "first_name": "Thomas",
+    "last_name": "Bangalter",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T02:20:36Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$RE6kRjeC3Izm$hFPs/F8r92G+TvIxYfvR/nuEouvvtv7XrJ8V1U3FGBw=",
+    "last_login": "2016-11-22T06:30:46Z",
+    "is_superuser": false,
+    "username": "lzzyhale",
+    "first_name": "Lzzy",
+    "last_name": "Hale",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-10-24T05:58:17Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$AEAEmYl4Ev95$S3Y4cMeY9/4zX7pCzbSCiRoghWOCQPr8oy7CG7G8las=",
+    "last_login": "2016-11-22T06:08:44Z",
+    "is_superuser": true,
+    "username": "admin2",
+    "first_name": "",
+    "last_name": "",
+    "email": "jwsanabria@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2016-11-22T05:47:44Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$rEs9DagF7oRf$p3tfu6tEBpxNuG/Vef1ZdrGmu8mgh3Q0wl0jiTxe3Ck=",
+    "last_login": "2016-11-22T06:48:34Z",
+    "is_superuser": false,
+    "username": "soundeffect",
+    "first_name": "Sound",
+    "last_name": "Effect",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-11-22T06:48:33Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$lM2oUSCfmksh$YATSSOU1syGR3vcYmvQArOBxiYuY2EB9wJVB6XBOKD4=",
+    "last_login": "2016-11-23T07:25:33.065Z",
+    "is_superuser": false,
+    "username": "the126",
+    "first_name": "Carlitos",
+    "last_name": "Moy",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-11-22T06:59:39Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$qoFb0RLIZOZZ$YTzgU004Y4E53e9phqam+34Hko4UFFd4kNv9sRwCt2E=",
+    "last_login": "2016-11-22T07:03:43Z",
+    "is_superuser": false,
+    "username": "JinglePunks",
+    "first_name": "Jingle",
+    "last_name": "Punks",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-11-22T07:03:43Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$lGwNeYJnHgef$RF4SfAiDysKNZMq3rfCvmzsV1NeNbzrsc0YWNsWezTo=",
+    "last_login": "2016-11-23T05:52:21Z",
+    "is_superuser": false,
+    "username": "Halbard",
+    "first_name": "Alejandro",
+    "last_name": "Espinosa",
+    "email": "ra.becerra388@uniandes.edu.co",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2016-11-23T04:20:33Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2016-11-22T05:50:34.744Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "lindsey",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2016-11-22T05:50:58.777Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "daftpunk",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2016-11-22T05:51:36.125Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "hollens",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2016-11-22T05:52:03.607Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "lzzyhale",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2016-11-22T06:09:48.194Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "1",
+    "object_repr": "Skyrim (Main Theme)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"val_recurso\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2016-11-22T06:10:16.836Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "6",
+    "object_repr": "Skyrim (main theme)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2016-11-22T06:24:31.645Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "8",
+    "object_repr": "New Song",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"nom_audio\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2016-11-22T06:24:48.011Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "3",
+    "object_repr": "Crystallize",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2016-11-22T06:24:48.018Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "2",
+    "object_repr": "Electric Daisy Violin",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2016-11-22T06:28:10.480Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "4",
+    "object_repr": "Beyond The Veil",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"val_recurso\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2016-11-22T06:28:24.076Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "4",
+    "object_repr": "Beyond The Veil",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"val_imagen\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2016-11-22T06:28:35.128Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "10",
+    "object_repr": "Beyond The Veil",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2016-11-22T06:43:02.900Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "5",
+    "object_repr": "Shatter Me",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"val_recurso\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2016-11-22T06:43:14.607Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "5",
+    "object_repr": "Shatter Me",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"val_imagen\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2016-11-22T06:43:23.591Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "11",
+    "object_repr": "Shatter Me",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2016-11-22T06:46:58.598Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "9",
+    "object_repr": "Crystallize",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2016-11-22T06:47:10.309Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "audio"
+    ],
+    "object_id": "7",
+    "object_repr": "Electric Daisy Violin",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2016-11-23T07:21:54.961Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "7",
+    "object_repr": "Jingle Punks",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2016-11-23T07:22:02.780Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "8",
+    "object_repr": "Halbard",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2016-11-23T07:22:08.232Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "7",
+    "object_repr": "Jingle Punks",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2016-11-23T07:22:13.868Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "6",
+    "object_repr": "The 126ers",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2016-11-23T07:22:20.896Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "5",
+    "object_repr": "SoundEffect",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2016-11-23T07:22:28.301Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "4",
+    "object_repr": "Lzzy Hale",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2016-11-23T07:22:35.427Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "4",
+    "object_repr": "Lzzy Hale",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2016-11-23T07:22:42.985Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "3",
+    "object_repr": "Administrador",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2016-11-23T07:22:49.938Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "2",
+    "object_repr": "Peter Hollens",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2016-11-23T07:22:55.773Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "contenido",
+      "artista"
+    ],
+    "object_id": "1",
+    "object_repr": "Lindsey Stirling",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2016-11-23T07:23:23.598Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2016-11-23T07:23:31.167Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "6",
+    "object_repr": "admin2",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2016-11-23T07:23:39.664Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "daftpunk",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2016-11-23T07:23:50.228Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "10",
+    "object_repr": "Halbard",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2016-11-23T07:23:57.645Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "hollens",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2016-11-23T07:24:06.587Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "9",
+    "object_repr": "JinglePunks",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2016-11-23T07:24:16.199Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "lindsey",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2016-11-23T07:24:25.816Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "lzzyhale",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2016-11-23T07:24:34.769Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "7",
+    "object_repr": "soundeffect",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2016-11-23T07:24:44.336Z",
+    "user": [
+      "admin2"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "8",
+    "object_repr": "the126",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"email\"]}}]"
+  }
+},
+{
+  "model": "contenido.ratings",
+  "pk": 1,
+  "fields": {
+    "val_rating": 3,
+    "fec_creacion_rating": "2016-10-24T05:00:00Z",
+    "autor": [
+      "hollens"
+    ],
+    "audio": 5
+  }
+},
+{
+  "model": "contenido.ratings",
+  "pk": 3,
+  "fields": {
+    "val_rating": 5,
+    "fec_creacion_rating": "2016-11-22T07:07:20.190Z",
+    "autor": [
+      "JinglePunks"
+    ],
+    "audio": 16
+  }
+},
+{
+  "model": "contenido.ratings",
+  "pk": 4,
+  "fields": {
+    "val_rating": 4,
+    "fec_creacion_rating": "2016-11-23T04:54:27.103Z",
+    "autor": [
+      "Halbard"
+    ],
+    "audio": 4
+  }
+},
+{
+  "model": "contenido.ratings",
+  "pk": 5,
+  "fields": {
+    "val_rating": 4,
+    "fec_creacion_rating": "2016-11-23T05:40:11.487Z",
+    "autor": [
+      "Halbard"
+    ],
+    "audio": 5
+  }
+},
+{
+  "model": "contenido.comentario",
+  "pk": 1,
+  "fields": {
+    "val_comentario": "Me encanta esta cancion :))))",
+    "fec_creacion_comen": "2016-11-22T06:57:37.049Z",
+    "ind_publicado": true,
+    "autor": [
+      "soundeffect"
+    ],
+    "audio": 7
+  }
+},
+{
+  "model": "contenido.comentario",
+  "pk": 2,
+  "fields": {
+    "val_comentario": "Lo mejor que he escuchado en el dia...",
+    "fec_creacion_comen": "2016-11-22T07:07:42.750Z",
+    "ind_publicado": true,
+    "autor": [
+      "JinglePunks"
+    ],
+    "audio": 16
+  }
+},
+{
+  "model": "contenido.comentario",
+  "pk": 3,
+  "fields": {
+    "val_comentario": "qweqweqwe",
+    "fec_creacion_comen": "2016-11-23T05:40:08.966Z",
+    "ind_publicado": true,
+    "autor": [
+      "Halbard"
+    ],
+    "audio": 5
+  }
+},
+{
   "model": "contenido.audio",
   "pk": 1,
   "fields": {
     "nom_audio": "Skyrim (Main Theme)",
     "val_imagen": "/static/img/examples/skyrim.jpg",
-    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/2ed6768b-890f-4e53-85da-007f9a58307f.mp3?X-Amz-Date=20161024T043011Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=7a576fa5ae1cfe13ec48cdb6d94546cef92fe099b3cda22f3521d9cc9a7c9c58&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/761daed2-6470-47d6-bddf-60034a9cdab2.mp3",
     "fec_entrada_audio": "2016-10-23",
+    "type_audio": "",
+    "tags_audio": "",
+    "ind_estado": true,
     "artistas": [
-      1,
-      2
+      2,
+      1
     ],
     "likes": [
       [
@@ -192,50 +1806,23 @@
 },
 {
   "model": "contenido.audio",
-  "pk": 2,
-  "fields": {
-    "nom_audio": "Electric Daisy Violin",
-    "val_imagen": "",
-    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/6c51d54b-a5ad-45cf-a34a-e15d131aa185.mp3?X-Amz-Date=20161024T043736Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=108be77da40cc9458c182fdb6de4225edf78885627482b0792e63118d7235b9a&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
-    "fec_entrada_audio": "2016-10-23",
-    "artistas": [
-      1
-    ],
-    "likes": [],
-    "albums": [
-      1
-    ]
-  }
-},
-{
-  "model": "contenido.audio",
-  "pk": 3,
-  "fields": {
-    "nom_audio": "Crystallize",
-    "val_imagen": "",
-    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/14085ea6-8cdb-4b10-bd75-b1ec026bca10.mp3?X-Amz-Date=20161024T044701Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=9ef11048f09b25565a4a2a72cbe302a64b681965c2f49b30bd344c0bd15c7d4c&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
-    "fec_entrada_audio": "2016-10-23",
-    "artistas": [
-      1
-    ],
-    "likes": [],
-    "albums": [
-      1
-    ]
-  }
-},
-{
-  "model": "contenido.audio",
   "pk": 4,
   "fields": {
     "nom_audio": "Beyond The Veil",
-    "val_imagen": "",
-    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/99cff06a-b9dc-422f-bad2-f0d2dce26dfc.mp3?X-Amz-Date=20161024T053756Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=e9264a798116d6451cee3e3bec43b825317f47d25097b05e35a1d07dc0a51def&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/1ea49aa8-948c-45c2-98f5-968c4b6d5270.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/ede647b9-21cc-41d9-82d6-32d77f6bdfef.mp3",
     "fec_entrada_audio": "2016-10-24",
+    "type_audio": "",
+    "tags_audio": "",
+    "ind_estado": true,
     "artistas": [
       1
     ],
-    "likes": [],
+    "likes": [
+      [
+        "the126"
+      ]
+    ],
     "albums": [
       2
     ]
@@ -246,17 +1833,233 @@
   "pk": 5,
   "fields": {
     "nom_audio": "Shatter Me",
-    "val_imagen": "",
-    "val_recurso": "https://s3.amazonaws.com/olimpicolombia6/audios/b41f86e7-b9a6-4a10-a087-bcf824886a7f.mp3?X-Amz-Date=20161024T055649Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=2e5e21721013af060d003d08dc20fe8eaf94c7e3c3c4445ad4b863d071a053ee&X-Amz-Credential=ASIAIXYAB7QGBIDP2YWA/20161024/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=FQoDYXdzEJ7//////////wEaDNAV6gGF8HjILSonyCL6AdoJxzKBMUnPV/X3YGuDrGPs5L6t4pb6AbWp9Yslly2HbQy5gVf8GvC0gl9S7wHPmoDoXY8ZgTgBC%2BJbHpKv8csQt3vAkLoeut615DbjaD95UbKhbUVYhhI98%2BzDabvl9FHHcB1lxKvcDa%2BVt6mBdvWPhqvNlrvdIzBr2F9RPAPISUpQBvKF6H0rYxMGFgs4k1KxpQAcBHV1cYtbdjHYXxLkk997oeQIdVxdYsoSgQ2KoawzX09XiOqA/CxWFpS2ZgPdklv6dfMfAGg92WuVJSMIhLr38VDZp3a6MxhptX9ps1iK2xipq/3%2Bohv/A5Fo%2BzCmZdzNXo9KlhgoiZm2wAU%3D",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/8eeaf6d9-92d5-41a2-b81c-7d0dcdf9e347.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/8685df09-bd2e-4dda-b406-631dc3c6946e.mp3",
     "fec_entrada_audio": "2016-10-24",
+    "type_audio": "",
+    "tags_audio": "",
+    "ind_estado": true,
     "artistas": [
-      1,
-      4
+      4,
+      1
     ],
-    "likes": [],
+    "likes": [
+      [
+        "Halbard"
+      ]
+    ],
     "albums": [
       2
     ]
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 7,
+  "fields": {
+    "nom_audio": "Electric Daisy Violin",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/558410aa-a416-47cd-828e-1c0fc15f1d82.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/86c199ab-65e9-4052-82c6-4f818815cb5d.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Videojuegos",
+    "tags_audio": "Exxtreme",
+    "ind_estado": true,
+    "artistas": [
+      1
+    ],
+    "likes": [
+      [
+        "the126"
+      ],
+      [
+        "Halbard"
+      ]
+    ],
+    "albums": [
+      1
+    ]
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 8,
+  "fields": {
+    "nom_audio": "New Song",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/4b2c9746-9704-4a60-a113-56dedc84cdb6.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/382075fb-c428-4c37-89a7-a9c229a9352f.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Banda sonora",
+    "tags_audio": "banda",
+    "ind_estado": true,
+    "artistas": [
+      1
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 9,
+  "fields": {
+    "nom_audio": "Crystallize",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/589df392-7ab7-4c89-b937-7c3b45a73396.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/e3a0b4fb-e0ab-49b5-abeb-352a2f145fa7.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Videojuegos",
+    "tags_audio": "crystallie",
+    "ind_estado": true,
+    "artistas": [
+      1
+    ],
+    "likes": [],
+    "albums": [
+      1
+    ]
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 12,
+  "fields": {
+    "nom_audio": "50 Cal Shells Drop",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/99d38bed-9544-4a85-a7ea-f78bcdb1d163.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/ea3ee232-a904-49e5-8bc5-90160cdb6160.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Sonidos ambientales",
+    "tags_audio": "efectos de sonido",
+    "ind_estado": true,
+    "artistas": [
+      5
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 13,
+  "fields": {
+    "nom_audio": "Aggressive Motorcycle",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/64635a43-d57d-4d08-8adf-0fa4b53f89f1.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/7afcf7ff-0ce5-42f6-81a0-aec928821757.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Sonidos ambientales",
+    "tags_audio": "efectos de sonido",
+    "ind_estado": true,
+    "artistas": [
+      5
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 14,
+  "fields": {
+    "nom_audio": "Air_Tank_Leak_Slow",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/7f90a3f1-e8a7-49ed-b59c-1c317d93ab21.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/9c32e85d-b516-4b0f-b63d-170160a3eadf.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Sonidos ambientales",
+    "tags_audio": "",
+    "ind_estado": true,
+    "artistas": [
+      5
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 15,
+  "fields": {
+    "nom_audio": "Airplane_Rocket_Fire_Close",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/c0a2f78f-2892-4413-b361-c5efee151e04.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/4afb6f19-1d64-4bd0-bf1a-7cbe88027a0a.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Sonidos ambientales",
+    "tags_audio": "",
+    "ind_estado": true,
+    "artistas": [
+      5
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 16,
+  "fields": {
+    "nom_audio": "End of Summers",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/01fd1759-f13c-49f6-b30c-cca5b6e55238.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/f628d7a9-497c-4651-8834-ee1e4984e4d4.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Otro",
+    "tags_audio": "",
+    "ind_estado": true,
+    "artistas": [
+      6
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 17,
+  "fields": {
+    "nom_audio": "Cataclysmic_Molten_Core",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/b5852e7e-76ab-48b3-aa9c-3ba49d0e4991.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/3349787f-4e15-4b62-b193-67ae7d6e42fd.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Otro",
+    "tags_audio": "",
+    "ind_estado": true,
+    "artistas": [
+      7
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 18,
+  "fields": {
+    "nom_audio": "Working_It",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/3e274803-7815-4ab7-ad34-cd955b33d1d9.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/dbb8be92-2b74-4dc7-9bf0-044140dd3ac8.mp3",
+    "fec_entrada_audio": "2016-11-22",
+    "type_audio": "Otro",
+    "tags_audio": "",
+    "ind_estado": true,
+    "artistas": [
+      7
+    ],
+    "likes": [],
+    "albums": []
+  }
+},
+{
+  "model": "contenido.audio",
+  "pk": 19,
+  "fields": {
+    "nom_audio": "Intro",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/c09f8974-fdf6-4fde-87b0-6291f850e4c6.png",
+    "val_recurso": "https://s3-us-west-2.amazonaws.com/sonidoslibres/audios/429ed44e-0aca-40a1-a5e6-d86d4a7167be.mp3",
+    "fec_entrada_audio": "2016-11-23",
+    "type_audio": "Otro",
+    "tags_audio": "asdasd, asdasdasd",
+    "ind_estado": true,
+    "artistas": [
+      8
+    ],
+    "likes": [],
+    "albums": []
   }
 },
 {
@@ -266,11 +2069,22 @@
     "nom_artistico": "Lindsey Stirling",
     "nom_pais": "Estados Unidos",
     "nom_ciudad": "Santa Ana (CA)",
-    "val_imagen": "/static/img/examples/Lindsey-Stirling.jpg",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/de8231f7-48af-405e-90aa-3a26c8d74c1e.png",
     "user": [
       "lindsey"
     ],
-    "seguidores":[5,4]
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": [
+      [
+        "daftpunk"
+      ],
+      [
+        "Halbard"
+      ],
+      [
+        "lzzyhale"
+      ]
+    ]
   }
 },
 {
@@ -280,11 +2094,16 @@
     "nom_artistico": "Peter Hollens",
     "nom_pais": "Estados Unidos",
     "nom_ciudad": "Eugene (OR)",
-    "val_imagen": "/static/img/examples/peter-hollens.jpg",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/ccbfaf96-91b4-480d-b5d3-3fa38ef0937d.png",
     "user": [
       "hollens"
     ],
-    "seguidores":[1]
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": [
+      [
+        "admin"
+      ]
+    ]
   }
 },
 {
@@ -298,7 +2117,12 @@
     "user": [
       "admin"
     ],
-    "seguidores":[2]
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": [
+      [
+        "lindsey"
+      ]
+    ]
   }
 },
 {
@@ -308,21 +2132,176 @@
     "nom_artistico": "Lzzy Hale",
     "nom_pais": "Estados Unidos",
     "nom_ciudad": "Red Lion (PA)",
-    "val_imagen": "/static/img/examples/lzzylespaul.jpg",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/7c6fac0f-b539-467b-a0dc-df98d34acc70.png",
     "user": [
       "lzzyhale"
     ],
-    "seguidores":[1]
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": [
+      [
+        "admin"
+      ]
+    ]
   }
 },
 {
-  "model": "contenido.ratings",
+  "model": "contenido.artista",
+  "pk": 5,
+  "fields": {
+    "nom_artistico": "SoundEffect",
+    "nom_pais": "Colombia",
+    "nom_ciudad": "Bogota",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/e8c76e95-e365-4ba1-9b02-fb88c1e72056.png",
+    "user": [
+      "soundeffect"
+    ],
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": []
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 6,
+  "fields": {
+    "nom_artistico": "The 126ers",
+    "nom_pais": "Alemania",
+    "nom_ciudad": "Kan",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/300866b3-a68b-41a8-afb2-28db90d45041.png",
+    "user": [
+      "the126"
+    ],
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": []
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 7,
+  "fields": {
+    "nom_artistico": "Jingle Punks",
+    "nom_pais": "Francia",
+    "nom_ciudad": "Paris",
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/007c4f38-fd21-4f03-8cec-0d7dbd5c8b88.png",
+    "user": [
+      "JinglePunks"
+    ],
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": []
+  }
+},
+{
+  "model": "contenido.artista",
+  "pk": 8,
+  "fields": {
+    "nom_artistico": "Halbard",
+    "nom_pais": "Colombia",
+    "nom_ciudad": "Bogot\u00e1",
+    "val_imagen": "",
+    "user": [
+      "Halbard"
+    ],
+    "email": "ra.becerra388@uniandes.edu.co",
+    "seguidores": []
+  }
+},
+{
+  "model": "contenido.profile",
   "pk": 1,
   "fields": {
-    "val_rating": 3,
-    "fec_creacion_rating": "2016-10-24",
-    "autor": ["hollens"],
-    "audio": 5
+    "user": [
+      "admin"
+    ],
+    "val_imagen": ""
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "lindsey"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/de8231f7-48af-405e-90aa-3a26c8d74c1e.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "hollens"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/ccbfaf96-91b4-480d-b5d3-3fa38ef0937d.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "daftpunk"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/a9f1a404-63ff-4023-b846-984f71e7ad7a.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "lzzyhale"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/7c6fac0f-b539-467b-a0dc-df98d34acc70.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "admin2"
+    ],
+    "val_imagen": ""
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "soundeffect"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/e8c76e95-e365-4ba1-9b02-fb88c1e72056.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "the126"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/300866b3-a68b-41a8-afb2-28db90d45041.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "JinglePunks"
+    ],
+    "val_imagen": "https://s3-us-west-2.amazonaws.com/sonidoslibres/images/007c4f38-fd21-4f03-8cec-0d7dbd5c8b88.png"
+  }
+},
+{
+  "model": "contenido.profile",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "Halbard"
+    ],
+    "val_imagen": ""
   }
 }
 ]

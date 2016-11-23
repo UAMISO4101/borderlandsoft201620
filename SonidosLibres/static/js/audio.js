@@ -481,3 +481,38 @@ $("#deleteSong").click(function () {
     $(location).attr('href',"/");
     $(".container").load("/");
 });
+
+/**
+ * Función que construye un modal con la información actual de un audio
+ *
+ * @param songId
+ */
+function info_edit_song(songId){
+  $.ajax({
+    type:"POST",
+    url:"/edit/song/info/",
+    data: {
+      "song_id": songId
+    },
+    success: function(data){
+        if(data.type === 'Videojuegos'){
+            document.getElementById("edit_song_type").selectedIndex = 1;
+        }else if(data.type === 'Banda sonora'){
+            document.getElementById("edit_song_type").selectedIndex = 2;
+        }else if(data.type === 'Sonidos ambientales'){
+            document.getElementById("edit_song_type").selectedIndex = 3;
+        }else{
+            document.getElementById("edit_song_type").selectedIndex = 4;
+        }
+        $('#edit_song_id').val(songId);
+        $('#edit_song_name').val(data.name);
+        $('#edit_song_tags').val(data.tags);
+        $("#edit_song_image").attr("src", data.image);
+        $('#edit_song_image_name').val(data.name+'.png');
+        $('#editInfoAudio').modal('show');
+    },
+    error: function () {
+      alert("Se produjo un error inesperado :(");
+    }
+  });
+}

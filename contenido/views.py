@@ -134,6 +134,39 @@ class AlbumsView(ListView):
         return context
 
 
+def edit_album_view(request):
+    """
+    maneja la edición de un album
+    """
+    album = Album.objects.get(int(self.kwargs['album_id']))
+
+    #revisar que campos se entraron
+    new_nom = request.POST.get('edit_album_name')
+    if(len(new_nom)>0):
+        album.nom_album = new_nom
+
+    new_year = request.POST.get('edit_album_year')
+    if(len(new_year)>0):
+        album.nom_album = .fec_creacion_album = datetime.datetime(int(new_year), 1, 1, 0, 0)
+    #si se encuentra una imagen caragarla
+    if(request.FILES['upload_album_img_file'].size > 0)
+        image_file = request.FILES['upload_album_img_file'].read()
+        image_file_name = uuid.uuid4().urn[9:] + '.png'
+
+        conn = S3Connection(settings.AWS_SECRET_KEY, settings.AWS_ACCESS_SECRET_KEY)
+        bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+        k = Key(bucket)
+        k.key = 'images/' + image_file_name
+        k.set_contents_from_file(BytesIO(image_file), policy='public-read'
+
+        album.val_imagen = 'https://s3-us-west-2.amazonaws.com/sonidoslibres/images/' + image_file_name
+
+    album.save()
+
+    messages.success(request, '¡El album fue agregado exitosamente!')
+    return HttpResponseRedirect('/album/' + str(album.id))
+
+
 class ConvocationView(ListView):
     context_object_name = 'convocatorias'
     model = Convocatoria
@@ -391,10 +424,6 @@ def upload_album_view(request):
 
     messages.success(request, '¡El album fue agregado exitosamente!')
     return HttpResponseRedirect('/album/' + str(album.id))
-
-
-def edit_album_view(request):
-    pass
 
 
 def delete_album_view(request):

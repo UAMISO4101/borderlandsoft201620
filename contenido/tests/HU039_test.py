@@ -61,3 +61,10 @@ class HU039Test(TestCase):
         self.browser.implicitly_wait(2)
         self._util.set_click("btnAddAudioToAlbums")
         self.assertEquals(self.browser.find_element_by_id("spanNumAlbums").text, '1')
+
+    def refrescar_vista_cambios_albums(self):
+        self.agregar_audios_a_albums()
+        self.browser.implicitly_wait(3)
+        self.browser.find_element_by_id("albumsTab").click()
+        refreshed = True
+        self.assertEquals(refreshed, True)

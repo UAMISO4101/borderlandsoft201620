@@ -73,6 +73,9 @@ class Audio(models.Model):
     def __str__(self):
         return self.nom_audio
 
+    def tags_as_list(self):
+        return self.tags_audio.split(',')
+
 
 class Donaciones(models.Model):
     """

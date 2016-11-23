@@ -1,6 +1,4 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.template import RequestContext
 from django.template.context_processors import csrf
 from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy, reverse
@@ -15,7 +13,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from io import BytesIO
 import uuid
-import datetime
+
 from django.conf import settings
 
 # Create your views here.
@@ -29,7 +27,6 @@ class RegistroUsuario(CreateView):
 
 
     def post(self, request, *args, **kwargs):
-        uf = RegistroForm(request.POST, prefix='user')
         if request.method == 'POST':
             form = RegistroForm(request.POST)
             if form.is_valid():

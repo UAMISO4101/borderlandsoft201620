@@ -29,6 +29,5 @@ class AudioUpdateEstadoTest(TestCase):
 
     # Prueba utilizada la eliminación de ratings mediante acceso a datos directo
     def test_update_estado(self):
-        instance = Audio.objects.filter(id=self.audio.id).update(ind_estado=False)
         audioTest = Audio.objects.filter(id=self.audio.id)
         self.assertEqual(audioTest[0].ind_estado, False)

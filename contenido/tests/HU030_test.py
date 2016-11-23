@@ -1,17 +1,8 @@
 from django.test import TestCase
 from django.test import Client
-from datetime import datetime
 from django.urls import reverse
-from contenido.api.serializers import AudioSerializer
-
-
-from contenido.models import Comentario, Profile
-from contenido.models import Audio
-from contenido.models import Comentario
-from contenido.models import Artista
 from django.contrib.auth.models import User
-from rest_framework import status
-from rest_framework.test import APIClient
+
 
 
 # Create your tests here.

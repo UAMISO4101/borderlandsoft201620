@@ -55,3 +55,9 @@ class HU039Test(TestCase):
         except NoSuchElementException:
             exists = False
         self.assertEquals(exists, True)
+
+    def agregar_audios_a_albums(self):
+        self.abrir_modal_agregar_audio_a_album('5')
+        self.browser.implicitly_wait(2)
+        self._util.set_click("btnAddAudioToAlbums")
+        self.assertEquals(self.browser.find_element_by_id("spanNumAlbums").text, '1')

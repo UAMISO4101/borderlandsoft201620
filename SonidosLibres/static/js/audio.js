@@ -131,6 +131,7 @@ function getArtistas(artista) {
             var conteoObras = response.length;
             var divArtistas = "<div class='media'>" +
                 "<div class='media-left'>";
+
             if(artista.val_imagen === null || artista.val_imagen === "") {
                 divArtistas = divArtistas + "<div class='detail-img artist-img si50 text-center'>" +
                     "<i class='fa fa-user'></i>" +
@@ -145,7 +146,6 @@ function getArtistas(artista) {
                 conteoObras + " obras" +
                 "</div>" +
                 "</div>";
-
 
             $("#divArtistas").append(divArtistas);
         }
@@ -235,17 +235,46 @@ function getAudios() {
             var listArtistas = response.artistas;
             var listAlbums = response.albums;
             if(listArtistas !== null && listArtistas !== undefined && listArtistas !== "") {
+                $("#divArtistas").empty();
                 for (var i = 0; i <= listArtistas.length - 1; i++) {
                     getArtistas(listArtistas[i]);
                 }
             }
 
             if(listAlbums !== null && listAlbums !== undefined && listAlbums !== "") {
+                $("#divAlbums").empty();
                 for (var j = 0; j <= listAlbums.length - 1; j++) {
+                    var checkId = "albbox" + j + 1;
+
+                    var tr = $("<tr/>");
+                    var tdCheck = $("<td/>",{
+                        class: "cell-check"
+                    });
+                    var tdName = $("<td/>",{
+                        class: "cell-name",
+                        text: listAlbums[j].nom_album
+                    });
+                    var check = $("<input/>",{
+                        id: checkId,
+                        type: "checkbox"
+                        //checked: true,
+                        //class: "checkbox-awesome"
+                    });
+                    var label = $("<label/>",{
+                        for: checkId
+                    });
+                    tdCheck.append(check);
+                    //tdCheck.append(label);
+                    tr.append(tdCheck);
+                    tr.append(tdName);
+                    //$("#table-album-list tbody").append( tr );
+
                     getAlbums(listAlbums[j]);
                 }
             }
+            $("#spanNumArtistas").empty();
             $("#spanNumArtistas").append(listArtistas.length);
+            $("#spanNumAlbums").empty();
             $("#spanNumAlbums").append(listAlbums.length);
         }
 
@@ -415,46 +444,43 @@ function cambiarEstadoAudio(){
     });
 }
 
-    $(function () {
-        $("[data-toggle='tooltip']").tooltip();
-        $("[data-hover='tooltip']").tooltip();
-        $(".rating-input").empty();
-        getRatingsByAudio();
-        getAudios();
-        getComentarios();
-        getUltimaCalificacion();
-    });
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+    $("[data-hover='tooltip']").tooltip();
+    $(".rating-input").empty();
+    getRatingsByAudio();
+    getAudios();
+    getComentarios();
+    getUltimaCalificacion();
+});
 
-
-
-    $(document).ready(function(){
-      $("#calificar").on("click", function(e){
-        var $el = $(this);
-        if($el.data("clicked")){
-          // Previously clicked, stop actions
-          e.preventDefault();
-          e.stopPropagation();
-        }else{
-          calificar();
-          // Mark to ignore next click
-          $el.data("clicked", true);
-          // Unmark after 1 second
-          window.setTimeout(function(){
-            $el.removeData("clicked");
-          }, 300);
-        }
-      });
-    });
+$(document).ready(function(){
+  $("#calificar").on("click", function(e){
+    var $el = $(this);
+    if($el.data("clicked")){
+      // Previously clicked, stop actions
+      e.preventDefault();
+      e.stopPropagation();
+    }else{
+      calificar();
+      // Mark to ignore next click
+      $el.data("clicked", true);
+      // Unmark after 1 second
+      window.setTimeout(function(){
+        $el.removeData("clicked");
+      }, 300);
+    }
+  });
+});
 
 /**
  * Función que controla el evento click del botón borrar audio
   */
 $("#deleteSong").click(function () {
-        cambiarEstadoAudio();
-        $(location).attr('href',"/");
-        $(".container").load("/");
-    });
-
+    cambiarEstadoAudio();
+    $(location).attr('href',"/");
+    $(".container").load("/");
+});
 
 /**
  * Función que construye un modal con la información actual de un audio

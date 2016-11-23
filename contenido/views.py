@@ -199,10 +199,18 @@ class BuscadorView(View):
         }, )
 
 
+class AlbumDto:
+    def __init__(self, key, nombre):
+        self.key = key
+        self.nombre = nombre
+        self.esta_en_album = False
+
+
 class SongView(ListView):
     template_name = 'audio.html'
     context_object_name = 'song'
     audio = Audio
+    user_albums_dto = []
 
     def get_queryset(self):
         return get_object_or_404(Audio, id=int(self.kwargs['song_id']))
@@ -215,6 +223,26 @@ class SongView(ListView):
 
         if self.request.user.is_authenticated():
             user_id = self.request.user.id
+            user_albums = Album.objects.filter(artista=user_id)
+            albums = []
+
+            # Recorrer lista de albums del usuario
+            for user_album in user_albums:
+                # Crear una instancia
+                albumdto = AlbumDto(user_album.id, user_album.nom_album)
+
+                # Recorrer albums del audio
+                for audio_album in audio.albums.all():
+
+                    # Si los ids coinciden, el checkbox aparece seleccionado
+                    if user_album.id == audio_album.id:
+                        albumdto.esta_en_album = True
+
+                # Agregar album DTO a la lista
+                albums.append(albumdto)
+
+            # Asignar lista de albums al contexto
+            context['user_albums'] = albums
         else:
             user_id = 0
         try:

@@ -127,3 +127,16 @@ class DenunciaViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AgregarAAlbumViewSet(viewsets.ModelViewSet):
+    def list(self, request, *args, **kwargs):
+        audio = Audio.objects.get(id=int(request.data["audioId"]))
+        for album in request.data["albums"]:
+            album_db = Album.objects.get(id=album["id"])
+            if album["checked"]:
+                audio.albums.add(album_db)
+            else:
+                audio.albums.remove(album_db)
+
+        return Response({'key': 'value'}, status=status.HTTP_200_OK)

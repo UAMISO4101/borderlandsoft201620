@@ -1,34 +1,33 @@
 <div class="modal fade" id="{{ id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-2">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
-            </div>
-            <div class="modal-body">
-                <form novalidate>
-                    <table class="table table-lists">
+            <form onsubmit="return false;">
+                <div class="modal-header bg-2">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-lists" id="table-{{ prefix }}-list">
                         <tbody>
+                        {% for album in user_albums %}
                             <tr>
                                 <td class="cell-check">
-                                    <input id="{{ prefix }}box1" type="checkbox" class="checkbox-awesome" /><label for="{{ prefix }}box1"></label>
+                                    <input id="{{ prefix }}box{{ forloop.counter }}" type="checkbox" class="checkbox-awesome chk-album" value="{{ album.key }}" {% if album.esta_en_album %} checked="checked" {% endif %} />
+                                    <label for="{{ prefix }}box{{ forloop.counter }}"></label>
                                 </td>
-                                <td class="cell-name">Lista de Black Metal</td>
+                                <td class="cell-name">{{ album.nombre }}</td>
                             </tr>
-                            <tr>
-                                <td class="cell-check">
-                                    <input id="{{ prefix }}box2" type="checkbox" class="checkbox-awesome" /><label for="{{ prefix }}box2"></label>
-                                </td>
-                                <td class="cell-name">Lista de Gothic Metal</td>
-                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
-                </form>
-            </div>
-            <div class="modal-footer bg-2">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" form="donation_form" class="btn btn-sonidoslibres btn-2">Agregar</button>
-            </div>
+
+                </div>
+                <div class="modal-footer bg-2">
+                    <button id="btnCloseAddToAlbumModal" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button id="btnAddAudioToAlbums" onclick="AgregarAAlbum()" type="button" form="donation_form" class="btn btn-sonidoslibres btn-2">Agregar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

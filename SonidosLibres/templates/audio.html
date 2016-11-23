@@ -114,7 +114,7 @@
                         <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Artistas <span class="tab-counter" id="spanNumArtistas"></span></a>
                     </li>
                     <li role="presentation" class="tab-type-4">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter" id="spanNumAlbums"></span></a>
+                        <a href="#tab2" id="albumsTab" aria-controls="tab2" role="tab" data-toggle="tab">Álbums <span class="tab-counter" id="spanNumAlbums"></span></a>
                     </li>
                     <li role="presentation">
                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab" onclick="getComentarios();">Comentarios <span class="tab-counter" id="spanNumComentarios"></span></a>
@@ -164,15 +164,13 @@
         {% include "modals/audio-form-edit.html" with id="editInfoAudio" %}
     {% endif %}
     {% include "modals/denuncia-form.html" with id="reportModal" title="Reportar audio" label="Por favor coméntenos porqué está reportando este audio"%}
-    {% include "modals/list.html" with id="addToListModal" title="Agregar a lista de Reproducción" prefix="lst" %}
-    {% include "modals/list.html" with id="addToAlbumModal" title="Agregar a album" prefix="alb" %}
+{#    {% include "modals/list.html" with id="addToListModal" title="Agregar a lista de Reproducción" prefix="lst" %}#}
+    {% include "modals/list.html" with id="addToAlbumModal" title="Agregar a album" prefix="album" user_albums=user_albums %}
     {% include "modals/confirmation.html" with ok_id="deleteSong" message="Esta acción no se puede deshacer. Esto borrará permanentemente la obra, junto a sus calificaciones y \"Me gusta\". ¿Deseas continuar?" %}
 {% endblock %}
 {% block jquery %}{% static "js/lib/jquery2/dist/jquery.js" %}{% endblock %}
 {% block pagescripts %}
     <script src="{% static "js/lib/bootstrap-rating-input/src/bootstrap-rating-input.js" %}" type="text/javascript"></script>
-{#    <script src="{% static "js/lib/jquery-ui/jquery-ui.min.js" %}" type="text/javascript"></script>#}
-{#    <script src="{% static "js/lib/datetimepicker/jquery.datetimepicker.min.js" %}" type="text/javascript"></script>#}
     <script type="text/javascript">
         var backVars = {
             songId: {{ song.id }}
@@ -181,4 +179,5 @@
     <script src="{% static "js/audio.js" %}" type="text/javascript"></script>
     <script src="{% static "js/comment.js" %}" type="text/javascript"></script>
     <script src="{% static "js/denuncia.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/album.js" %}" type="text/javascript"></script>
 {% endblock %}

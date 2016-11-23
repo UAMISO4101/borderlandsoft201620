@@ -147,7 +147,7 @@ def edit_album_view(request):
 
     new_year = request.POST.get('edit_album_year')
     if(len(new_year)>0):
-        album.nom_album = .fec_creacion_album = datetime.datetime(int(new_year), 1, 1, 0, 0)
+        album.fec_creacion_album = datetime.datetime(int(new_year), 1, 1, 0, 0)
     #si se encuentra una imagen caragarla
     if(request.FILES['upload_album_img_file'].size > 0)
         image_file = request.FILES['upload_album_img_file'].read()

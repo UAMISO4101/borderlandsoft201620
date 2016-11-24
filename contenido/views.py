@@ -228,7 +228,7 @@ class SongView(ListView):
                 artista = Artista.objects.get(user=user_id)
                 user_albums = Album.objects.filter(artista=artista.id)
             except Artista.DoesNotExist:
-                a = 1
+                pass
             albums = []
 
             # Recorrer lista de albums del usuario

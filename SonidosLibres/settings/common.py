@@ -29,7 +29,7 @@ PROJECT_ROOT = PROJECT_PACKAGE  # os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'y8h#o^ssafs5a80^p99t4!*ridemch6+12m^h9ch+fa)=zm9bs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -105,8 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'es-CO'
+TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

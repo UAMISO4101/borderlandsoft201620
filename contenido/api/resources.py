@@ -1,6 +1,7 @@
 from rest_framework import viewsets, generics
-from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer
-from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings
+from .serializers import ArtistaSerializer, AudioSerializer, UserSerializer, AlbumSerializer,DonacionesSerializer,PermissionsSerializer, ComentarioSerializer,RatingsSerializer, AudioIndEstadoSerializer, \
+    DenunciaSerializer
+from ..models import Artista,Audio,User,Album,Donaciones,Comentario,Ratings, Denuncia
 from django.contrib.auth.models import Permission
 from rest_framework.response import Response
 from rest_framework import status
@@ -17,13 +18,13 @@ class AudioViewSet(generics.ListAPIView):
     serializer_class = AudioSerializer
 
     def get_queryset(self):
-        return Audio.objects.filter(pk=int(self.kwargs['id']))
+        return Audio.objects.filter(pk=int(self.kwargs['id'])).filter(ind_estado=True)
 
 class AudiosByArtistaViewSet(generics.ListAPIView):
     serializer_class = AudioSerializer
 
     def get_queryset(self):
-        return Audio.objects.filter(artistas__pk=self.kwargs['artista_id'])
+        return Audio.objects.filter(artistas__pk=self.kwargs['artista_id']).filter(ind_estado=True)
 
 
 class RatingByUserAudioViewSet(generics.ListAPIView):
@@ -39,7 +40,7 @@ class RatingByAudioViewSet(generics.ListAPIView):
         return Ratings.objects.filter(audio_id=self.kwargs['audio_id'])
 
 class AudiosViewSet(viewsets.ModelViewSet):
-    queryset = Audio.objects.all()
+    queryset = Audio.objects.all().filter(ind_estado=True)
     serializer_class = AudioSerializer
 
 class ArtistasViewSet(viewsets.ModelViewSet):
@@ -67,9 +68,13 @@ class ComentarioViewSet(viewsets.ModelViewSet):
     serializer_class = ComentarioSerializer
 
     def create(self, request, format=None):
-        serializer = ComentarioSerializer(data=request.data)
+        serializer = ComentarioSerializer(data=request.data, partial=True)
+
         if serializer.is_valid():
-            serializer.save()
+            comentario = Comentario(**serializer.validated_data )
+            comentario.autor_id = request.user.id
+            comentario.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -95,4 +100,43 @@ class ComentariosByAudioViewSet(generics.ListAPIView):
     serializer_class = ComentarioSerializer
 
     def get_queryset(self):
-        return Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen')
+        comentarios = Comentario.objects.filter(audio__id=self.kwargs['song_id']).order_by('-fec_creacion_comen').select_related('autor').all()
+        return comentarios
+
+#Actualización del estado de un audio
+class AudioUpdateEstadoViewSet(viewsets.ModelViewSet):
+    queryset = Audio.objects.all()
+    serializer_class = AudioIndEstadoSerializer
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.queryset.get(pk=kwargs.get('pk'))
+        serializer = self.serializer_class(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+class DenunciaViewSet(viewsets.ModelViewSet):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
+
+    def create(self, request, format=None):
+        serializer = DenunciaSerializer(data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AgregarAAlbumViewSet(viewsets.ModelViewSet):
+    def list(self, request, *args, **kwargs):
+        audio = Audio.objects.get(id=int(request.data["audioId"]))
+        for album in request.data["albums"]:
+            album_db = Album.objects.get(id=album["id"])
+            if album["checked"]:
+                audio.albums.add(album_db)
+            else:
+                audio.albums.remove(album_db)
+
+        return Response({'key': 'value'}, status=status.HTTP_200_OK)

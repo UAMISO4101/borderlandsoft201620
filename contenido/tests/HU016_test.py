@@ -1,6 +1,9 @@
 from django.test import TestCase
 from django.test import Client
+
 from contenido.models import Audio
+from contenido.models import Artista
+from django.contrib.auth.models import User
 
 
 # Create your tests here.
@@ -8,11 +11,17 @@ from contenido.models import Audio
 
 class AudioUploadTests(TestCase):
     def setUp(self):
-        # Every test needs access to the request factory.
-        pass
+        # Se crea un usuario artista
+        self.usuario_artista = User.objects.create_user(username='jdelafonte', email='jdelafonte@gmail.com',
+                                                        password='JFonte1234')
+        # Se crea un artista al cual se le asociara un audio
+        self.artista = Artista.objects.create(nom_artistico='Javier de la Fonte', nom_pais='Colombia',
+                                              nom_ciudad='Bogota',
+                                              val_imagen='imagen.jpg', user=self.usuario_artista)
 
     def upload_audio_test_view(self):
         c = Client()
+        c.login(username='jdelafonte', password='JFonte1234')
         with open('SonidosLibres/fixtures/init.json') as song_file:
             with open('SonidosLibres/fixtures/init.json') as image_file:
                 song_name = 'TestSongName'

@@ -15,7 +15,7 @@
                                 Seleccionar audio&hellip; <input type="file" name="upload_song_file_file" style="display: none;">
                             </span>
                         </label>
-                        <input type="text" class="form-control" name="upload_song_file">
+                        <input type="text" class="form-control" name="upload_song_file" placeholder="Por favor seleccione un archivo .mp3">
                     </div>
                     <div class="media">
                         <div class="media-left">
@@ -24,7 +24,7 @@
                                 <label class="btn btn-block btn-sonidoslibres btn-2 btn-file">
                                     Agregar imágen&hellip; <input type="file" name="upload_song_img_file" style="display: none;" onchange="document.getElementById('upload_img_file').src = window.URL.createObjectURL(this.files[0])">
                                 </label>
-                                <input type="text" class="form-control" name="upload_song_img">
+                                <input type="text" class="form-control" name="upload_song_img" title="">
                              </div>
                         </div>
                         <div class="media-body">
@@ -33,7 +33,7 @@
                                 <input type="text" class="form-control" placeholder="Nombre" name="upload_song_name">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="upload_song_type">
+                                <select class="form-control" name="upload_song_type" title="">
                                     <option>Seleccione un tipo...</option>
                                     <option>Videojuegos</option>
                                     <option>Banda sonora</option>
@@ -45,6 +45,21 @@
                                 <textarea class="form-control" placeholder="Etiquetas (Separadas por comas)" name="upload_song_tags"></textarea>
                             </div>
                         </div>
+                        {% if user.is_authenticated and not user.artista %}
+                            <hr/>
+                            <div class="form-group">
+                                <span><strong>Registro como artísta</strong></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="upload_nombre_artistico" placeholder="Nombre artístico" name="upload_nombre_artistico">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="upload_pais_origen" placeholder="Pais origen" name="upload_pais_origen">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="upload_ciudad_origen" placeholder="Ciudad origen" name="upload_ciudad_origen">
+                            </div>
+                        {% endif %}
                     </div>
                 </form>
             </div>

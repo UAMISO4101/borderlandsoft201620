@@ -1,14 +1,20 @@
 from rest_framework import serializers
-from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings
+from contenido.models import Artista, Audio, User, Album, Donaciones, Comentario, Ratings, Profile, Denuncia
 from django.contrib.auth.models import Permission
-from rest_framework.response import Response
-from rest_framework import status
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('__all__')
 
 
 class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
     class Meta:
         model = User
         fields = ('__all__')
+        write_only_fields = ('password',)
 
 
 class ArtistaSerializer(serializers.ModelSerializer):
@@ -29,7 +35,7 @@ class AudioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Audio
-        fields = ('id','nom_audio','val_imagen','val_recurso','fec_entrada_audio', 'likes', 'albums', 'artistas')
+        fields = ('id','nom_audio','val_imagen','val_recurso','fec_entrada_audio', 'likes', 'albums', 'artistas', 'ind_estado')
 
 class DonacionesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,9 +48,12 @@ class PermissionsSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 class ComentarioSerializer(serializers.ModelSerializer):
+    autor = UserSerializer(many=False, read_only=True)
+    fec_creacion_comen = serializers.DateTimeField(format="%B %d de %Y, %H:%M %p %Z")
+
     class Meta:
         model = Comentario
-        fields = ('__all__')
+        fields = ('id','val_comentario','fec_creacion_comen','ind_publicado','autor', 'audio')
 
     def create(self, validated_data):
         comentario = Comentario.objects.create(**validated_data)
@@ -59,3 +68,20 @@ class RatingsSerializer(serializers.ModelSerializer):
         rating = Ratings.objects.create(**validated_data)
         return rating
 
+
+#Serializador del estado de un audio
+class AudioIndEstadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Audio
+        fields = ('id', 'ind_estado')
+
+
+
+class DenunciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Denuncia
+        fields = ('id', 'val_denuncia', 'ind_tipo_denuncia', 'fec_creacion_denuncia', 'autor', 'audio')
+
+    def create(self, validated_data):
+        denuncia = Denuncia.objects.create(**validated_data)
+        return denuncia
